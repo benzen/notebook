@@ -1,5 +1,5 @@
 @base: #f938ab;
-
+@bacgroundColor: #293333 
 .box-shadow(@style, @c) when (iscolor(@c)) {
   box-shadow:         @style @c;
   -webkit-box-shadow: @style @c;
@@ -12,4 +12,8 @@
   color: saturate(@base, 5%);
   border-color: lighten(@base, 30%);
   div { .box-shadow(0 0 5px, 30%) }
+}
+
+body{
+  background-color: @backgroundColor
 }
