@@ -6,7 +6,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 
 app.get('/', function(request, response) {
-  response.send('Hello World!');
+  response.render("index.jade")
 });
 
 var port = process.env.PORT || 3000;
