@@ -1,6 +1,9 @@
 var express = require('express');
 
+
 var app = express.createServer(express.logger());
+app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'jade');
 
 app.get('/', function(request, response) {
   response.send('Hello World!');
