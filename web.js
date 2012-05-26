@@ -4,6 +4,7 @@ var express = require('express');
 var app = express.createServer(express.logger());
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
+app.use(express.compiler({ src:public, enable: ['less'] }));
 
 app.get('/', function(request, response) {
   response.render("index.jade")
