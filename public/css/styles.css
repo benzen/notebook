@@ -7,3 +7,10 @@ body {
   font-weight: bold;
   text-align: center;
 }
+.toolBar {
+ text-align: right;
+ color:white;
+}
+.toolBar:hover:{
+  opacity:0.8;
+}
