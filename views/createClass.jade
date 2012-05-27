@@ -1,16 +1,17 @@
 extends layout
 block content
-  table
-    tr
-      td Group: 
-      td 
-       input(type="text", name="group")
-    tr
-      td Year:
-      td 
-        input(type="number")
+  .groupDef
+    table
+      tr
+        td Group: 
+        td 
+         input(type="text", name="group")
+      tr
+        td Year:
+        td 
+          input(type="number")
     .button
-      a(href="#") Save class
+      a(href="#", class="saveClassButton") Save class
    
   .newStudent
     .sectionTitle New Student
@@ -42,7 +43,7 @@ block content
           textarea(name="notes")
     
     .button 
-      a(href="#") Add Student
+      a(href="#", class="addStudentButton") Add Student
   .studentList 
     .sectionTitle Student list
     table
