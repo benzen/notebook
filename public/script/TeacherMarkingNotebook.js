@@ -40,9 +40,6 @@ TeacherMarkingNotebook.saveClass = function(){
   TeacherMarkingNotebook.studentClass.year = $("year").val();
 };
 TeacherMarkingNotebook.showLastStudentInStudentList = function(){
-  var nbOfStudents = TeacherMarkingNotebook.studentClass.students.length;
-  var s = TeacherMarkingNotebook.studentClass.students[mnOfStudents-1];
-  var template = "tr"
 };
 
 $(function).ready(function(){
