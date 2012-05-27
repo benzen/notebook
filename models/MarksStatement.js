@@ -1,4 +1,4 @@
-var markStatment = Backbone.View.extend({
+MarkStatment = Backbone.View.extend({
   defaults:{
     name:"",
     date:"",

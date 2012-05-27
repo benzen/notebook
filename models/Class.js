@@ -1,4 +1,4 @@
-var Class = Backbone.Model.extend({
+Class = Backbone.Model.extend({
         defaults: {
             students:[],
             group: "",
