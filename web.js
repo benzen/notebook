@@ -13,7 +13,11 @@ app.get('/', function(request, response) {
 });
 
 app.get("/configure", function(request,response){
-  response.render("configure.jade")
+  response.render("configure.jade");
+});
+
+app.get("/class/new", function(request,response){
+  response.render("createClass.jade");
 });
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
