@@ -1,4 +1,5 @@
-var StudentListView = Backbone.View.extend({    
+$(document).ready(function(){
+  StudentListView = Backbone.View.extend({    
     el: $('.studentList table tbody'),
     initialize: function(){
       _.bindAll(this, 'render');
@@ -9,4 +10,5 @@ var StudentListView = Backbone.View.extend({
     }
   });
 
-  var studentlistView = new StudentListView();
+  var studentlistView = new StudentListView()
+});
