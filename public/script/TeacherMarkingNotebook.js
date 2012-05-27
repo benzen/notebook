@@ -1,5 +1,3 @@
-
-
 TeacherMarkingNotebook={};
 TeacherMarkingNotebook.studentClass = new Class();
 TeacherMarkingNotebook.installListeners = function(){
