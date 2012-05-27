@@ -1,7 +1,12 @@
 extends layout
 block content
-  form
-    Group: input(type="text", name="group")
-    Year:  input(type="number")
+  form()
+    table
+      tr
+       td Group: 
+       td input(type="text", name="group")
+      tr
+        td Year:
+        td input(type="number")
     
     
