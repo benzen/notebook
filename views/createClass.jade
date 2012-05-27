@@ -1,15 +1,14 @@
 extends layout
 block content
-  form()
-    table
-      tr
-       td Group: 
-       td 
-         input(type="text", name="group")
-      tr
-        td Year:
-        td 
-          input(type="number")
+  table
+    tr
+      td Group: 
+      td 
+       input(type="text", name="group")
+    tr
+      td Year:
+      td 
+        input(type="number")
     .button
       a(href="#") Save class
    
@@ -19,28 +18,28 @@ block content
       tr
         td Firstname
         td
-          input
+          input(type="text", name="firstname")
         td Father name
         td
-          input
+          input(type="text", name="fatherName")
       tr
         td Lastname
         td 
-          input
+          input(type="text", name="lastname")
         td Mother name
         td
-          input
+          input(type="text", name="motherName")
       tr
         td Birthday
         td
-          input
+          input(type="text", name="birthday")
         td Telephones
         td
-          input
+          input(type="text", name="telephone")
       tr
         td Notes
         td 
-          textarea
+          textarea(name="notes")
     
     .button 
       a(href="#") Add Student
