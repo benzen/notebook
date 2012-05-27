@@ -1,6 +1,8 @@
 body {
-  background-color:  #293333;;
+  background-color:  #293333;
 }
 .header {
   color: white;
+  font-size: 18px;
+  font-weight : bold;
 }
