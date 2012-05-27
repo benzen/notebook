@@ -4,7 +4,7 @@ body {
 }
 .header {
   color: white;
-  font-size: 18px;
+  font-size: 25px;
   font-weight: bold;
   text-align: center;
 }
@@ -25,5 +25,9 @@ form {
 }
 .button {
   color:white;
+}
+.sectionTitle {
+  color:white,
+  font-size:20px
 }
 
