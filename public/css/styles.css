@@ -23,16 +23,16 @@ form {
   margin-right:auto;
   width:300px;
 }
-.button {
+
+.button > a {
+  color: grey;
   border-radius: 10px;
   background-color: white;
   color: grey;
   margin-left: auto;
   margin-right: auto;
   width: 200px;
-}
-.button > a {
-  color: grey;
+
 }
 .sectionTitle {
   color:white;
