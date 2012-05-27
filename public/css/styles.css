@@ -10,10 +10,10 @@ body {
 .toolBar {
   text-align: right;
 }
-.toolBar > a{
+a{
  color:white;
  text-decoration:none;
 }
-.toolBar > a:hover{
+a:hover{
   opacity: 0.8;
 }
