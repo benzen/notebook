@@ -1,6 +1,6 @@
 $(document).ready(function(){
   StudentListView = Backbone.View.extend({    
-    el: $('.studentList table tbody'),
+    el: $('body'),
     initialize: function(){
       _.bindAll(this, 'render', 'addStudent','appendStudent');
       this.collection = new Students()
@@ -20,7 +20,7 @@ $(document).ready(function(){
       this.collection.add(s);
     },
    appendStudent: function(student){
-      $(this.el).append( "<tr> <td>"+
+      $(".studentList table tbody",this.el).append( "<tr> <td>"+
                          student.get("firstname")+
                          "</td> <td>"+
                          student.get("lastname")+
