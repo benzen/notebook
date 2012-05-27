@@ -5,7 +5,7 @@ var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
 app.use(express.static( publicDir ));
 app.set('view engine', 'jade');
-pp.set('view options', { layout: false });
+app.set('view options', { layout: false });
 app.use(express.bodyParser());
 
 app.get('/', function(request, response) {
