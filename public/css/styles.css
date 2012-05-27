@@ -39,6 +39,18 @@ form {
   text-decoration:underline;
 }
 table {
-  border: "1px solid";
-  border-color:"white";
+  border-width: 1px;
+  border-style:dashed;
+  border-color: white;
+}
+tr{
+  border-width:1px;
+  border-style:dashed;
+  border-color: white;
+}
+td{ 
+  border-width: 1px;
+  border-style:dashed;
+  border-color: white;
+
 }
