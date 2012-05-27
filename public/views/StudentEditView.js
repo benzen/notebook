@@ -2,7 +2,7 @@ $(document).ready(function(){
   StudentEditView = Backbone.View.extend({    
     el: $('body'),
     events: {
-      "change .firstname":   "studentChanged",
+      "change [name='firstname']":   "studentChanged",
       "change .lastname":    "studentChanged",
       "change .birthday":    "studentChanged",
       "change .notes":       "studentChanged",
