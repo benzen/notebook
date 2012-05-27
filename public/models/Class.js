@@ -1,7 +1,5 @@
-Class = Backbone.Model.extend({
-        defaults: {
-            students:[],
-            group: "",
-            scolarYear: ""
-        }
-    });
+function Class (group,year){
+	this.students = [];
+        this.group = group;
+        this.year = year;
+}

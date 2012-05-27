@@ -1,9 +1,5 @@
-MarkStatment = Backbone.View.extend({
-  defaults:{
-    name:"",
-    date:"",
-    maximumMark:0,
-    
-    
-  }  
-});
+function MarkStatment(){
+    this.name = "";
+    this.date = new Date();
+    this.maximumMark = 0;
+}

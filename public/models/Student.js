@@ -1,13 +1,10 @@
-Student = Backbone.Model.extend({
-   defaults: {
-            firstName: "StudentFirstName",
-            lastName : "StudentLastName"
-            birthdate: "",
-            phoneNumber: [""],
-            notes:""
-   },
-   name:function(){
-     return this.get("firstName")+" "+this.get("lastName");
-   }
-});
-
+function Student(){
+  this.firstName = "";
+  this.lastName = "";
+  this.birthdate = new Date();
+  this.phoneNumber = [];
+  this.notes = ""
+};
+Student.prototype.name:function(){
+     return this.firstName+" "+this.lastName;
+};
