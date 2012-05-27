@@ -42,6 +42,6 @@ TeacherMarkingNotebook.saveClass = function(){
 TeacherMarkingNotebook.showLastStudentInStudentList = function(){
 };
 
-$(function).ready(function(){
+$(document).ready(function(){
   TeacherMarkingNotebook.installListeners();
 });
