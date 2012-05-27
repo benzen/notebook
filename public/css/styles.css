@@ -28,6 +28,7 @@ form {
 }
 .sectionTitle {
   color:white,
-  font-size:20px
+  font-size:20px,
+  text-decoration:underline
 }
 
