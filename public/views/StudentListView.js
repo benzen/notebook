@@ -4,7 +4,7 @@ $(document).ready(function(){
     initialize: function(){
       _.bindAll(this, 'render', 'addStudent','appendStudent');
       this.collection = new Students()
-      this.collection.bind('add', this.appendItem);
+      this.collection.bind('add', this.appendStudent);
       this.render();
     },
     events: {
