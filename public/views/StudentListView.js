@@ -1,8 +1,8 @@
 var StudentListView = Backbone.View.extend({    
-    el: $('.studentList table'),
+    el: $('.studentList table tbody'),
     initialize: function(){
-      _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
-       this.render(); // not all views are self-rendering. This one is.
+      _.bindAll(this, 'render');
+       this.render();
     },
     render: function(){
       $(this.el).append("<tr> <td></td> <td></td> <td></td> <td><td> <td><td> <td><td> </tr>");
