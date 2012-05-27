@@ -29,7 +29,7 @@ TeacherMarkingNotebook.saveStuddent = function(){
 TeacherMarkingNotebook.saveClass = function(){
   TeacherMarkingNotebook.studentClass.set({
     group:$(".group").val(), 
-    year;$("year").val()
+    year:$("year").val()
   });
 };
 $(document).ready(function(){
