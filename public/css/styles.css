@@ -38,7 +38,7 @@ form {
   font-size:20px;
   text-decoration:underline;
 }
-.studentList > table, .studentList>table>*>th, .studentList>table>*>td {
+.studentList > table, .studentList>table th, .studentList>table td {
   border-width: 1px;
   border-style:dashed;
   border-color: white;
