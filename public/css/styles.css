@@ -1,5 +1,6 @@
 body {
   background-color:  #293333;
+  color:grey;
 }
 .header {
   color: white;
@@ -25,3 +26,4 @@ form {
 .button {
   color:white;
 }
+
