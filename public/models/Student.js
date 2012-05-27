@@ -5,6 +5,6 @@ function Student(){
   this.phoneNumber = [];
   this.notes = ""
 };
-Student.prototype.name:function(){
+Student.prototype.name = function(){
      return this.firstName+" "+this.lastName;
 };
