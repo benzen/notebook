@@ -22,7 +22,7 @@ $(document).ready(function(){
          lastname:$("[name='lastname']").val(),
          birthday:$("[name='birthday']").val(),
          notes:$("[name='notes']").val(),
-         telephoneNumber:$("[name='telephoneNumber']").val(),
+         telephoneNumber:$("[name='telephone']").val(),
          fatherName:$("[name='fatherName']").val(),
          motherName:$("[name='motherName']").val()
       });
@@ -35,7 +35,7 @@ $(document).ready(function(){
                          "<td>"+ student.get("birthday") + "</td>"+
                          "<td>"+ student.get("fatherName") + "</td>"+
                          "<td>"+ student.get("motherName") + "</td>"+
-                         "<td>"+ student.get("telephoneNumber") + "</td>"+
+                         "<td>"+ student.get("telephone") + "</td>"+
                          "<td>"+ student.get("notes") + "</td> </tr>");
     }
   });
