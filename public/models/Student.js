@@ -1,10 +1,14 @@
-function Student(s){
-  this.firstName = s?s.firstname:"";
-  this.lastName = s?s.lastname:"";
-  this.birthdate = s?s.birthday:new Date();
-  this.phoneNumber = s?s.phonenumber:[];
-  this.notes = s?s.notes:""
-};
-Student.prototype.name = function(){
-     return this.firstName+" "+this.lastName;
-};
+Student = Backbone.Model.extend({
+    defaults: {
+      firstname: "",
+      lastname: "",
+      birthday:new Date(),
+      phoneNumbers:[],
+      notes:""
+    }
+  });     
+
+Students = Backbone.Collection.extend({
+    model: Student
+  });
+
