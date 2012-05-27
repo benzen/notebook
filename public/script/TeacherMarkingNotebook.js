@@ -10,6 +10,7 @@ TeacherMarkingNotebook.installListeners = function(){
   $(".addStudentButton").click(function(){
     console.log("click on add student button");
     TeacherMarkingNotebook.saveStuddent();
+    TeacherMarkingNotebook.resetStudentForm();
   });
 };
 TeacherMarkingNotebook.saveStuddent = function(){
@@ -23,15 +24,27 @@ TeacherMarkingNotebook.saveStuddent = function(){
     notes: $("[name='notes']").val()
   });
   TeacherMarkingNotebook.studentClass.students.push(student);
+  TeacherMarkingNotebook.showLastStudentInStudentList();
 };
-
+TeacherMarkingNotebook.resetStudentForm = function(){
+    $("[name='firstname']").val("");
+    $("[name='lastname']").val("");
+    $("[name='birtday']").val(""),
+    $("[name='fatherName']").val(""),
+    $("[name='motherName']").val(""),
+    $("[name='telephones']").val("")
+    $("[name='notes']").val("")
 
 TeacherMarkingNotebook.saveClass = function(){
-  TeacherMarkingNotebook.studentClass.set({
-    group:$(".group").val(), 
-    year:$("year").val()
-  });
+  TeacherMarkingNotebook.studentClass.group = $(".group").val();
+  TeacherMarkingNotebook.studentClass.year = $("year").val();
 };
-$(document).ready(function(){
+TeacherMarkingNotebook.showLastStudentInStudentList = function(){
+  var nbOfStudents = TeacherMarkingNotebook.studentClass.students.length;
+  var s = TeacherMarkingNotebook.studentClass.students[mnOfStudents-1];
+  var template = "tr"
+};
+
+$(function).ready(function(){
   TeacherMarkingNotebook.installListeners();
 });
