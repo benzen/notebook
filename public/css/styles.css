@@ -7,10 +7,10 @@ body {
   font-weight: bold;
   text-align: center;
 }
-.toolBar {
+.toolBar >a{
  text-align: right;
  color:white;
 }
-.toolBar:hover:{
+.toolBar>a:hover:{
   opacity:0.8;
 }
