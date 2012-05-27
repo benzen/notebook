@@ -15,7 +15,7 @@ $(document).ready(function(){
       this.model = new Student()
     },
     studentChanged:function(e){
-       this.model.save({
+       this.model.set({
          firstname:$("[name='firstname']").val(),
          lastname:$("[name='lastname']").val(),
          birthday:$("[name='birthday']").val(),
