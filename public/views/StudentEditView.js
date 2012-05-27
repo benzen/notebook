@@ -2,13 +2,19 @@ $(document).ready(function(){
   StudentEditView = Backbone.View.extend({    
     el: $('body'),
     events: {
-      "change input.content":  "contentChanged"
+      "change .firstname":   "studentChanged",
+      "change .lastname":    "studentChanged",
+      "change .birthday":    "studentChanged",
+      "change .notes":       "studentChanged",
+      "change .telephones":  "studentChanged",
+      "change .fatherName":  "studentChanged",
+      "change .motherName":  "studentChanged",
     },
     initialize: function(){
-      _.bindAll(this, 'contentChanged');
+      _.bindAll(this, 'studentChanged');
       this.model = new Student()
     },
-    contentChanged:function(e){
+    studentChanged:function(e){
        this.model.save({firstname:$(".firstname")});
     }
   });
