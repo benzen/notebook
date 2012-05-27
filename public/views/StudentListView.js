@@ -17,7 +17,15 @@ $(document).ready(function(){
       }, this);
     },
     addStudent: function(){
-      var s = new Student();
+      var s = new Student(
+         firstname:$("[name='firstname']").val(),
+         lastname:$("[name='lastname']").val(),
+         birthday:$("[name='birthday']").val(),
+         notes:$("[name='notes']").val(),
+         telephoneNumber:$("[name='telephoneNumber']").val(),
+         fatherName:$("[name='fatherName']").val(),
+         motherName:$("[name='motherName']").val(),
+      );
       this.collection.add(s);
     },
    appendStudent: function(student){
