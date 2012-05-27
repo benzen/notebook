@@ -13,5 +13,5 @@ $(document).ready(function(){
     }
   });
 
-  var studentlistView = new StudentListView()
+  var studentEditView = new StudentEditView()
 });
