@@ -21,21 +21,14 @@ $(document).ready(function(){
       this.collection.add(s);
     },
    appendStudent: function(student){
-      $(".studentList table tbody",this.el).append( "<tr> <td>"+
-                         student.get("firstname")+
-                         "</td> <td>"+
-                         student.get("lastname")+
-                         "</td> <td>"+
-                         student.get("birthday")+
-                         "</td> <td>"+
-                         student.get("fatherName")+
-                         "<td> <td>"+
-                         student.get("motherName")+
-                         "<td> <td>"+
-                         student.get("telephoneNumber")+
-                         "<td> <td>"+
-                         student.get("notes")+
-                         "<td> </tr>");
+      $(".studentList table tbody",this.el).append( 
+                  "<tr>  <td>"+ student.get("firstname") + "</td>"+
+                         "<td>"+ student.get("lastname") + "</td>"+
+                         "<td>"+ student.get("birthday") + "</td>"+
+                         "<td>"+ student.get("fatherName") + "</td>"+
+                         "<td>"+ student.get("motherName") + "</td>"+
+                         "<td>"+ student.get("telephoneNumber") + "</td>"+
+                         "<td>"+ student.get("notes") + "</td> </tr>");
     }
   });
 
