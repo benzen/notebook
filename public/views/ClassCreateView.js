@@ -60,5 +60,5 @@ $(document).ready(function(){
    }
   });
 
-  var studentlistView = new StudentListView()
+  var classEditView = new ClassEdittView()
 });
