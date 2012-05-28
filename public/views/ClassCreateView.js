@@ -9,7 +9,9 @@ $(document).ready(function(){
     },
     events: {
       'click .addStudentButton': 'addStudent',
-      'click .saveClassButton': 'saveClass'
+      'click .saveClassButton' : 'saveClass',
+      "change [name='group']"  : "changeClass",
+      "change [name='year']"   : "changeClass"
 //, add ability to remove a student
     },
     render: function(){
@@ -31,17 +33,16 @@ $(document).ready(function(){
       this.model.get("students").add(s);
       this.clearForm();
     },
-   clearForm:function(){
-     $("[name='firstname']").val("");
-     $("[name='lastname']").val("");
-     $("[name='birthday']").val("");
-     $("[name='notes']").val("");
-     $("[name='telephone']").val("");
-     $("[name='fatherName']").val("");
-     $("[name='motherName']").val("");
-
-   },
-   appendStudent: function(student){
+    clearForm:function(){
+      $("[name='firstname']").val("");
+      $("[name='lastname']").val("");
+      $("[name='birthday']").val("");
+      $("[name='notes']").val("");
+      $("[name='telephone']").val("");
+      $("[name='fatherName']").val("");
+      $("[name='motherName']").val("");
+    },
+    appendStudent: function(student){
       $(".studentList table tbody",this.el).append( 
                   "<tr>  <td>"+ student.get("firstname") + "</td>"+
                          "<td>"+ student.get("lastname") + "</td>"+
@@ -50,10 +51,19 @@ $(document).ready(function(){
                          "<td>"+ student.get("motherName") + "</td>"+
                          "<td>"+ student.get("telephone") + "</td>"+
                          "<td>"+ student.get("notes") + "</td> </tr>");
-   },
-   saveClass:function(){
-     this.model.save()
-   }
+    },
+    changeClass:function(){
+      this.getModel().set({
+        "group":$("[name='group']").val(),
+        "year":$("[name='year']").val()
+      });
+    },
+    saveClass:function(){
+      var classAsJson = JSON.stringify(this.model);
+      $.post("class/create",classAsJson, function(response){
+        console.log(response);
+      });
+    }
   });
 
   var classCreateView = new ClassCreateView()
