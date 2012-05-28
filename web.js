@@ -19,7 +19,8 @@ app.get("/configure", function(request,response){
 app.get("/class/new", function(request,response){
   response.render("createClass.jade");
 });
-var port = process.env.PORT || 3000;
+//var port = process.env.PORT || 3000;
+var port = 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
