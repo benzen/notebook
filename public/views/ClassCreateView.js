@@ -60,5 +60,5 @@ $(document).ready(function(){
    }
   });
 
-  var classEditView = new ClassEditView()
+  var classCreateView = new ClassCreateView()
 });
