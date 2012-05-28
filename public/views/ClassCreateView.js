@@ -52,11 +52,7 @@ $(document).ready(function(){
                          "<td>"+ student.get("notes") + "</td> </tr>");
    },
    saveClass:function(){
-     var Class = {
-       group:$("[name='group']").val(),
-       year:$("[name='year']").val(),
-       students: this.collection.toJSON()
-    };
+     this.model.save()
    }
   });
 
