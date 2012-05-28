@@ -40,7 +40,7 @@ $(document).ready(function(){
      $("[name='fatherName']").val("");
      $("[name='motherName']").val("");
 
-   },
+   }
    appendStudent: function(student){
       $(".studentList table tbody",this.el).append( 
                   "<tr>  <td>"+ student.get("firstname") + "</td>"+
@@ -50,13 +50,14 @@ $(document).ready(function(){
                          "<td>"+ student.get("motherName") + "</td>"+
                          "<td>"+ student.get("telephone") + "</td>"+
                          "<td>"+ student.get("notes") + "</td> </tr>");
-    },
+   },
    saveClass:function(){
      var Class = {
        group:$("[name='group']").val(),
        year:$("[name='year']").val(),
        students: this.collection.toJSON()
-    }
+    };
+   }
   });
 
   var studentlistView = new StudentListView()
