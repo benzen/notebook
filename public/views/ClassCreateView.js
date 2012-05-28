@@ -2,7 +2,7 @@ $(document).ready(function(){
   ClassCreateView = Backbone.View.extend({    
     el: $('body'),
     initialize: function(){
-      _.bindAll(this, 'render', 'addStudent','appendStudent','clearForm', "saveClass");
+      _.bindAll(this, 'render', 'addStudent','appendStudent','clearForm', "changeClass", "saveClass");
       this.model = new Class({students:new Students()});
       this.model.get("students").bind('add', this.appendStudent);
       this.render();
