@@ -53,7 +53,7 @@ $(document).ready(function(){
                          "<td>"+ student.get("notes") + "</td> </tr>");
     },
     changeClass:function(){
-      this.getModel().set({
+      this.model.set({
         "group":$("[name='group']").val(),
         "year":$("[name='year']").val()
       });
