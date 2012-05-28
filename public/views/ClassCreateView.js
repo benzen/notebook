@@ -40,7 +40,7 @@ $(document).ready(function(){
      $("[name='fatherName']").val("");
      $("[name='motherName']").val("");
 
-   }.
+   },
    appendStudent: function(student){
       $(".studentList table tbody",this.el).append( 
                   "<tr>  <td>"+ student.get("firstname") + "</td>"+
