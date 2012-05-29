@@ -19,6 +19,12 @@ app.get("/configure", function(request,response){
 app.get("/class/new", function(request,response){
   response.render("createClass.jade");
 });
+app.post("/class/create", function(request, response){
+  var classAsJson = req.body;
+  response.send(classAsJson);
+})
+
+
 //var port = process.env.PORT || 3000;
 var port = 8080;
 app.listen(port, function() {
