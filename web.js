@@ -1,5 +1,5 @@
-var express = require('express');
-;
+var express = require( 'express' );
+var classController = require( "./controllers/class.js" );
 
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
@@ -16,17 +16,11 @@ app.get("/configure", function(request,response){
   response.render("configure.jade");
 });
 
-app.get("/class/new", function(request,response){
-  response.render("createClass.jade");
-});
-app.post("/class/create", function(request, response){
-  var classAsJson = request.body;
-  response.send( classAsJson );
-})
+app.get("/class/new", classController.newClass);
+app.post("/class/create", classController.createClass );
+app.get("/class/:id", classController.showClass );
 
-
-//var port = process.env.PORT || 3000;
 var port = 8080;
 app.listen(port, function() {
-  console.log("Listening on " + port);
+  console.log("I will stay tuned on " + port);
 });
