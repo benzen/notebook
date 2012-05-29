@@ -60,9 +60,10 @@ $(document).ready(function(){
     },
     saveClass:function(){
       var classAsJson = JSON.stringify(this.model);
-      $.post("/class/create",classAsJson, function(response){
-        console.log(response);
-      });
+      $.post("/class/create",classAsJson, function(data){
+        var newClassId = data.id;
+        location.href="/class/"+newClassId;
+      }, 'json');
     }
   });
 
