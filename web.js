@@ -1,5 +1,6 @@
 var express = require( 'express' );
 var classController = require( "./controllers/Class.js" );
+var navigationController = require( "./controllers/Navigation.js" );
 
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
@@ -8,13 +9,9 @@ app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 app.use(express.bodyParser());
 
-app.get('/', function(request, response) {
-  response.render("index.jade")
-});
+app.get('/', navigation.index );
 
-app.get("/configure", function(request,response){
-  response.render("configure.jade");
-});
+app.get("/configure", navigation.configure );
 
 app.get("/class/new", classController.newClass);
 app.post("/class/create", classController.createClass );
