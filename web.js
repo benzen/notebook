@@ -21,7 +21,7 @@ app.get("/class/new", function(request,response){
 });
 app.post("/class/create", function(request, response){
   var classAsJson = request.body;
-  response.send(classAsJson);
+  response.send( classAsJson );
 })
 
 
