@@ -2,7 +2,7 @@ exports.newClass = function(request,response){
   response.render("createClass.jade");
 };
 
-exports.createClass function(request, response){
+exports.createClass = function(request, response){
   var classAsJson = request.body;
   response.send( classAsJson );
   //TODO save class in db
