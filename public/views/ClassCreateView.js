@@ -60,7 +60,7 @@ $(document).ready(function(){
     },
     saveClass:function(){
       var classAsJson = JSON.stringify(this.model);
-      $.post("class/create",classAsJson, function(response){
+      $.post("/class/create",classAsJson, function(response){
         console.log(response);
       });
     }
