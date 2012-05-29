@@ -20,7 +20,9 @@ app.get("/class/new", function(request,response){
   response.render("createClass.jade");
 });
 app.post("/class/create", function(request, response){
+  console.log("recieved call to /class/create");
   var classAsJson = req.body;
+  console.log("body"+classAsJson);
   response.send(classAsJson);
 })
 
