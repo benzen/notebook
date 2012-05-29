@@ -1,5 +1,5 @@
 var express = require( 'express' );
-var classController = require( "./controllers/class.js" );
+var classController = require( "./controllers/Class.js" );
 
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
