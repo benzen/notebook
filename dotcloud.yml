@@ -8,5 +8,3 @@ www:
     DB_URL: pgsql://teacher:teacher@teachermarkingnotebook-benzen.dotcloud.com:21232
 data:
   type: postgresql
-  systempackages:
-    - libpq-dev
