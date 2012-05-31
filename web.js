@@ -9,9 +9,9 @@ app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 app.use(express.bodyParser());
 
-app.get('/', navigation.index );
+app.get('/', navigationController.index );
 
-app.get("/configure", navigation.configure );
+app.get("/configure", navigationController.configure );
 
 app.get("/class/new", classController.newClass);
 app.post("/class/create", classController.createClass );
