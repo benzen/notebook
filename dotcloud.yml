@@ -9,4 +9,4 @@ www:
 data:
   type: postgresql
   systempackages:
-    - pg_config
+    - libpq-dev
