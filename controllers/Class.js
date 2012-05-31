@@ -1,4 +1,4 @@
-var db = require("../modules/db.js");
+var db = require("/modules/Db.js");
 exports.newClass = function(request,response){
   response.render("createClass.jade");
 };
