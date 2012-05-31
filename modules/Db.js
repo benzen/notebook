@@ -1,11 +1,7 @@
 var pg = require( 'pg' );
 var env = require("./Properties.js");
 
-var dbUrl = "postgres://" + env.map.DOTCLOUD_DATA_SQL_LOGIN + ":"+
-                            env.map.DOTCLOUD_DATA_SQL_PASSWORD +"@"+
-                            env.map.DOTCLOUD_DATA_SQL_HOST+":"+
-                            env.map.DOTCLOUD_DATA_SQL_PORT+"/"+
-                            env.map.DOTCLOUD_DATA_SQL_URL;
+var dbUrl = env.map.DOTCLOUD_DATA_SQL_URL+env.map.DB_NAME;
 
 var client = new pg.Client( dbUrl );
 client.connect();

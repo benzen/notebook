@@ -1,5 +1,7 @@
 www:
   type: nodejs
   approot: .
+  environement:
+    DB_NAME:teacher_marking_notebook
 data:
   type: postgresql
