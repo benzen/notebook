@@ -1,5 +1,5 @@
 var pg = require( 'pg' );
-var env = require("/modules/Properties");
+var env = require("./Properties.js");
 
 var dbUrl = "postgres://" + env.map.DOTCLOUD_DATA_SQL_LOGIN + ":"+
                             env.map.DOTCLOUD_DATA_SQL_PASSWORD +"@"+
