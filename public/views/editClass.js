@@ -22,8 +22,7 @@ $(document).ready(function(){
     },
     render: function(){
       var self = this;
-       this.
-      _(this.model.get("students").models).each(function(student){ 
+       _(this.model.get("students").models).each(function(student){ 
         self.appendItem(student);
       }, this);
     },
