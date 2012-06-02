@@ -10,12 +10,15 @@ exports.createClass = function(request, response){
     //response.redirect("/class/"+row.id) ;
     response.send("/class/"+row.id);
   });
-  //TODO save class in db
 };
 
 exports.showClass = function(request, response){
   var id = request.params.id;
-  //TODO retreive class def
-  //TODO put class in view
-  response.render("showClass.jade");
+  var query = dbd.db.query.( "SELECT * FROM class where id = $1", [id] );
+  query.on("row", function(row){
+    response.render("showClass.jade", row);
+  });
+  query.on("error", function(){
+    response.render("404.jade");
+  });
 };
