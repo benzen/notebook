@@ -5,18 +5,18 @@ block content
   .groupDef
     table
       tr
-        td Group: 
+        td= t("Group"): 
         td 
          input(type="text", name="group")
       tr
-        td Year:
+        td= t("Year"):
         td 
           input(name="year",type="number")
     .button
       a(href="#", class="saveClassButton") Save class
    
   .newStudent
-    .sectionTitle New Student
+    .sectionTitle= t("New Student")
     table
       tr
         td Firstname
