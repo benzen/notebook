@@ -8,7 +8,7 @@ exports.createClass = function(request, response){
   var query = db.db.query("INSERT INTO class ( json ) values( $1 ) RETURNING id", [JSON.stringify( classAsJson )]);
   query.on("row", function(row){
     //response.redirect("/class/"+row.id) ;
-    response.send("/class"+row.id);
+    response.send("/class/"+row.id);
   });
   //TODO save class in db
 };
