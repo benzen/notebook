@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  ClassCreateView = Backbone.View.extend({    
+  createClass = Backbone.View.extend({    
     el: $('body'),
     initialize: function(){
       _.bindAll(this, 'render', 'addStudent','appendStudent','clearForm', "changeClass", "saveClass");
@@ -67,5 +67,5 @@ $(document).ready(function(){
     }
   });
 
-  var classCreateView = new ClassCreateView()
+  var createClass = new createClass()
 });
