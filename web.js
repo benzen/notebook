@@ -1,5 +1,4 @@
 var express = require( 'express' );
-var i18n = require("i18n");
 var classController = require( "./controllers/Class.js" );
 var navigationController = require( "./controllers/Navigation.js" );
 
@@ -7,20 +6,9 @@ var navigationController = require( "./controllers/Navigation.js" );
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
 app.use(express.static( publicDir ));
-app.use(i18n.init);
-app.use(app.router);
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 app.use(express.bodyParser());
-
-i18n.configure({
-    locales:['en', 'fr'],
-    register: global
-});
-app.helpers({
-   __i: i18n.__,
-  __n: i18n.__n
-});
 
 app.get('/', navigationController.index );
 
