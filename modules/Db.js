@@ -13,5 +13,4 @@ client.on("error", function(){
   console.log("ERROR tables already exist")
 });
 
-createTables();
 exports.db = client;
