@@ -61,6 +61,7 @@ $(document).ready(function(){
     saveClass:function(){
       var json = JSON.stringify( this.model )
       $.post( "/class/create", json, function(data){
+        console.log("hey");
         window.location = data;
       }, 'json');
     }
