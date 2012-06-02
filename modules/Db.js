@@ -7,9 +7,9 @@ var dbUrl = env.map.DB_URL +"/"+env.map.DB_NAME;
 var client = new pg.Client( dbUrl );
 client.connect();
 
-client.query("CREATE TABLE class ( id SERIAL PRIMARY KEY, json text)");
+var query = client.query("CREATE TABLE class ( id SERIAL PRIMARY KEY, json text)");
 
-client.on("error", function(){
+query.on("error", function(){
   console.log("ERROR tables already exist")
 });
 
