@@ -61,6 +61,7 @@ $(document).ready(function(){
     saveClass:function(){
       var classAsJson = JSON.stringify(this.model);
       $(document).load( "/class/create", classAsJson );
+    }
 
   var classCreateView = new ClassCreateView()
 });
