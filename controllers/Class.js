@@ -5,13 +5,8 @@ exports.newClass = function(request,response){
 
 exports.createClass = function(request, response){
   var classAsJson = request.body;
-  console.log("HEY json");
-  console.log(classAsJson);
-  console.log("HEY string");
-  console.log(JSON.stringify( classAsJson ));
   var query = db.db.query("INSERT INTO class ( json ) values( $1 ) RETURNING id", [ JSON.stringify( classAsJson ) ]);
   query.on("row", function(row){
-    //response.redirect("/class/"+row.id) ;
     response.send("/class/"+row.id);
   });
 };
@@ -20,6 +15,8 @@ exports.showClass = function(request, response){
   var id = request.params.id;
   var query = db.db.query( "SELECT * FROM class where id = $1", [id] );
   query.on("row", function(row){
+    console.log("######row");
+    console.log(row);
     response.render("showClass.jade", row);
   });
   query.on("error", function(){
