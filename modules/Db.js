@@ -8,11 +8,10 @@ var client = new pg.Client( dbUrl );
 client.connect();
 
 client.query("CREATE TABLE class ( id SERIAL PRIMARY KEY, json text)");
+
 client.on("error", function(){
   console.log("ERROR tables already exist")
 });
 
-  
-};
 createTables();
 exports.db = client;
