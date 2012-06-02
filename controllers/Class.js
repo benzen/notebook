@@ -14,7 +14,7 @@ exports.createClass = function(request, response){
 
 exports.showClass = function(request, response){
   var id = request.params.id;
-  var query = dbd.db.query.( "SELECT * FROM class where id = $1", [id] );
+  var query = dbd.db.query( "SELECT * FROM class where id = $1", [id] );
   query.on("row", function(row){
     response.render("showClass.jade", row);
   });
