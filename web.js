@@ -17,6 +17,8 @@ app.get("/configure", navigationController.configure );
 app.get("/class/new", classController.newClass);
 app.post("/class/create", classController.createClass );
 app.get("/class/:id", classController.showClass );
+app.get("/class/:id/edit", classController.editClass );
+app.put("/class/:id", classController.updateClass );
 
 var port = 8080;
 app.listen(port, function() {

@@ -1,6 +1,8 @@
 extends layout
 block content
-  .classTitle Group: #{group}  Year: #{year}
+  .classTitle Group: #{group}  Year: #{year} 
+    a.edit(href="#") edit
+    a.delete(href="#") delete
   .students
     table
       each student in students
@@ -12,7 +14,3 @@ block content
           td #{student.birthday}
           td #{student.telephoneNumber}
           td #{student.notes}
-          td
-            a.edit(href="#") edit
-          td 
-            a.delete(href="#") delete
