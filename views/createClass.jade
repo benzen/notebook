@@ -19,41 +19,41 @@ block content
     .sectionTitle= t("New Student")
     table
       tr
-        td Firstname
+        td= t("Firstname")
         td
           input(type="text", name="firstname")
-        td Father name
+        td= t("Father name")
         td
           input(type="text", name="fatherName")
       tr
-        td Lastname
+        td= t("Lastname")
         td 
           input(type="text", name="lastname")
-        td Mother name
+        td= t("Mother name")
         td
           input(type="text", name="motherName")
       tr
-        td Birthday
+        td= t("Birthday")
         td
           input(type="text", name="birthday")
-        td Telephones
+        td= t("Telephones")
         td
           input(type="text", name="telephone")
       tr
-        td Notes
+        td= t("Notes")
         td 
           textarea(name="notes")
     
     .button 
-      a(href="#", class="addStudentButton") Add Student
+      a(href="#", class="addStudentButton")= t("Add Student")
   .studentList 
-    .sectionTitle Student list
+    .sectionTitle= t("Student list")
     table
       tr
-        th Firstname
-        th Lastname
-        th Birthday
-        th Father name
-        th Mother name
-        th Telephones
-        th Notes
+        th= t("Firstname")
+        th= t("Lastname")
+        th= t("Birthday")
+        th= t("Father name")
+        th= t("Mother name")
+        th= t("Telephones")
+        th= t("Notes")
