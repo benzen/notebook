@@ -3,7 +3,8 @@ append head
   script(src='/views/editClass.js')
 block content
   script
-    var editClass = new editClass(#{o})
+    var model = new Class(#{classObject});
+    var editClass = new editClass(model);
   form
     table
         tr
