@@ -1,10 +1,17 @@
 var express = require( 'express' );
+var i18n = require("i18n");
 var classController = require( "./controllers/Class.js" );
 var navigationController = require( "./controllers/Navigation.js" );
+
+i18n.configure({
+    locales:['en', 'fr']
+});
 
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
 app.use(express.static( publicDir ));
+app.use(i18n.init);
+app.use(app.router);
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 app.use(express.bodyParser());
