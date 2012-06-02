@@ -59,8 +59,9 @@ $(document).ready(function(){
       });
     },
     saveClass:function(){
-      var classAsJson = JSON.stringify(this.model);
-      $(document).load( "/class/create", this.model.toJSON());
+      $.post( "/class/create", this.model.toJSON(), function(data){
+        window.location = data;
+      }, 'json');
     }
   });
 
