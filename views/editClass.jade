@@ -2,6 +2,8 @@ extend layout
 append head
   script(src='/views/editClass.js')
 block content
+  script
+    var editClass = new editClass(#{o})
   form
     table
         tr
@@ -21,19 +23,4 @@ block content
           th Mother name
           th Telephone
           th Notes
-        tr
-          td
-            input
-          td
-            input
-          td
-            input
-          td
-            input
-          td
-            input
-          td
-            input
-          td
-            input
 

@@ -11,17 +11,18 @@ $(document).ready(function(){
       "change [name='group']"  : "changeClass",
       "change [name='year']"   : "changeClass",
       "change .firstName"      : "changeClass",
-      "change .lastName"      : "changeClass",
-      "change .birthday"      : "changeClass",
-      "change .notes"      : "changeClass",
+      "change .lastName"       : "changeClass",
+      "change .birthday"       : "changeClass",
+      "change .notes"          : "changeClass",
       "change .telephone"      : "changeClass",
-      "change .fatherName"      : "changeClass",
-      "change .motherName"      : "changeClass",
+      "change .fatherName"     : "changeClass",
+      "change .motherName"     : "changeClass",
       
 //, add ability to remove a student
     },
     render: function(){
       var self = this;
+       this.
       _(this.model.get("students").models).each(function(student){ 
         self.appendItem(student);
       }, this);
@@ -50,13 +51,13 @@ $(document).ready(function(){
     },
     appendStudent: function(student){
       $(".studentList table tbody",this.el).append( 
-                  "<tr>  <td>"+ student.get("firstname") + "</td>"+
-                         "<td>"+ student.get("lastname") + "</td>"+
-                         "<td>"+ student.get("birthday") + "</td>"+
-                         "<td>"+ student.get("fatherName") + "</td>"+
-                         "<td>"+ student.get("motherName") + "</td>"+
-                         "<td>"+ student.get("telephone") + "</td>"+
-                         "<td>"+ student.get("notes") + "</td> </tr>");
+                  "<tr>  <td class='firstname'>"+ student.get("firstname") + "</td>"+
+                         "<td class='lastname'>"+ student.get("lastname") + "</td>"+
+                         "<td class='birthday'>"+ student.get("birthday") + "</td>"+
+                         "<td class='fatherName'>"+ student.get("fatherName") + "</td>"+
+                         "<td class='motherName'>"+ student.get("motherName") + "</td>"+
+                         "<td class='telephone'>"+ student.get("telephone") + "</td>"+
+                         "<td class='notes'>"+ student.get("notes") + "</td> </tr>");
     },
     changeClass:function(){
       this.model.set({
@@ -71,6 +72,5 @@ $(document).ready(function(){
       });
     }
   });
-
-  var editClass = new editClass()
+//  var editClass = new editClass()
 });
