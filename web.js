@@ -18,7 +18,8 @@ i18n.configure({
     register: global
 });
 app.helpers({
-  __: i18n.__
+   __i: i18n.__,
+  __n: i18n.__n
 });
 
 app.get('/', navigationController.index );
