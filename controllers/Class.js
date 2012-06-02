@@ -5,7 +5,7 @@ exports.newClass = function(request,response){
 
 exports.createClass = function(request, response){
   var classAsJson = request.body;
-  db.db("INSERT INTO class ( json ) values( $1 )", [JSON.stringify( classAsJson )]);
+  db.db.query("INSERT INTO class ( json ) values( $1 )", [JSON.stringify( classAsJson )]);
   response.send( classAsJson );
   //TODO save class in db
 };
