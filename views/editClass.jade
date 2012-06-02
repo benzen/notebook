@@ -2,19 +2,16 @@ extend layout
 append head
   script(src='/views/editClass.js')
 block content
-  script
-    var model = new Class(#{classObject});
-    var editClass = new editClass(model);
   form
     table
         tr
           td Group:
           td
-           input(type="text", name="group")
+           input(type="text", name="group", value="#{group}")
         tr
           td Year:
           td
-            input(name="year",type="number")
+            input(name="year",type="number", value="#{year}")
       table
         tr
           th Firstname
@@ -24,4 +21,12 @@ block content
           th Mother name
           th Telephone
           th Notes
+      each student in students
+        tr
+          td 
+            input(value="#{student.firstName}")
+          td
+            input(value="#{student.lastName}")
+       
+        
 

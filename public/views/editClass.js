@@ -72,5 +72,5 @@ $(document).ready(function(){
       });
     }
   });
-//  var editClass = new editClass()
+  var editClass = new editClass()
 });
