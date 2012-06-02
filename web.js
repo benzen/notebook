@@ -15,7 +15,7 @@ app.use(express.bodyParser());
 
 i18n.configure({
     locales:['en', 'fr'],
-
+    register: global
 });
 app.helpers({
   __: i18n.__
