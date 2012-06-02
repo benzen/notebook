@@ -5,4 +5,5 @@ $(document).ready(function(){
       { url:"/class/deleteStudent/"+$("tr")
     });
   });
+$(".edit").click(function(){console.log("not available")});
 });
