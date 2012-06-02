@@ -1,5 +1,14 @@
 extends layout
 block content
   .classTitle Group: #{group}  Year: #{year}
-  each student in students
-    .student #student.firstName #student.lastName 
+  .students
+    table
+      each student in students
+        tr 
+          td #{student.firstname} 
+          td #{student.lastname}
+          td #{fatherName}
+          td #{motherName}
+          td #{birthday}
+          td #{telephoneNumber}
+          td #{notes}
