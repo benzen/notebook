@@ -4,7 +4,11 @@ var classController = require( "./controllers/Class.js" );
 var navigationController = require( "./controllers/Navigation.js" );
 
 i18n.configure({
-    locales:['en', 'fr']
+    locales:['en', 'fr'],
+    
+});
+app.helpers({
+  __: i18n.__
 });
 
 var publicDir = __dirname +"/public";
