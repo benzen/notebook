@@ -60,7 +60,7 @@ $(document).ready(function(){
     },
     saveClass:function(){
       var classAsJson = JSON.stringify(this.model);
-      $(document).load( "/class/create", classAsJson );
+      $(document).load( "/class/create", this.model.toJSON());
     }
   });
 
