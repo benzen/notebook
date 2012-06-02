@@ -59,7 +59,8 @@ $(document).ready(function(){
       });
     },
     saveClass:function(){
-      $.post( "/class/create", this.model.toJSON(), function(data){
+      var json = JSON.stringify( this.model )
+      $.post( "/class/create", json, function(data){
         window.location = data;
       }, 'json');
     }
