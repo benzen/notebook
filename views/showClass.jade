@@ -1,8 +1,5 @@
 extends layout
 block content
-  .classTitle 
-    Class: #{group}
-    
-    Year: #{year}
+  .classTitle Group: #{group}  Year: #{year}
   each student in students
     .student #student.firstName #student.lastName 
