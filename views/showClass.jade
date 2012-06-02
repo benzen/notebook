@@ -1,4 +1,5 @@
 extends layout
 block content
-  show a unique class named #{group}
-  
+  Class: #{group}   Year: #{year}
+  each student in students
+    .student #student.firstName #student.lastName 
