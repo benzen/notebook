@@ -4,8 +4,8 @@ block content
     |= t("Group")+ ":" 
     | #{group} 
     | t("Year"):
-    ! #{year} 
-    | a.edit(href="#")= t("edit")
+    | #{year} 
+    a.edit(href="#")= t("edit")
   .students
     table
       each student in students
