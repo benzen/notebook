@@ -5,22 +5,21 @@ block content
   form
     table
         tr
-          td Group:
+          td= t("Group")+":"
           td
            input(type="text", name="group", value="#{group}")
-        tr
-          td Year:
+          td= t("Year")+":"
           td
             input(name="year",type="number", value="#{year}")
       table
         tr
-          th Firstname
-          th Lastname
-          th Birtday
-          th Father name
-          th Mother name
-          th Telephone
-          th Notes
+          th= t("Firstname")
+          th= t("Lastname")
+          th= t("Birtday")
+          th= t("Father name")
+          th= t("Mother name")
+          th= t("Telephone")
+          th= t("Notes")
         each student in students
           tr
             td 
