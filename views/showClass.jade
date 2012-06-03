@@ -1,7 +1,7 @@
 extends layout
 block content
   .classTitle= t("Group")+ " : "+group + " "+t("Year") +" : "+ year +" "
-    a.edit(href="#")= t("edit")
+    a.edit(href="edit")= t("edit")
   .students
     table
       each student in students
