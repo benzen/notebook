@@ -1,9 +1,6 @@
 extends layout
 block content
-  .classTitle= t("Group")+ ":" 
-    | #{group} 
-    | t("Year"):
-    | #{year} 
+  .classTitle= t("Group")+ ":" + #{group} + t("Year") +":"+ #{year} 
     a.edit(href="#")= t("edit")
   .students
     table
