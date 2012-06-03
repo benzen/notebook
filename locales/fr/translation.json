@@ -1,18 +1,15 @@
 {
-
   "Create a class":"Créer une classe",
   "Show class":"Afficher la classe",
   "Create a subject":"Crée un sujet",
-
-"Group":"Groupe",
-"Year":"Année",
-"New student":"Nouvel élève",
-"Firstname":"Prénom",
-"Lastname":"Nom",
-"Birthday":"Date de naissance",
-"Notes":"Notes",
-"Father name":"Nom du père",
-"Mother name":"Nom de la mère",
-"Telephones":"Téléphones"
-
+  "Group":"Groupe",
+  "Year":"Année",
+  "New student":"Nouvel élève",
+  "Firstname":"Prénom",
+  "Lastname":"Nom",
+  "Birthday":"Date de naissance",
+  "Notes":"Notes",
+  "Father name":"Nom du père",
+  "Mother name":"Nom de la mère",
+  "Telephones":"Téléphones"
 }
