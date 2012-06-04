@@ -25,6 +25,7 @@ a:hover {
 }
 .button {
   text-align:center;
+  padding:20px;
 }
 .button > a {
   color: grey;
