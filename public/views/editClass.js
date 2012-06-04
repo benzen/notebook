@@ -17,6 +17,7 @@ $(document).ready(function(){
       "change .telephone"      : "changeClass",
       "change .fatherName"     : "changeClass",
       "change .motherName"     : "changeClass",
+      "click .saveClassButton" : "saveClass",
       
 //, add ability to remove a student
     },
