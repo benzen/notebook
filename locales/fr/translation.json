@@ -1,7 +1,7 @@
 {
   "Create a class":"Créer une classe",
   "Show class":"Afficher la classe",
-  "Create a subject":"Crée un sujet",
+  "Create a subject":"Créer une matière",
   "Group":"Groupe",
   "Year":"Année",
   "New student":"Nouvel élève",
@@ -12,8 +12,7 @@
   "Father name":"Nom du père",
   "Mother name":"Nom de la mère",
   "Telephones":"Téléphones",
-  "Create exam":"Crée un exam",
+  "Create exam":"Créer un examen",
   "Add note":"Ajouter une note",
-  "New student",
-  "Student list"
+  "Student list":"Liste des élèves"
 }
