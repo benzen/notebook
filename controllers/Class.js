@@ -35,7 +35,7 @@ exports.editClass = function(request, response){
 exports.updateClass = function(request, response){
   var id = request.params.id;
   var json = request.body;
-  var query = db.db.query("UPDATE class set json = $1 where $2", [ json, id]);
+  var query = db.db.query("UPDATE class set json = $1 where id = $2", [ json, id]);
   query.on("row", function(){
     response.redirect( "/class/" + id );
   });
