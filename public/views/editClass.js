@@ -67,8 +67,14 @@ $(document).ready(function(){
     },
     saveClass:function(){
       var json = JSON.parse( JSON.stringify( this.model ) )
-      $.post( "/class/create", json, function(data){
-        window.location = data;
+      $.ajax({
+        type: 'PUT',
+        url: "/class/edit/",
+        data: json,
+        success: function(){
+          window.location = data;
+        },
+        dataType: dataType
       });
     }
   });
