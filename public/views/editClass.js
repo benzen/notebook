@@ -71,7 +71,7 @@ $(document).ready(function(){
         type: 'PUT',
         url: "./",
         data: json,
-        success: function(){
+        success: function(data){
           window.location = data;
         }
       });
