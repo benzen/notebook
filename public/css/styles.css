@@ -43,6 +43,7 @@ a:hover {
   border-style:dashed;
   border-color: white;
 }
-form{
- text-align:center;
+
+table {
+ margin: 0 auto;
 }
