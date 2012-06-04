@@ -66,15 +66,14 @@ $(document).ready(function(){
       });
     },
     saveClass:function(){
-      var json = JSON.parse( JSON.stringify( this.model ) )
+      var json = JSON.parse( JSON.stringify( this.model ) );
       $.ajax({
         type: 'PUT',
         url: "/class/edit/",
         data: json,
         success: function(){
           window.location = data;
-        },
-        dataType: dataType
+        }
       });
     }
   });
