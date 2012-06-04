@@ -69,7 +69,7 @@ $(document).ready(function(){
       var json = JSON.parse( JSON.stringify( this.model ) );
       $.ajax({
         type: 'PUT',
-        url: "/class/edit/",
+        url: "../",
         data: json,
         success: function(){
           window.location = data;
