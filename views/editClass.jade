@@ -7,10 +7,10 @@ block content
         tr
           td= t("Group")+":"
           td
-           input(type="text", name="group", value="#{group}")
+           input(type="text", value="#{group}").group
           td= t("Year")+":"
           td
-            input(name="year",type="number", value="#{year}")
+            input(type="number", value="#{year}").year
       table
         tr
           th= t("Firstname")

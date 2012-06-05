@@ -29,25 +29,25 @@ $(document).ready(function(){
     },
     addStudent: function(){
       var s = new Student({
-         firstname:$("[name='firstname']").val(),
-         lastname:$("[name='lastname']").val(),
-         birthday:$("[name='birthday']").val(),
-         notes:$("[name='notes']").val(),
-         telephoneNumber:$("[name='telephone']").val(),
-         fatherName:$("[name='fatherName']").val(),
-         motherName:$("[name='motherName']").val()
+         firstname:$(".firstname").val(),
+         lastname:$(".lastname").val(),
+         birthday:$(".birthday").val(),
+         notes:$(".notes").val(),
+         telephoneNumber:$(".telephone").val(),
+         fatherName:$(".fatherName").val(),
+         motherName:$(".motherName").val()
       });
       this.model.get("students").add(s);
       this.clearForm();
     },
     clearForm:function(){
-      $("[name='firstname']").val("");
-      $("[name='lastname']").val("");
-      $("[name='birthday']").val("");
-      $("[name='notes']").val("");
-      $("[name='telephone']").val("");
-      $("[name='fatherName']").val("");
-      $("[name='motherName']").val("");
+      $(".firstname").val("");
+      $(".lastname").val("");
+      $(".birthday").val("");
+      $(".notes").val("");
+      $(".telephone").val("");
+      $(".fatherName").val("");
+      $(".motherName").val("");
     },
     appendStudent: function(student){
       $(".studentList table tbody",this.el).append( 
@@ -61,9 +61,10 @@ $(document).ready(function(){
     },
     changeClass:function(){
       this.model.set({
-        "group":$("[name='group']").val(),
-        "year":$("[name='year']").val()
+        "group":$("group").val(),
+        "year":$("year").val()
       });
+      
     },
     saveClass:function(){
       var json = JSON.parse( JSON.stringify( this.model ) );
