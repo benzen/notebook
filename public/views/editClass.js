@@ -8,8 +8,8 @@ $(document).ready(function(){
       this.render();
     },
     events: {
-      "change [name='group']"  : "changeClass",
-      "change [name='year']"   : "changeClass",
+      "change .group"          : "changeClass",
+      "change .year"           : "changeClass",
       "change .firstname"      : "changeClass",
       "change .lastname"       : "changeClass",
       "change .birthday"       : "changeClass",
@@ -64,6 +64,14 @@ $(document).ready(function(){
         "group":$("group").val(),
         "year":$("year").val()
       });
+      
+      $(".firstname").each(function(){ this.model.get("students").set({ firstname: $(this).val() });  });
+      $(".lastname").each(function(){ this.model.get("students").set({ lastname: $(this).val() });  });
+      $(".birthday").each(function(){ this.model.get("students").set({ birthday: $(this).val() });  });
+      $(".fatherName").each(function(){ this.model.get("students").set({ fatherName: $(this).val() });  });
+      $(".motherName").each(function(){ this.model.get("students").set({ motherName: $(this).val() });  });
+      $(".telephone").each(function(){ this.model.get("students").set({ telephone: $(this).val() });  });
+      $(".notes").each(function(){ this.model.get("students").set({ notes: $(this).val() });  });
       
     },
     saveClass:function(){
