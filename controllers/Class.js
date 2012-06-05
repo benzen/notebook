@@ -24,8 +24,8 @@ exports.showClass = function(request, response){
 
 exports.editClass = function(request, response){
   var id = request.params.id;
-  var query = db.db.query( "SELECT * FROM class where id = $1", [id] );
-  query.on("row", function(row){
+  var query = db.db.query( "SELECT * FROM class where id = $1", [ id ] );
+  query.on("row", function( row ){
     response.render("editClass.jade", JSON.parse( row.json ) );
   });
   query.on("error", function(){
@@ -34,12 +34,12 @@ exports.editClass = function(request, response){
 };
 exports.updateClass = function(request, response){
   var id = request.params.id;
-  var json = request.body;
-  var query = db.db.query("UPDATE class set json = $1 where id = $2", [ json, id]);
+  var classAsJson = request.body;
+  var query = db.db.query( "UPDATE class set json = $1 where id = $2", [ classAsJson, id] );
   query.on("row", function(){
     response.redirect( "/class/" + id );
   });
   query.on("error",function(){
-    response.render("404.jade");
+    response.render( "404.jade" );
   });
 };
