@@ -64,14 +64,19 @@ $(document).ready(function(){
         "group":$("group").val(),
         "year":$("year").val()
       });
-      var self = this;      
-      $(".firstname").each(function(){  self.model.get("students").models.set({ firstname:  $(this).val() });  });
-      $(".lastname").each(function(){   self.model.get("students").models.set({ lastname:   $(this).val() });  });
-      $(".birthday").each(function(){   self.model.get("students").models.set({ birthday:   $(this).val() });  });
-      $(".fatherName").each(function(){ self.model.get("students").models.set({ fatherName: $(this).val() });  });
-      $(".motherName").each(function(){ self.model.get("students").models.set({ motherName: $(this).val() });  });
-      $(".telephone").each(function(){  self.model.get("students").modelsset({ telephone:  $(this).val() });  });
-      $(".notes").each(function(){      self.model.get("students").models.set({ notes:      $(this).val() });  });
+      var self = this;
+      $(".firstname").each(function( index ){ 
+        if(!self.model.get("sutdents").models[index]){
+          self.model.get("sutdents").models[index]= new Student();
+        }
+      }); 
+      $(".firstname").each(function(i){  self.model.get("students").models[i].set({ firstname:  $(this).val() });  });
+      $(".lastname").each(function(i){   self.model.get("students").models[i].set({ lastname:   $(this).val() });  });
+      $(".birthday").each(function(i){   self.model.get("students").models{i}.set({ birthday:   $(this).val() });  });
+      $(".fatherName").each(function(i){ self.model.get("students").models[i].set({ fatherName: $(this).val() });  });
+      $(".motherName").each(function(i){ self.model.get("students").models[i].set({ motherName: $(this).val() });  });
+      $(".telephone").each(function(i){  self.model.get("students").models[i].set({ telephone:  $(this).val() });  });
+      $(".notes").each(function(i){      self.model.get("students").models[i].set({ notes:      $(this).val() });  });
       
     },
     saveClass:function(){
