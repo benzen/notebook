@@ -23,18 +23,18 @@ block content
         each student in students
           tr
             td 
-              input(value="#{student.firstname}")
+              input(value="#{student.firstname}").firstName
             td
-              input(value="#{student.lastname}")
+              input(value="#{student.lastname}").lastName
             td
-              input(value="#{student.birthday}")
+              input(value="#{student.birthday}").birthday
             td
-              input(value="#{student.fatherName}")
+              input(value="#{student.fatherName}").fatherName
             td
-              input(value="#{student.motherName}")
+              input(value="#{student.motherName}").motherName
             td 
-              input(value="#{student.telephone}")
+              input(value="#{student.telephone}").telephone
             td
-              input(value="#{student.notes}")
+              input(value="#{student.notes}").notes
       .button
         a(href="#", class="saveClassButton")= t("Save class")

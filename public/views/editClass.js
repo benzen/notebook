@@ -10,8 +10,8 @@ $(document).ready(function(){
     events: {
       "change [name='group']"  : "changeClass",
       "change [name='year']"   : "changeClass",
-      "change .firstName"      : "changeClass",
-      "change .lastName"       : "changeClass",
+      "change .firstname"      : "changeClass",
+      "change .lastname"       : "changeClass",
       "change .birthday"       : "changeClass",
       "change .notes"          : "changeClass",
       "change .telephone"      : "changeClass",
