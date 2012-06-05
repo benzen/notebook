@@ -23,14 +23,14 @@ exports.showClass = function(request, response){
 };
 
 exports.editClass = function(request, response){
-  var id = request.params.id;
-  var query = db.db.query( "SELECT * FROM class where id = $1", [ id ] );
-  query.on("row", function( row ){
-    response.render("editClass.jade", JSON.parse( row.json ) );
-  });
-  query.on("error", function(){
-    response.render("404.jade");
-  });
+//  var id = request.params.id;
+//  var query = db.db.query( "SELECT * FROM class where id = $1", [ id ] );
+//  query.on("row", function( row ){
+//    response.render("editClass.jade", JSON.parse( row.json ) );
+//  });
+//  query.on("error", function(){
+//    response.render("404.jade");
+//  });
 };
 exports.updateClass = function(request, response){
 //  var id = request.params.id;
