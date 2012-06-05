@@ -64,14 +64,14 @@ $(document).ready(function(){
         "group":$("group").val(),
         "year":$("year").val()
       });
-      
-      $(".firstname").each(function(){ this.model.get("students").set({ firstname: $(this).val() });  });
-      $(".lastname").each(function(){ this.model.get("students").set({ lastname: $(this).val() });  });
-      $(".birthday").each(function(){ this.model.get("students").set({ birthday: $(this).val() });  });
-      $(".fatherName").each(function(){ this.model.get("students").set({ fatherName: $(this).val() });  });
-      $(".motherName").each(function(){ this.model.get("students").set({ motherName: $(this).val() });  });
-      $(".telephone").each(function(){ this.model.get("students").set({ telephone: $(this).val() });  });
-      $(".notes").each(function(){ this.model.get("students").set({ notes: $(this).val() });  });
+      var self = this;      
+      $(".firstname").each(function(){  self.model.get("students").set({ firstname:  $(this).val() });  });
+      $(".lastname").each(function(){   self.model.get("students").set({ lastname:   $(this).val() });  });
+      $(".birthday").each(function(){   self.model.get("students").set({ birthday:   $(this).val() });  });
+      $(".fatherName").each(function(){ self.model.get("students").set({ fatherName: $(this).val() });  });
+      $(".motherName").each(function(){ self.model.get("students").set({ motherName: $(this).val() });  });
+      $(".telephone").each(function(){  self.model.get("students").set({ telephone:  $(this).val() });  });
+      $(".notes").each(function(){      self.model.get("students").set({ notes:      $(this).val() });  });
       
     },
     saveClass:function(){
