@@ -4,8 +4,8 @@ exports.newClass = function(request,response){
 };
 
 exports.createClass = function(request, response){
-  var classAsJson = request.body;
-  var query = db.db.query("INSERT INTO class ( json ) values( $1 ) RETURNING id", [ JSON.stringify( classAsJson ) ]);
+  var classAsJson = JSON.stringify( request.body );
+  var query = db.db.query("INSERT INTO class ( json ) values( $1 ) RETURNING id", [ classAsJson ]);
   query.on("row", function(row){
     response.send("/class/"+row.id);
   });
@@ -14,8 +14,10 @@ exports.createClass = function(request, response){
 exports.showClass = function(request, response){
   var id = request.params.id;
   var query = db.db.query( "SELECT * FROM class where id = $1", [id] );
+  var entityWithId = JSON.parse( row.json ) ;
+  entityWithId.id = id;
   query.on("row", function(row){
-    response.render("showClass.jade", JSON.parse( row.json ) );
+    response.render("showClass.jade", entityWithId );
   });
   query.on("error", function(){
     response.render("404.jade");
@@ -25,8 +27,10 @@ exports.showClass = function(request, response){
 exports.editClass = function(request, response){
   var id = request.params.id;
   var query = db.db.query( "SELECT * FROM class where id = $1", [ id ] );
+  var entityWithId = JSON.parse( row.json ) ;
+  entityWithId.id = id;
   query.on("row", function( row ){
-    response.render("editClass.jade", JSON.parse( row.json ) );
+    response.render("editClass.jade", entityWithId );
   });
   query.on("error", function(){
     response.render("404.jade");
