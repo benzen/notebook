@@ -14,9 +14,9 @@ exports.createClass = function(request, response){
 exports.showClass = function(request, response){
   var id = request.params.id;
   var query = db.db.query( "SELECT * FROM class where id = $1", [id] );
-  var entityWithId = JSON.parse( row.json ) ;
-  entityWithId.id = id;
   query.on("row", function(row){
+    var entityWithId = JSON.parse( row.json ) ;
+    entityWithId.id = id;
     response.render("showClass.jade", entityWithId );
   });
   query.on("error", function(){
@@ -27,9 +27,9 @@ exports.showClass = function(request, response){
 exports.editClass = function(request, response){
   var id = request.params.id;
   var query = db.db.query( "SELECT * FROM class where id = $1", [ id ] );
-  var entityWithId = JSON.parse( row.json ) ;
-  entityWithId.id = id;
   query.on("row", function( row ){
+    var entityWithId = JSON.parse( row.json ) ;
+    entityWithId.id = id;
     response.render("editClass.jade", entityWithId );
   });
   query.on("error", function(){
