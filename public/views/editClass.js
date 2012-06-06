@@ -32,7 +32,7 @@ $(document).ready(function(){
       $("table.studentList tbody",this.el).append( 
                   "<tr>   <td> <input type='text' class='firstname'/> </td>" +
                          "<td> <input type='text' class='lastname'/> </td>"  +
-                         "<td  <input type='text' class='birthday'/> </td>"  +
+                         "<td>  <input type='text' class='birthday'/> </td>"  +
                          "<td> <input type='text' class='fatherName'/> </td>" +
                          "<td> <input type='text' class='motherName'/> </td>" +
                          "<td> <input type='text' class='telephone'/> </td>" +
