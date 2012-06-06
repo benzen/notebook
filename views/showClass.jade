@@ -4,6 +4,14 @@ block content
     a.edit(href="/class/#{id}/edit")= t("edit")
   .students
     table
+      tr
+        th= t("Firstname")
+        th= t("Lastname")
+        th= t("Birtday")
+        th= t("Father name")
+        th= t("Mother name")
+        th= t("Telephone")
+        th= t("Notes")      
       each student in students
         tr 
           td #{student.firstname} 
