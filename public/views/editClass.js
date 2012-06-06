@@ -72,7 +72,7 @@ $(document).ready(function(){
       }); 
       $(".firstname").each(function(i){  self.model.get("students").models[i].set({ firstname:  $(this).val() });  });
       $(".lastname").each(function(i){   self.model.get("students").models[i].set({ lastname:   $(this).val() });  });
-      $(".birthday").each(function(i){   self.model.get("students").models{i}.set({ birthday:   $(this).val() });  });
+      $(".birthday").each(function(i){   self.model.get("students").models[i].set({ birthday:   $(this).val() });  });
       $(".fatherName").each(function(i){ self.model.get("students").models[i].set({ fatherName: $(this).val() });  });
       $(".motherName").each(function(i){ self.model.get("students").models[i].set({ motherName: $(this).val() });  });
       $(".telephone").each(function(i){  self.model.get("students").models[i].set({ telephone:  $(this).val() });  });
