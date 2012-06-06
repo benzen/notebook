@@ -2,7 +2,8 @@ var express = require( 'express' );
 var classController = require( "./controllers/Class.js" );
 var navigationController = require( "./controllers/Navigation.js" );
 var i18next = require("i18next");
-var passport = require("passport-openid")
+var passport = require("passport-openid");
+
 passport.use(new GoogleStrategy({
     returnURL: 'http://localhost:3000/auth/google/return',
     realm: 'http://localhost:3000/'
