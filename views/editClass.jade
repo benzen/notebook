@@ -11,7 +11,9 @@ block content
           td= t("Year")+":"
           td
             input(type="number", value="#{year}").year
-      table
+      .button
+        a(href="#").addStudentButton=t("Add student")
+      table.studentList
         tr
           th= t("Firstname")
           th= t("Lastname")
@@ -37,4 +39,4 @@ block content
             td
               input(value="#{student.notes}").notes
       .button
-        a(href="#", class="saveClassButton")= t("Save class")
+        a(href="#").saveClassButton= t("Save class")

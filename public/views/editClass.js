@@ -2,7 +2,7 @@ $(document).ready(function(){
   editClass = Backbone.View.extend({    
     el: $('body'),
     initialize: function(){
-      _.bindAll(this, 'render', 'addStudent','appendStudent','clearForm', "changeClass", "saveClass");
+      _.bindAll(this, 'render', 'appendStudent', "changeClass", "saveClass");
       this.model = new Class({students:new Students()});
       this.model.get("students").bind('add', this.appendStudent);
       this.render();
@@ -27,30 +27,8 @@ $(document).ready(function(){
         self.appendItem(student);
       }, this);
     },
-    addStudent: function(){
-      var s = new Student({
-         firstname:$(".firstname").val(),
-         lastname:$(".lastname").val(),
-         birthday:$(".birthday").val(),
-         notes:$(".notes").val(),
-         telephoneNumber:$(".telephone").val(),
-         fatherName:$(".fatherName").val(),
-         motherName:$(".motherName").val()
-      });
-      this.model.get("students").add(s);
-      this.clearForm();
-    },
-    clearForm:function(){
-      $(".firstname").val("");
-      $(".lastname").val("");
-      $(".birthday").val("");
-      $(".notes").val("");
-      $(".telephone").val("");
-      $(".fatherName").val("");
-      $(".motherName").val("");
-    },
     appendStudent: function(student){
-      $(".studentList table tbody",this.el).append( 
+      $("table.studentList tbody",this.el).append( 
                   "<tr>  <td class='firstname'>"+ student.get("firstname") + "</td>"+
                          "<td class='lastname'>"+ student.get("lastname") + "</td>"+
                          "<td class='birthday'>"+ student.get("birthday") + "</td>"+
