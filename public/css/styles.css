@@ -41,8 +41,9 @@ a:hover {
 }
 .studentList > table, .studentList>table th, .studentList>table td {
   border-width: 1px;
-  border-style:dashed;
+  border-style:solid;
   border-color: white;
+  border-collapse: collapse;
 }
 
 table {
