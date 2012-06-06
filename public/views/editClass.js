@@ -40,8 +40,8 @@ $(document).ready(function(){
     },
     changeClass:function(){
       this.model.set({
-        "group":$("group").val(),
-        "year":$("year").val()
+        "group":$(".group").val(),
+        "year":$(".year").val()
       });
       var self = this;
       $(".firstname").each(function( index ){ 
