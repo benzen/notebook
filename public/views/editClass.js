@@ -2,7 +2,7 @@ $(document).ready(function(){
   editClass = Backbone.View.extend({    
     el: $('body'),
     initialize: function(){
-      _.bindAll(this, 'render', 'appendStudent', "changeClass", "saveClass");
+      _.bindAll(this, 'render', 'addStudent', "changeClass", "saveClass");
       this.model = new Class({students:new Students()});
       this.model.get("students").bind('add', this.appendStudent);
       this.render();
@@ -18,6 +18,7 @@ $(document).ready(function(){
       "change .fatherName"     : "changeClass",
       "change .motherName"     : "changeClass",
       "click .saveClassButton" : "saveClass",
+      "click .addStudentButton": "addStudent"
       
 //, add ability to remove a student
     },
@@ -27,15 +28,15 @@ $(document).ready(function(){
         self.appendItem(student);
       }, this);
     },
-    appendStudent: function(student){
+    addStudent: function(){
       $("table.studentList tbody",this.el).append( 
-                  "<tr>  <td class='firstname'>"+ student.get("firstname") + "</td>"+
-                         "<td class='lastname'>"+ student.get("lastname") + "</td>"+
-                         "<td class='birthday'>"+ student.get("birthday") + "</td>"+
-                         "<td class='fatherName'>"+ student.get("fatherName") + "</td>"+
-                         "<td class='motherName'>"+ student.get("motherName") + "</td>"+
-                         "<td class='telephone'>"+ student.get("telephone") + "</td>"+
-                         "<td class='notes'>"+ student.get("notes") + "</td> </tr>");
+                  "<tr>   <td> <input type='text' class='firstname'/> </td>" +
+                         "<td> <input type='text' class='lastname'/> </td>"  +
+                         "<td  <input type='text' class='birthday'/> </td>"  +
+                         "<td> <input type='text' class='fatherName'/> </td>" +
+                         "<td> <input type='text' class='motherName'/> </td>" +
+                         "<td> <input type='text' class='telephone'/> </td>" +
+                         "<td> <input type='text' class='notes'/> </td> </tr>");
     },
     changeClass:function(){
       this.model.set({
