@@ -2,7 +2,7 @@ extends layout
 block content
   .classTitle= t("Group")+ " : "+group + " "+t("Year") +" : "+ year +" "
     a.edit(href="/class/#{id}/edit")= t("edit")
-  .students
+  .studentList
     table
       tr
         th= t("Firstname")
