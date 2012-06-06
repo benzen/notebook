@@ -3,7 +3,7 @@ var classController = require( "./controllers/Class.js" );
 var navigationController = require( "./controllers/Navigation.js" );
 var i18next = require("i18next");
 
-18next.init();
+i18next.init();
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
 app.use(express.static( publicDir ));
