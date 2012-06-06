@@ -66,8 +66,8 @@ $(document).ready(function(){
       });
       var self = this;
       $(".firstname").each(function( index ){ 
-        if(!self.model.get("sutdents").models[index]){
-          self.model.get("sutdents").models[index]= new Student();
+        if(!self.model.get("students").models[index]){
+          self.model.get("students").models[index]= new Student();
         }
       }); 
       $(".firstname").each(function(i){  self.model.get("students").models[i].set({ firstname:  $(this).val() });  });
