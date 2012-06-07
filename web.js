@@ -5,7 +5,7 @@ var i18next = require("i18next");
 var auth = require('connect-auth');
 
 var twitterConsumerKey = "tjcaHSMkGUItYqEvyyRAA";
-var twitterSecret = "DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok";
+var twitterConsumerSecret = "DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok";
 i18next.init();
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
@@ -14,7 +14,7 @@ app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 app.use(express.bodyParser());
 app.use(auth( [
-   auth.Twitter({consumerKey: yourTwitterConsumerKey, consumerSecret: yourTwitterConsumerSecret})
+   auth.Twitter({consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret})
   ]) );
 app.use(i18next.handle);
 i18next.registerAppHelper(app);
