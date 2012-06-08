@@ -16,6 +16,7 @@ app.use(express.bodyParser());
 app.use(auth( [
    auth.Twitter({consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret})
   ]) );
+app.use(express.session({ secret: 'a random message as a random seed' }));
 app.use(i18next.handle);
 i18next.registerAppHelper(app);
 
