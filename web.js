@@ -21,7 +21,8 @@ app.use(auth( [ auth.Twitter( {
   consumerSecret: twitterConsumerSecret
 //,
 //  accessToken:twitterAccessToken,
-//  accessTokenSecret: twitterAccessTokenSecret} )  ] ) );
+//  accessTokenSecret: twitterAccessTokenSecret
+} )  ] ) );
 app.use(express.session({ secret: "aRandomMessageAsARandomSeed" }));
 app.use(i18next.handle);
 i18next.registerAppHelper(app);
