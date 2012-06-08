@@ -12,6 +12,7 @@ var app = express.createServer(express.logger());
 app.use(express.static( publicDir ));
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
+app.use(express.cookieParser()); 
 app.use(express.bodyParser());
 app.use(auth( [ auth.Twitter( {consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret} )  ] ) );
 app.use(express.session({ secret: "aRandomMessageAsARandomSeed" }));
