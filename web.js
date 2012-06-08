@@ -13,10 +13,8 @@ app.use(express.static( publicDir ));
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 app.use(express.bodyParser());
-app.use(auth( [
-   auth.Twitter({consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret})
-  ]) );
-app.use(express.session({ secret: "aRandom MessageAsARandomSeed" }));
+app.use(auth( [ auth.Twitter( {consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret} )  ] ) );
+app.use(express.session({ secret: "aRandomMessageAsARandomSeed" }));
 app.use(i18next.handle);
 i18next.registerAppHelper(app);
 
@@ -49,6 +47,7 @@ function protect(req, res, next) {
     })
   }
 }
+
 var port = 8080;
 app.listen(port, function() {
   console.log("I will stay tuned on " + port);
