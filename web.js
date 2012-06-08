@@ -6,8 +6,8 @@ var auth = require('connect-auth');
 
 var twitterConsumerKey = "tjcaHSMkGUItYqEvyyRAA";
 var twitterConsumerSecret = "DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok";
-var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
-var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
+//var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
+//var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
 i18next.init();
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
@@ -18,9 +18,10 @@ app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(auth( [ auth.Twitter( {
   consumerKey: twitterConsumerKey,
-  consumerSecret: twitterConsumerSecret,
-  accessToken:twitterAccessToken,
-  accessTokenSecret: twitterAccessTokenSecret} )  ] ) );
+  consumerSecret: twitterConsumerSecret
+//,
+//  accessToken:twitterAccessToken,
+//  accessTokenSecret: twitterAccessTokenSecret} )  ] ) );
 app.use(express.session({ secret: "aRandomMessageAsARandomSeed" }));
 app.use(i18next.handle);
 i18next.registerAppHelper(app);
