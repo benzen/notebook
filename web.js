@@ -18,8 +18,6 @@ everyauth.twitter
     return promise;
   })
   .redirectPath("/");
-//var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
-//var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
 i18next.init();
 
 var app = express.createServer();
@@ -40,8 +38,8 @@ app.configure(function(){
 i18next.registerAppHelper(app);
 
 app.get('/', navigationController.index );
-
 app.get("/configure", navigationController.configure );
+app.get("/login", navigationController.login);
 
 app.get("/class/new", classController.newClass);
 app.post("/class/create", classController.createClass );

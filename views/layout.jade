@@ -18,7 +18,4 @@ html(lang="en")
       - if(everyauth.loggedIn)
         p Hello #{everyauth.twitter.user.name}
         a(href="/configure")= t("Configure")
-      - else
-        p You need to be auth to do anything
-        a(href="/auth/twitter") log in with twitter 
     block content
