@@ -15,5 +15,10 @@ html(lang="en")
     .header 
       a(href="/") Teacher Marking Notebook
     .toolBar 
-      a(href="/configure")= t("Configure")
+      - if(everyauth.loggedIn)
+        p Hello #{everyauth.twitter.user.name}
+        a(href="/configure")= t("Configure")
+      - else
+        p You need to be auth to do anything
+        a(href="/auth/twitter") log in with twitter 
     block content
