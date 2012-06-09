@@ -14,7 +14,7 @@ var ifTableAlreadyExistLogAMessage = function(){
 var query = client.query("CREATE TABLE class ( id SERIAL PRIMARY KEY, json text)");
 query.on("error", ifTableAlreadyExistLogAMessage);
 
-query = client.query("CREATE TABLE user (type text, id text, name text)")
+query = client.query("CREATE TABLE user (type text, id text, name text)");
 query.on("error",ifTableAlreadyExistLogAMessage);
 
 exports.db = client;
