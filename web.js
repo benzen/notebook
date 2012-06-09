@@ -13,7 +13,7 @@ everyauth.twitter
   .consumerSecret("DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok")
   .findOrCreateUser(function(session, accessToken, accessTokenSecret, twitterUserData){
     console.log(util.inspect(twitterUserData));
-    var promise = new Promise();
+    var promise = this.Promise();
     user.findOrCreateUserByTwitterData(promise, twitterUserData);
     return promise;
   })
