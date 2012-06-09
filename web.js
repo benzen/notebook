@@ -19,7 +19,7 @@ i18next.init();
 var app = express.createServer();
 app.configure(function(){
   app.use(express.static( __dirname+"/public" ));
-  app.use(everyauth.midleware());
+  app.use(everyauth.middleware());
   app.use(app.router);
   app.use(express.logger());
   app.set('view engine', 'jade');
