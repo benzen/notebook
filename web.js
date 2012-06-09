@@ -8,7 +8,7 @@ var express = require( 'express' ),
 
 everyauth.twitter
   .consumerKey("tjcaHSMkGUItYqEvyyRAA")
-  .consumerSecret("DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok").
+  .consumerSecret("DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok")
   .findOrCreateUser(function(session, accessToken, accessTokenSecret, twitterUserData){
     console.log(util.inspect(twitterUserData));
   });
