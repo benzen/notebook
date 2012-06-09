@@ -19,7 +19,7 @@ i18next.init();
 var app = express.createServer();
 app.configure(function(){
   app.use(express.static( __dirname+"/public" ));
-  app.use(express.session());
+  app.use(express.session({secret:"9a0b0e32bf347ccc169bd5bef94e9184"}));
   app.use(everyauth.middleware());
   app.use(app.router);
   app.use(express.logger());
