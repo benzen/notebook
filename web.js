@@ -9,22 +9,20 @@ var twitterConsumerSecret = "DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok";
 //var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
 //var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
 i18next.init();
+
 var publicDir = __dirname +"/public";
 var app = express.createServer(express.logger());
-app.use(express.static( publicDir ));
-app.set('view engine', 'jade');
-app.set('view options', { layout: false });
-app.use(express.cookieParser()); 
-app.use(express.bodyParser());
-app.use(auth( [ auth.Twitter( {
-  consumerKey: twitterConsumerKey,
-  consumerSecret: twitterConsumerSecret
-//,
-//  accessToken:twitterAccessToken,
-//  accessTokenSecret: twitterAccessTokenSecret
-} )  ] ) );
-app.use(express.session({ secret: "aRandomMessageAsARandomSeed" }));
-app.use(i18next.handle);
+app.configure(function(){
+  app.use(express.static( publicDir ));
+  app.use(app.router);
+  app.use(express.logger());
+  app.set('view engine', 'jade');
+  app.set('view options', { layout: false });
+  app.use(express.cookieParser()); 
+  app.use(express.bodyParser());
+  app.use(i18next.handle);
+});
+
 i18next.registerAppHelper(app);
 
 app.get('/', navigationController.index );
@@ -37,26 +35,7 @@ app.get("/class/:id", classController.showClass );
 app.get("/class/:id/edit", classController.editClass );
 app.put("/class/:id", classController.updateClass );
 
-app.get('/secrets', protect, function(req, res){
-    res.send('Shhhh!!! Unicorns');
-});
-
-function protect(req, res, next) {
-  if( req.isAuthenticated() ) next();
-  else {
-    req.authenticate(function(error, authenticated) {
-      if( error ) next(new Error("Problem authenticating"));
-      else {
-        if( authenticated === true)next();
-        else if( authenticated === false ) next(new Error("Access Denied!"));
-        else {
-          // Abort processing, browser interaction was required (and has happened/is happening)
-        }
-      }
-    })
-  }
-}
-
+    
 var port = 8080;
 app.listen(port, function() {
   console.log("I will stay tuned on " + port);
