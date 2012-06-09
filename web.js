@@ -16,7 +16,8 @@ everyauth.twitter
     var promise = new Promise();
     user.findOrCreateUserByTwitterData(promise, twitterUserData);
     return promise;
-  });
+  })
+  .redirectPath("/");
 //var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
 //var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
 i18next.init();
