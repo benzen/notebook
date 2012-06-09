@@ -10,7 +10,7 @@ exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
   });
   //user doesn't exist yet case
   query.on('end',function(result){
-    if(result.rowCount === 0 )
+    if(result.rowCount === 0 ){
       console.log(result.rowCount);
       console.log("HEY YOU NEED A USER");
       db.query("INSERT into \"user\" (type, id, name) VALUES ( $1,$2,$3)", ['twitter', twitterData.id_str, twitterData.screen_name]);
