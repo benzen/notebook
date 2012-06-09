@@ -3,7 +3,9 @@ var express = require( 'express' ),
     navigationController = require( "./controllers/Navigation.js" ),
     i18next = require("i18next"),
     everyauth = require('everyauth'),
-    util = require("util");
+    util = require("util"),
+    Promise = everyauth.Promise
+    user = require("./modules/Users.js");
 
 
 everyauth.twitter
@@ -11,6 +13,9 @@ everyauth.twitter
   .consumerSecret("DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok")
   .findOrCreateUser(function(session, accessToken, accessTokenSecret, twitterUserData){
     console.log(util.inspect(twitterUserData));
+    var promise = new Promise();
+    user.findOrCreateUserByTwitterData(promise, twitterUserData);
+    return promise;
   });
 //var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
 //var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
