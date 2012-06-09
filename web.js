@@ -1,19 +1,25 @@
-var express = require( 'express' );
-var classController = require( "./controllers/Class.js" );
-var navigationController = require( "./controllers/Navigation.js" );
-var i18next = require("i18next");
-var auth = require('connect-auth');
+var express = require( 'express' ),
+    classController = require( "./controllers/Class.js" ),
+    navigationController = require( "./controllers/Navigation.js" ),
+    i18next = require("i18next"),
+    everyauth = require('everyauth'),
+    util = require("util");
 
-var twitterConsumerKey = "tjcaHSMkGUItYqEvyyRAA";
-var twitterConsumerSecret = "DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok";
+
+everyauth.twitter
+  .consumerKey("tjcaHSMkGUItYqEvyyRAA")
+  .consumerSecret("DELa45PgFNJzaCbNSVv5XckRtstJorqolgV6UwMIHok").
+  .findOrCreateUser(function(session, accessToken, accessTokenSecret, twitterUserData){
+    console.log(util.inspect(twitterUserData));
+  });
 //var twitterAccessToken = "92998823-M7Km5tWr7cvsmBGT5fxf7OpkyXa70c8F4pyTSiZ0E";
 //var twitterAccessTokenSecret = "M4Q68Dh9XVeQaMdEWUmT5RTJrNXOMtQk5hXtM0FVtE";
 i18next.init();
 
-var publicDir = __dirname +"/public";
-var app = express.createServer(express.logger());
+var app = express.createServer();
 app.configure(function(){
-  app.use(express.static( publicDir ));
+  app.use(express.static( __dirname+"/public" ));
+  app.use(everyauth.midleware());
   app.use(app.router);
   app.use(express.logger());
   app.set('view engine', 'jade');
