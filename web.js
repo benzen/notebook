@@ -20,13 +20,13 @@ var app = express.createServer();
 app.configure(function(){
   app.use(express.static( __dirname+"/public" ));
   app.use(express.session({secret:"9a0b0e32bf347ccc169bd5bef94e9184"}));
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
   app.use(everyauth.middleware());
   app.use(app.router);
   app.use(express.logger());
   app.set('view engine', 'jade');
   app.set('view options', { layout: false });
-  app.use(express.cookieParser()); 
-  app.use(express.bodyParser());
   app.use(i18next.handle);
 });
 
