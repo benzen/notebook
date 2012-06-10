@@ -45,15 +45,15 @@ var checkIsUserAuthentified = function(request, response, next){
   }
 };
 
-app.get('/', checkIsUserAuthentified, navigationController.index );
-app.get("/configure", checkIsUserAuthentified, navigationController.configure );
+app.get('/', navigationController.index );
+app.get("/configure", navigationController.configure );
 app.get("/login", navigationController.login);
 
-app.get("/class/new", checkIsUserAuthentified, classController.newClass);
-app.post("/class/create", checkIsUserAuthentified, classController.createClass );
-app.get("/class/:id", checkIsUserAuthentified, classController.showClass );
-app.get("/class/:id/edit", checkIsUserAuthentified, classController.editClass );
-app.put("/class/:id", checkIsUserAuthentified, classController.updateClass );
+app.get("/class/new", classController.newClass);
+app.post("/class/create", classController.createClass );
+app.get("/class/:id", classController.showClass );
+app.get("/class/:id/edit", classController.editClass );
+app.put("/class/:id", classController.updateClass );
 
     
 var port = 8080;
