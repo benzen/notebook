@@ -12,10 +12,9 @@ html(lang="en")
       script(src="/models/MarkStatement.js")
 
   body
-    block body
-      .header 
-        a(href="/") Teacher Marking Notebook
-      .toolBar 
-        a(href="/configure")= t("Configure")
-        a(href="/logout")= t("Logout")
-      block content
+    .header 
+      a(href="/") Teacher Marking Notebook
+    .toolBar 
+      a(href="/configure")= t("Configure")
+      a(href="/logout")= t("Logout")
+    block content
