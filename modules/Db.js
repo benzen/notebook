@@ -8,7 +8,7 @@ var client = new pg.Client( dbUrl );
 client.connect();
 
 var ifTableAlreadyExistLogAMessage = function(tableName){
-  return function(){ console.log("ERROR table " + tableName + " already exist") };
+  return function(){ console.error("Database Table " + tableName + " already exist") };
 };
 
 var query = client.query("CREATE TABLE class ( id SERIAL PRIMARY KEY, json text);");
