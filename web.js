@@ -30,7 +30,7 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.set('view options', { layout: false });
   app.use(express.static( __dirname+"/public" ));
-  app.use(express.errorHandler());
+//  app.use(express.errorHandler());
   app.use(express.logger());
   app.use(i18next.handle);
 });
