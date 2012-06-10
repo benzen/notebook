@@ -1,4 +1,6 @@
 extends layout
-block content
-  a(href="/auth/twitter", title=t("Login with twitter"))
+body
+ .header
+   a(href="/") Teacher Marking Notebook
+   a(href="/auth/twitter", title=t("Login with twitter"))
     .twitterLoginButton
