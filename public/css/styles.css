@@ -51,7 +51,9 @@ table {
  margin: 0 auto;
 }
 .twitterLoginButton {
- background-image:url("/images/twitter-bird-dark-bgs.png")
+  background-image:url("/images/twitter-bird-dark-bgs.png");
+  width: 300px;
+  height: 300px;
 }
 .twitterLoginButton:hover{
  background-image:url("/images/twitter-bird-light-bgs.png")
