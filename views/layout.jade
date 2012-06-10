@@ -10,11 +10,11 @@ html(lang="en")
       script(src="/models/Student.js")
       script(src="/models/Class.js")
       script(src="/models/MarkStatement.js")
-
   body
     .header 
       a(href="/") Teacher Marking Notebook
-    .toolBar 
-      a(href="/configure")= t("Configure")
-      a(href="/logout")= t("Logout")
+    - if(everyauth.loggedIn)
+      .toolBar 
+        a(href="/configure")= t("Configure")
+        a(href="/logout")= t("Logout")
     block content
