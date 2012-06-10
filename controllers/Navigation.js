@@ -1,6 +1,6 @@
 exports.index = function(request, response) {
-  if(!req.loggedIn){
-    res.redirect("/login");
+  if(!request.loggedIn){
+    response.redirect("/login");
   }
   response.render("index.jade")
 }
