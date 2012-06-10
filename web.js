@@ -36,7 +36,7 @@ app.configure(function(){
 });
 
 i18next.registerAppHelper(app);
-
+everyauth.helpExpress(app);
 var checkIsUserAuthentified = function(request, response, next){
   if(!request.loggedIn){
     response.redirect("/login");
