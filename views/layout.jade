@@ -15,7 +15,7 @@ html(lang="en")
       a(href="/") Teacher Marking Notebook
     - if(everyauth.loggedIn)
       .toolBar
-        p  #{everyauth.user.name}
+        p  #{everyauth.user.twitter.name}
         a(href="/configure")= t("Configure")
         a(href="/logout")= t("Logout")
     block content
