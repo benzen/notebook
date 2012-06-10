@@ -44,7 +44,10 @@ var checkIsUserAuthentified = function(request, response, next){
     next();
   }
 };
-
+app.get("/", function(req,resp){
+  resp.send("hello");
+});
+/*
 app.get('/',  navigationController.index );
 app.get("/configure", navigationController.configure );
 app.get("/login", navigationController.login);
@@ -54,7 +57,7 @@ app.post("/class/create", classController.createClass );
 app.get("/class/:id", classController.showClass );
 app.get("/class/:id/edit",  classController.editClass );
 app.put("/class/:id",  classController.updateClass );
-
+*/
     
 var port = 8080;
 app.listen(port, function() {
