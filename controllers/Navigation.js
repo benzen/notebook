@@ -1,3 +1,4 @@
+
 exports.index = function(request, response) {
   if(!request.loggedIn){
     response.redirect("/login");
