@@ -1,5 +1,5 @@
 exports.index = function(request, response) {
-  if(!everyauth.loggedIn){
+  if(!req.loggedIn){
     res.redirect("/login");
   }
   response.render("index.jade")
