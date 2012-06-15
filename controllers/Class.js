@@ -50,6 +50,7 @@ exports.updateClass = function(request, response){
 };
 
 exports.listClass = function(request, response){
+  console.log("start of list class");
   var query = db.query( "SELECT * FROM class;");
   query.on("error",function(){
     console.error("unable to get all classes");
@@ -58,4 +59,5 @@ exports.listClass = function(request, response){
   query.on("end",function( result ){
     response.render("class/list.jade", result.rows );
   });
+  console.log("end of list class");
 };
