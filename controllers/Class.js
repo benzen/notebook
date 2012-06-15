@@ -30,7 +30,7 @@ exports.editClass = function(request, response){
   query.on("row", function( row ){
     var entityWithId = JSON.parse( row.json ) ;
     entityWithId.id = id;
-    response.render("class/edit.jade", entityWithId );
+    response.render("class/edit.jade", { classList: entityWithId } );
   });
   query.on("error", function(){
     response.redirect("/404");

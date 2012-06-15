@@ -1,3 +1,4 @@
 extends ../layout
 block content
-  p liste  de class
+  - each group in classList
+    p #{group.id} #{group.json.name}
