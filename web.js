@@ -55,8 +55,8 @@ app.get("/class/:id/edit",  checkIsUserAuthentified, classController.editClass )
 app.put("/class/:id",  checkIsUserAuthentified, classController.updateClass );
 app.get("/class/list",  checkIsUserAuthentified, classController.listClass );
 
-app.get("/500", checkIsUserAuthentified, navigationController.500);
-app.get("/404", checkIsUserAuthentified, navigationController.404);
+app.get("/500", checkIsUserAuthentified, navigationController["500"]);
+app.get("/404", checkIsUserAuthentified, navigationController["404"]);
 
 var port = 8080;
 app.listen(port, function() {

@@ -8,9 +8,9 @@ exports.configure = function(request,response){
 exports.login = function(request,response){
   response.render("login.jade");
 };
-exports.500 = function(request,response){
+exports["500"] = function(request,response){
   response.render("error/500.jade");
 };
-exports.404 = function(request,response){
+exports["404"] = function(request,response){
   response.render("error/404.jade");
 }
