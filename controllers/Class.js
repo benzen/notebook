@@ -5,7 +5,7 @@ exports.newClass = function(request,response){
 
 exports.createClass = function(request, response){
   var classAsJson = JSON.stringify( request.body );
-  var query = db.query("INSERT INTO class ( json ) values( $1 ) RETURNING id", [ classAsJson ]);
+  var query = db.query("INSERT INTO class ( json ) values( $1 ) RETURNING id;", [ classAsJson ]);
   query.on("row", function(row){
     response.send("/class/"+row.id);
   });
@@ -13,7 +13,7 @@ exports.createClass = function(request, response){
 
 exports.showClass = function(request, response){
   var id = request.params.id;
-  var query = db.query( "SELECT * FROM class where id = $1", [id] );
+  var query = db.query( "SELECT * FROM class where id = $1;", [id] );
   query.on("row", function(row){
     var entityWithId = JSON.parse( row.json ) ;
     entityWithId.id = id;
@@ -26,7 +26,7 @@ exports.showClass = function(request, response){
 
 exports.editClass = function(request, response){
   var id = request.params.id;
-  var query = db.query( "SELECT * FROM class where id = $1", [ id ] );
+  var query = db.query( "SELECT * FROM class where id = $1;", [ id ] );
   query.on("row", function( row ){
     var entityWithId = JSON.parse( row.json ) ;
     entityWithId.id = id;
@@ -36,10 +36,11 @@ exports.editClass = function(request, response){
     response.redirect("/404");
   });
 };
+
 exports.updateClass = function(request, response){
   var id = request.params.id;
   var classAsJson = JSON.stringify( request.body );
-  var query = db.query( "UPDATE class set json = $1 where id = $2", [ classAsJson, id] );
+  var query = db.query( "UPDATE class set json = $1 where id = $2;", [ classAsJson, id] );
   query.on("row", function(){
     response.redirect( "/class/" + id );
   });
@@ -49,7 +50,7 @@ exports.updateClass = function(request, response){
 };
 
 exports.listClass = function(request, response){
-  var query = db.query( "SELECT id, json FROM class");
+  var query = db.query( "SELECT * FROM class;");
   query.on("error",function(){
     console.error("unable to get all classes");
     response.redirect( "/500" );
@@ -57,5 +58,4 @@ exports.listClass = function(request, response){
   query.on("end",function( result ){
     response.render("class/list.jade", result.rows );
   });
-
 };
