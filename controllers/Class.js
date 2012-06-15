@@ -20,7 +20,7 @@ exports.showClass = function(request, response){
     response.render("class/show.jade", entityWithId );
   });
   query.on("error", function(){
-    response.render("error/404.jade");
+    response.redirect("/404");
   });
 };
 
@@ -33,7 +33,7 @@ exports.editClass = function(request, response){
     response.render("class/edit.jade", entityWithId );
   });
   query.on("error", function(){
-    response.render("error/404.jade");
+    response.redirect("/404");
   });
 };
 exports.updateClass = function(request, response){
@@ -44,7 +44,7 @@ exports.updateClass = function(request, response){
     response.redirect( "/class/" + id );
   });
   query.on("error",function(){
-    response.render( "error/404.jade" );
+    response.redirect( "/404" );
   });
 };
 
@@ -52,7 +52,7 @@ exports.listClass = function(request, response){
   var query = db.query( "SELECT id, json FROM class");
   query.on("error",function(){
     console.error("unable to get all classes");
-    response.render( "/error/500.jade" );
+    response.redirect( "/500" );
   });
   query.on("end",function( result ){
     response.render("class/list.jade", result.rows );
