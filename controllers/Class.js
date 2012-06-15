@@ -50,7 +50,7 @@ exports.updateClass = function(request, response){
 };
 
 exports.listClass = function(request, response){
-  console.log( "start of list class" );
+  console.log( "start of list class"  );
   var query = db.query( "SELECT * FROM class;");
   query.on("error",function(){
     console.error("unable to get all classes");
