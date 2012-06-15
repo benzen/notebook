@@ -3,6 +3,10 @@ block content
   ul
     li 
       a(href="/class/new")= t("Create a class")
-    li= t("Show class")
-    li= t("Create a subject")
+    li
+      a(href="/class/list")= t("Show all classes")
+    li
+      a(href="/user/class")= t("Choose my current class")
+    li
+      a(href="#")= t("Create a subject")
 

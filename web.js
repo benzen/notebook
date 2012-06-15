@@ -54,6 +54,7 @@ app.post("/class/create", checkIsUserAuthentified, classController.createClass )
 app.get("/class/:id", checkIsUserAuthentified, classController.showClass );
 app.get("/class/:id/edit",  checkIsUserAuthentified, classController.editClass );
 app.put("/class/:id",  checkIsUserAuthentified, classController.updateClass );
+app.get("class/list",  checkIsUserAuthentified, classController.listClass );
 
 
 var port = 8080;
