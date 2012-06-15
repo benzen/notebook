@@ -60,3 +60,6 @@ table {
 .twitterLoginButton:hover{
  background-image:url("/images/twitter-bird-light-bgs.png")
 }
+.toolBar a {
+  padding: 5px;
+}
