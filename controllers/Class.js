@@ -1,4 +1,5 @@
-var db = require("../modules/Db.js").db;
+var db = require("../modules/Db.js").db,
+    util = require("util");
 exports.newClass = function(request,response){
   response.render("class/create.jade");
 };
@@ -56,6 +57,7 @@ exports.listClass = function(request, response){
     response.redirect( "/500" );
   });
   query.on("end",function( result ){
+    console.log(util.inspect(result));
     var entity =[];
     for(var i=0; i<result.rows.length; i++){
       var row = rows[i];
