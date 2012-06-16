@@ -63,7 +63,7 @@ exports.listClass = function(request, response){
     console.log(util.inspect(result));
     var entity =[];
     for(var i=0; i<result.rows.length; i++){
-      var row = rows[i];
+      var row = result.rows[i];
       entity.push( { id:row.id, group:JSON.parse( row.json ) } );
     }
 
