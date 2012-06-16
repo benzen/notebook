@@ -3,7 +3,6 @@ var express = require( 'express' ),
     navigationController = require( "./controllers/Navigation.js" ),
     i18next = require("i18next"),
     everyauth = require('everyauth'),
-    util = require("util"),
     Promise = everyauth.Promise
     user = require("./modules/Users.js");
 
