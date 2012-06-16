@@ -4,7 +4,7 @@ var express = require( 'express' ),
     i18next = require("i18next"),
     everyauth = require('everyauth'),
     Promise = everyauth.Promise
-    user = require("./modules/Users.js");
+    user = require("./controllers/User.js");
 
 
 everyauth.twitter
@@ -16,6 +16,9 @@ everyauth.twitter
     return promise;
   })
   .redirectPath("/");
+everyauth.everymodule.findUserById(function( userId, callback ){
+    user.findUserById(userId, callback);
+});
 i18next.init();
 
 var app = express.createServer();
