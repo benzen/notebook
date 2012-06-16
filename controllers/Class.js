@@ -57,7 +57,13 @@ exports.listClass = function(request, response){
     response.redirect( "/500" );
   });
   query.on("end",function( result ){
-    response.render("class/list.jade", result.rows );
+    var entity =[];
+    for(var i=0; i<result.rows.length; i++){
+      var row = rows[i];
+      entity.push( { id:row.id, groupe:JSON.parse( row.json ) } );
+    }
+
+    response.render("class/list.jade", {groupList:entity} );
   });
   console.log( "end of list class" );
 };
