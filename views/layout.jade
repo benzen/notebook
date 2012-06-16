@@ -15,6 +15,7 @@ html(lang="en")
       a(href="/") Teacher Marking Notebook
     - if(everyauth.loggedIn)
       .toolBar
+        a(href="/profile") #{user.name}
         a(href="/configure")= t("Configure")
         a(href="/logout")= t("Logout")
     block content
