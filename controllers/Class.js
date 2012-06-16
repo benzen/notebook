@@ -50,7 +50,6 @@ exports.updateClass = function(request, response){
 };
 
 exports.listClass = function(request, response){
-  console.log( "start of list class"  );
   var query = db.query( "SELECT * FROM class;");
   query.on("error",function(){
     console.error("unable to get all classes");
@@ -60,10 +59,9 @@ exports.listClass = function(request, response){
     var entity =[];
     for(var i=0; i<result.rows.length; i++){
       var row = rows[i];
-      entity.push( { id:row.id, groupe:JSON.parse( row.json ) } );
+      entity.push( { id:row.id, group:JSON.parse( row.json ) } );
     }
 
     response.render("class/list.jade", {classList:entity} );
   });
-  console.log( "end of list class" );
 };
