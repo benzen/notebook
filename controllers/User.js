@@ -1,4 +1,4 @@
-var db = require("./Db.js").db,
+var db = require("../modules/Db.js").db,
     _  = require("underscrore");
 
 exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
