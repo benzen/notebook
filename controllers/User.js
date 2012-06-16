@@ -1,5 +1,5 @@
 var db = require("../modules/Db.js").db,
-    _  = require("underscrore");
+    _  = require("underscore");
 
 exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
   var query = db.query("SELECT name from \"user\" where auth_type = $1 and auth_id = $2", ['twitter', twitterData.id_str]);
