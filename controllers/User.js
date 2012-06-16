@@ -45,6 +45,6 @@ exports.findUserById=function(userId, callback){
   var query = db.query("SELECT * FROM \"user\" where id=$2",[id]);
   query.on( "row", function( row ){
     console.log( JSON.stringify( row ) );
-    callback(null,row);
+    callback( null, row );
   });
 };
