@@ -17,6 +17,7 @@ everyauth.twitter
   })
   .redirectPath("/");
 everyauth.everymodule.findUserById(function( userId, callback ){
+    console.log("find user by id");
     user.findUserById(userId, callback);
 });
 i18next.init();
