@@ -2,11 +2,11 @@ extends ../layout
 block content
   table
     tr
-      th= t("Class")
+      th= t("Group")
       th= t("Year")
     each group in classList
       tr 
         td #{group.group.group}
-        td tr#{group.group.year}
+        td #{group.group.year}
         td 
-          a(href="/user/addClass/#{group.id}")= t("this is my class") 
+          a(href="/user/addClass/#{group.id}")= t("My group") 
