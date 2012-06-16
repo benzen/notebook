@@ -60,12 +60,13 @@ exports.listClass = function(request, response){
     result.addRow(row);
   });
   query.on("end",function( result ){
-    console.log(util.inspect(result));
+    
     var entity =[];
     for(var i=0; i<result.rows.length; i++){
       var row = result.rows[i];
       entity.push( { id:row.id, group:JSON.parse( row.json ) } );
     }
+    console.log(util.inspect(entity));
     response.render("class/list.jade", {classList:entity} );
   });
 };
