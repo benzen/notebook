@@ -63,7 +63,7 @@ exports.listClass = function(request, response){
       entity.push( { id:row.id, groupe:JSON.parse( row.json ) } );
     }
 
-    response.render("class/list.jade", {groupList:entity} );
+    response.render("class/list.jade", {classList:entity} );
   });
   console.log( "end of list class" );
 };
