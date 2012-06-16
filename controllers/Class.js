@@ -46,14 +46,14 @@ exports.updateClass = function(request, response){
     response.redirect( "/class/" + id );
   });
   query.on("error",function(){
-    response.redirect( "/404" );
+    response.redirect( "/500" );
   });
 };
 
 exports.listClass = function(request, response){
   var query = db.query( "SELECT * FROM class;");
   query.on("error",function(){
-    console.error("unable to get all classes");
+    console.error( "unable to get all classes" );
     response.redirect( "/500" );
   });
   query.on("row",function(row, result){
@@ -66,7 +66,6 @@ exports.listClass = function(request, response){
       var row = result.rows[i];
       entity.push( { id:row.id, group:JSON.parse( row.json ) } );
     }
-
     response.render("class/list.jade", {classList:entity} );
   });
 };
