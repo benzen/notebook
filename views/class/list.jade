@@ -1,7 +1,11 @@
 extends ../layout
 block content
-  each group in classList
-    p
-    | #{group.group.group}
-    | #{group.group.year}
-    a(href="/user/addClass/#{group.id}")= t("this is my class") 
+  table
+    tr
+      th= t("Class")
+      th= t("Year")
+    each group in classList
+      tr 
+        td #{group.group.group}
+        td tr#{group.group.year}
+        td a(href="/user/addClass/#{group.id}")= t("this is my class") 
