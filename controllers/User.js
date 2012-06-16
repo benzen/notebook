@@ -42,7 +42,7 @@ exports.partialProfileUpdate = function(request, response){
   });
 };
 exports.findUserById=function(userId, callback){
-  var query = db.query("SELECT profile FROM \"user\" where id=$2",[id]);
+  var query = db.query("SELECT * FROM \"user\" where id=$2",[id]);
   query.on( "row", function( row ){
    callback(null,row);
   });
