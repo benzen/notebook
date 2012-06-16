@@ -37,9 +37,13 @@ exports.partialProfileUpdate = function(request, response){
     var profile = _.extend( row.profile, partialProfile );
     var query = db.query("UPDATE \"user\" set profile=$1 where id=$2", [ profile, id ]);
     query.on( "row", function( row ){
-    response.render("user/profile", { profile: row.profile } );
+      response.render("user/profile", { profile: row.profile } );
+    });
   });
+};
+exports.findUserById=function(userId, callback){
+  var query = db.query("SELECT profile FROM \"user\" where id=$2",[id]);
+  query.on( "row", function( row ){
+   callback(row);
   });
-
-  
 };
