@@ -43,8 +43,12 @@ exports.partialProfileUpdate = function(request, response){
 };
 exports.findUserById=function(userId, callback){
   var query = db.query("SELECT * FROM \"user\" where id=$2",[id]);
+  console.log("searching user "+userId);
   query.on( "row", function( row ){
     console.log( JSON.stringify( row ) );
     callback( null, row );
+  });
+  query.on("error", function(error){
+    callback(error);
   });
 };
