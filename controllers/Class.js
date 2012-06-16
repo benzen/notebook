@@ -56,6 +56,9 @@ exports.listClass = function(request, response){
     console.error("unable to get all classes");
     response.redirect( "/500" );
   });
+  query.on("row",function(row, result){
+    result.addRow(row);
+  });
   query.on("end",function( result ){
     console.log(util.inspect(result));
     var entity =[];
