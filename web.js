@@ -57,7 +57,7 @@ app.get( "/class/:id", checkIsUserAuthentified, classController.showClass );
 app.get( "/class/:id/edit",  checkIsUserAuthentified, classController.editClass );
 app.put( "/class/:id",  checkIsUserAuthentified, classController.updateClass );
 
-app.put( "/user/:userId/addClass/:classId", checkIsUserAuthentified, user.addClassToProfile );
+app.get( "/user/:userId/addClass/:classId", checkIsUserAuthentified, user.addClassToProfile );
 
 
 app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
