@@ -69,7 +69,7 @@ exports.addClassToProfile=function(request,response){
     profile.classList = profile.class?profile.classList:[];
     profile.classList.push( classId );
     User.partialProfileUpdate( userId, profile, function( profileUpdate ){
-      response.render( "user/"+usersId+"/profile" {profile:profileUpdate});
+      response.render( "user/"+usersId+"/profile", {profile:profileUpdate});
     });  
   });
   
