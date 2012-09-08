@@ -50,6 +50,11 @@ a:hover {
 table {
  margin: 0 auto;
 }
+.loginMethod:{
+ margin-left: :auto;
+ margin-right: auto;
+ width:300; 
+}
 .twitterLoginButton {
   background-image:url("/images/twitter-bird-dark-bgs.png");
   width: 150px;
