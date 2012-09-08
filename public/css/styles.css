@@ -51,9 +51,11 @@ table {
  margin: 0 auto;
 }
 .loginMethod:{
- margin-left: :auto;
- margin-right: auto;
- width:300; 
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+  padding: 30px;
 }
 .twitterLoginButton {
   background-image:url("/images/twitter-bird-dark-bgs.png");
