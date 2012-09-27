@@ -52,7 +52,7 @@ app.get( "/configure", checkIsUserAuthentified, navigationController.configure )
 app.get( "/login", navigationController.login);
 
 app.get( "/class/new",  checkIsUserAuthentified, classController.newClass);
-app.post ("/class/create", checkIsUserAuthentified, classController.createClass );
+app.post("/class/create", checkIsUserAuthentified, classController.createClass );
 app.get( "/class/list",  checkIsUserAuthentified, classController.listClass );
 app.get( "/class/:id", checkIsUserAuthentified, classController.showClass );
 app.get( "/class/:id/edit",  checkIsUserAuthentified, classController.editClass );
@@ -65,6 +65,6 @@ app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
 app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
 
 var port = 8080;
-app.listen(port, function() {
-  console.log("I will stay tuned on " + port);
-});
+app.listen(port);
+console.log("I will stay tuned on " + port);
+
