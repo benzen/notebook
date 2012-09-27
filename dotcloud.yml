@@ -1,6 +1,8 @@
 www:
   type: nodejs
   approot: .
+  config:
+    node_version: v0.8.x
   environment:
     DB_NAME: teacher_marking_notebook
     DB_USER: teacher

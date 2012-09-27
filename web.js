@@ -16,13 +16,14 @@ everyauth.twitter
     return promise;
   })
   .redirectPath("/");
+  
 everyauth.everymodule.findUserById(function( userId, callback ){
     console.log("find user by id");
     user.findUserById(userId, callback);
 });
 i18next.init();
 
-var app = express.createServer();
+var app = express();
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.cookieParser());
@@ -37,7 +38,7 @@ app.configure(function(){
 });
 
 i18next.registerAppHelper(app);
-everyauth.helpExpress(app);
+
 var checkIsUserAuthentified = function(request, response, next){
   if(!request.loggedIn){
     response.redirect("/login");

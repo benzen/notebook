@@ -1,0 +1,6 @@
+{
+	"DB_NAME": "teacher_marking_notebook",
+    "DB_USER": "teacher",
+    "DB_USER_PASSWORD": "8d788385431273d11e8b43bb78f3aa41",
+    "DB_URL": "pgsql://teacher:teacher@teachermarkingnotebook-benzen.dotcloud.com:21232"
+}
