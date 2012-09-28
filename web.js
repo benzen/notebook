@@ -3,7 +3,7 @@ var express = require( 'express' ),
     navigationController = require( "./controllers/Navigation.js" ),
     i18next = require("i18next"),
     everyauth = require('everyauth'),
-    Promise = everyauth.Promise
+    Promise = everyauth.Promise,
     user = require("./controllers/User.js");
 
 
@@ -18,18 +18,54 @@ everyauth.twitter
   .redirectPath("/");
   
 everyauth.everymodule.findUserById(function( userId, callback ){
-    console.log("find user by id");
     user.findUserById(userId, callback);
 });
 i18next.init();
 
+function preEveryauthMiddlewareHack() {
+    return function (req, res, next) {
+      var sess = req.session
+        , auth = sess.auth
+        , ea = { loggedIn: !!(auth && auth.loggedIn) };
+
+      // Copy the session.auth properties over
+      for (var k in auth) {
+        ea[k] = auth[k];
+      }
+
+      if (everyauth.enabled.password) {
+        // Add in access to loginFormFieldName() + passwordFormFieldName()
+        ea.password || (ea.password = {});
+        ea.password.loginFormFieldName = everyauth.password.loginFormFieldName();
+        ea.password.passwordFormFieldName = everyauth.password.passwordFormFieldName();
+      }
+
+      res.locals.everyauth = ea;
+
+      next();
+    }
+};
+
+function postEveryauthMiddlewareHack() {
+  var userAlias = everyauth.expressHelperUserAlias || 'user';
+  return function( req, res, next) {
+    res.locals.everyauth.user = req.user;
+    res.locals[userAlias] = req.user;
+    next();
+  };
+};
 var app = express();
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({secret:"9a0b0e32bf347ccc169bd5bef94e9184"}));
-  app.use(everyauth.middleware());
+  
+  app.use(preEveryauthMiddlewareHack());
+  app.use(everyauth.middleware(app));
+  app.use(postEveryauthMiddlewareHack());
+  
   app.use(app.router);
+  app.use(express.methodOverride());
   app.set('view engine', 'jade');
   app.set('view options', { layout: false });
   app.use(express.static( __dirname+"/public" ));
@@ -38,6 +74,8 @@ app.configure(function(){
 });
 
 i18next.registerAppHelper(app);
+
+
 
 var checkIsUserAuthentified = function(request, response, next){
   if(!request.loggedIn){
@@ -49,7 +87,7 @@ var checkIsUserAuthentified = function(request, response, next){
 
 app.get( "/",  checkIsUserAuthentified, navigationController.index );
 app.get( "/configure", checkIsUserAuthentified, navigationController.configure );
-app.get( "/login", navigationController.login);
+app.get( "/login", navigationController.login );
 
 app.get( "/class/new",  checkIsUserAuthentified, classController.newClass);
 app.post("/class/create", checkIsUserAuthentified, classController.createClass );

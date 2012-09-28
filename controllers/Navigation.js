@@ -1,5 +1,7 @@
 
 exports.index = function(request, response) {
+	console.log( req.session.auth );
+        
     response.render("index.jade");
 };
 exports.configure = function(request,response){

@@ -13,7 +13,7 @@ html(lang="en")
   body
     .header 
       a(href="/") Teacher Marking Notebook
-    - if(everyauth.loggedIn)
+     if(user)
       .toolBar
         a(href="/profile") #{user}
         a(href="/configure")= t("Configure")
