@@ -1,4 +1,4 @@
-TeacherRatingNotebook
+Notebook
 =====================
 
 An app to allow teacher to keep track of student marks
@@ -6,7 +6,7 @@ An app to allow teacher to keep track of student marks
 Where to use it
 ===============
 
-This app is maded to be deployed on dotcloud.
+This app is build to be deployed on dotcloud. But it is also possible run it with any node.js server and postgres.
 
 App aims
 ========
@@ -15,8 +15,7 @@ It aims to replace the notebook that every teacher use to keep track of each stu
 
 Functionalities
 ===============
-
 See the wiki. 
-Login with twitter and google accounts.
+Login with twitter accounts.
 Create a class.
 Give mark to a whole class.
