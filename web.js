@@ -95,12 +95,19 @@ app.get( "/class/list",  checkIsUserAuthentified, classController.listClass );
 app.get( "/class/:id", checkIsUserAuthentified, classController.showClass );
 app.get( "/class/:id/edit",  checkIsUserAuthentified, classController.editClass );
 app.put( "/class/:id",  checkIsUserAuthentified, classController.updateClass );
-
-app.get( "/user/:userId/addClass/:classId", checkIsUserAuthentified, user.addClassToProfile );
-
+app.get("/user/profile",checkIsUserAuthentified,user.getProfile);
+//app.get( "/user/:userId/addClass/:classId", checkIsUserAuthentified, user.addClassToProfile );
+app.get( "/user/profile", checkIsUserAuthentified, user.profile );
 
 app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
 app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
+
+app.get('/partials/*', function (req, res) {
+  var fileName = req.params[0];
+  res.render('partials/' + fileName);
+});
+
+
 
 var port = 8080;
 app.listen(port);

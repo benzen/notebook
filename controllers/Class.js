@@ -62,11 +62,10 @@ exports.listClass = function(request, response){
   query.on("end",function( result ){
     
     var entity =[];
-    for(var i=0; i<result.rows.length; i++){
-      var row = result.rows[i];
+    result.rows.forEach(function(row){
       entity.push( { id:row.id, group:JSON.parse( row.json ) } );
-    }
-    console.log(util.inspect( entity ));
-    response.render("class/list.jade", {userId:request.user.id, classList:entity} );
+    });
+    //response.render("class/list.jade", { classList:entity} );
+    response.json( entity );
   });
 };
