@@ -97,7 +97,7 @@ app.get( "/class/:id/edit",  checkIsUserAuthentified, classController.editClass 
 app.put( "/class/:id",  checkIsUserAuthentified, classController.updateClass );
 app.get("/user/profile",checkIsUserAuthentified,user.getProfile);
 //app.get( "/user/:userId/addClass/:classId", checkIsUserAuthentified, user.addClassToProfile );
-app.get( "/user/profile", checkIsUserAuthentified, user.profile );
+app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
 
 app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
 app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );

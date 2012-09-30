@@ -82,7 +82,7 @@ function ClassListCtrl($scope, $http, $location){
 	$scope.chooseGroup=function($event,index){
 		$http.get("/user/profile").success(function(profile){
 			profile.group = $scope.groups[index].id;
-			$http.put("/user/profile/",profile).success(function(){
+			$http.put("/user/profile",profile).success(function(){
               $location.path("/");
 			});
 		})
