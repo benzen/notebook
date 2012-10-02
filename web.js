@@ -4,7 +4,8 @@ var express = require( 'express' ),
     i18next = require("i18next"),
     everyauth = require('everyauth'),
     Promise = everyauth.Promise,
-    user = require("./controllers/User.js");
+    user = require("./controllers/User.js"),
+    controlTables = require("./modules/ControlTables.js");
 
 
 everyauth.twitter
@@ -95,19 +96,21 @@ app.get( "/class/list",  checkIsUserAuthentified, classController.listClass );
 app.get( "/class/:id", checkIsUserAuthentified, classController.showClass );
 app.get( "/class/:id/edit",  checkIsUserAuthentified, classController.editClass );
 app.put( "/class/:id",  checkIsUserAuthentified, classController.updateClass );
-app.get("/user/profile",checkIsUserAuthentified,user.getProfile);
-//app.get( "/user/:userId/addClass/:classId", checkIsUserAuthentified, user.addClassToProfile );
+
+app.get( "/user/profile",checkIsUserAuthentified,user.getProfile);
 app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
+app.get( "/controlTables",checkIsUserAuthentified, controlTables.getControlTables)
 
 app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
 app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
+
 
 app.get('/partials/*', function (req, res) {
   var fileName = req.params[0];
   res.render('partials/' + fileName);
 });
 
-
+app.get("/controlTables",controlTables.tablesAsJson );
 
 var port = 8080;
 app.listen(port);

@@ -18,13 +18,13 @@ exports.showClass = function(request, response){
   query.on("row", function(row){
     var entityWithId = JSON.parse( row.json ) ;
     entityWithId.id = id;
-    response.render("class/show.jade", entityWithId );
+    response.json( entityWithId );
   });
   query.on("error", function(){
     response.redirect("/404");
   });
 };
-
+/*
 exports.editClass = function(request, response){
   var id = request.params.id;
   var query = db.query( "SELECT * FROM class where id = $1;", [ id ] );
@@ -49,7 +49,7 @@ exports.updateClass = function(request, response){
     response.redirect( "/500" );
   });
 };
-
+*/
 exports.listClass = function(request, response){
   var query = db.query( "SELECT * FROM class;");
   query.on("error",function(){

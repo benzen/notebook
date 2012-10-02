@@ -1,0 +1,24 @@
+.exam(ng-controller="ExaminationNewCtrl")
+  center
+
+    #{t("Subject")}: 
+    select(ng-model="subject", ng-options="s.subject group by s.competence for s in subjects")
+
+    br
+
+    #{t("Date")}: 
+    input(type="date", ng-model="date")
+
+    #{t("Maximal")}: 
+    input(type="number", ng-model="maximal")
+
+  .studentsMarks
+
+    .student(ng-repeat="student in students |orderBy:lastName |orderBy:firstName")
+
+      {{student.lastName}} 
+      {{student.firstName}}  
+      input(type="number", ng-model="mark[$index]" )
+  center
+    a.button(ng-click="saveExam($event)")= t("Save")
+

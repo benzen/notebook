@@ -21,7 +21,6 @@ exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
 };
 exports.updateProfile = function(request, response){
   var profile = request.body;
-  console.log(JSON.stringify(profile));
   var id = request.session.auth.twitter.user.id;
   var query = db.query("UPDATE \"user\" set profile=$1 where auth_id=$2", [ JSON.stringify(profile), id ]);
 
@@ -30,8 +29,6 @@ exports.getProfile = function( request, response ){
   var id = request.session.auth.twitter.user.id;
   var query = db.query("select profile from \"user\" where auth_id=$1",[ id ] );
   query.on( "row", function( row ){
-    console.log("user profile")
-    console.log(row.profile);
     response.json(JSON.parse(row.profile));
   });
   query.on("error",function(){

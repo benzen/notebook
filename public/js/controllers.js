@@ -90,3 +90,44 @@ function ClassListCtrl($scope, $http, $location){
 	}
 }
 ClassListCtrl.$inject= ["$scope", "$http","$location"];
+
+function ExaminationNewCtrl($scope,$http, $location){
+  $scope.subject="";
+  $scope.date = new Date;
+  $scope.students= [];
+  $scope.maximal=0;
+  $scope.mark=[];
+  $scope.groupId=0;
+
+  $http.get("/controlTables").success(function( data ){
+  	$scope.subjects = data.subject;
+  });
+  $http.get("/user/profile").success(function( profile ){
+    $http.get("/class/"+profile.group).success(function(group){
+      $scope.students = group.students;
+      $scope.groupId = group.id;
+    });
+  });
+  $scope.saveExam = function($event){
+    $event.preventDefault();
+    $event.stopPropagation();
+    var exam = {
+      subject: $scope.subject,
+      date: $scope.date,
+      maximal: $scope.maximal,
+      group:$scope.groupId,
+      notes: $scope.students.map(function(student, index){
+        return { firstName:student.firstName,
+                 lastName:student.lastName,
+                 mark:$scope.mark[index]
+               }
+      })
+    };
+    $http.post("/examination/create",exam).success(function(){
+      $location.path("/");
+    });
+    
+  }
+  
+}
+ExaminationNewCtrl.$inject = [ "$scope","$http","$location" ];
