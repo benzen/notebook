@@ -1,11 +1,10 @@
 var express = require( 'express' ),
-    classController = require( "./controllers/Class.js" ),
-    navigationController = require( "./controllers/Navigation.js" ),
     i18next = require("i18next"),
     everyauth = require('everyauth'),
     Promise = everyauth.Promise,
-    user = require("./controllers/User.js"),
-    controlTables = require("./modules/ControlTables.js");
+    router= require("./modules/Router.js"),
+    user = require("./controllers/User.js");
+
 
 
 everyauth.twitter
@@ -76,41 +75,7 @@ app.configure(function(){
 
 i18next.registerAppHelper(app);
 
-
-
-var checkIsUserAuthentified = function(request, response, next){
-  if(!request.loggedIn){
-    response.redirect("/login");
-  }else{
-    next();
-  }
-};
-
-app.get( "/",  checkIsUserAuthentified, navigationController.index );
-app.get( "/configure", checkIsUserAuthentified, navigationController.configure );
-app.get( "/login", navigationController.login );
-
-app.get( "/class/new",  checkIsUserAuthentified, classController.newClass);
-app.post("/class/create", checkIsUserAuthentified, classController.createClass );
-app.get( "/class/list",  checkIsUserAuthentified, classController.listClass );
-app.get( "/class/:id", checkIsUserAuthentified, classController.showClass );
-app.get( "/class/:id/edit",  checkIsUserAuthentified, classController.editClass );
-app.put( "/class/:id",  checkIsUserAuthentified, classController.updateClass );
-
-app.get( "/user/profile",checkIsUserAuthentified,user.getProfile);
-app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
-app.get( "/controlTables",checkIsUserAuthentified, controlTables.getControlTables)
-
-app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
-app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
-
-
-app.get('/partials/*', function (req, res) {
-  var fileName = req.params[0];
-  res.render('partials/' + fileName);
-});
-
-app.get("/controlTables",controlTables.tablesAsJson );
+router.setUpRoutes( app );
 
 var port = 8080;
 app.listen(port);

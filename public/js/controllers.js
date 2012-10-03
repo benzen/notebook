@@ -2,17 +2,7 @@
 
 /* Controllers */
 
-function AppCtrl($scope, $http) {
-  $http({method: 'GET', url: '/api/name'}).
-  success(function(data, status, headers, config) {
-    $scope.name = data.name;
-  }).
-  error(function(data, status, headers, config) {
-    $scope.name = 'Error!'
-  });
-}
-
-function ClassNewCtrl($scope,$http, $location) {
+function GroupNewCtrl($scope,$http, $location) {
   $scope.students=[];
   
   $scope.addStudent=function($event){
@@ -40,7 +30,7 @@ function ClassNewCtrl($scope,$http, $location) {
   	$event.stopPropagation();
   	$scope.students.splice(index,1);
   }
-  $scope.saveClass=function($event){
+  $scope.saveGroup=function($event){
   	$event.preventDefault();
   	$event.stopPropagation();
   	var group = {
@@ -48,20 +38,20 @@ function ClassNewCtrl($scope,$http, $location) {
   		year:$scope.year,
   		students:$scope.students
   	};
-  	$http.post('/class/create', group).
+  	$http.post('/group/create', group).
     success(function(data, status, headers, config) {
-      $location.path("/class/list");
+      $location.path("/group/list");
     }).
     error(function(data, status, headers, config) {
       $scope.name = 'Error!'
     });
   }
 }
-ClassNewCtrl.$inject = ['$scope','$http',"$location"];
+GroupNewCtrl.$inject = ['$scope','$http',"$location"];
 
 
-function ClassListCtrl($scope, $http, $location){
-	$http.get("/class/list").success(function(data){
+function GroupListCtrl($scope, $http, $location){
+	$http.get("/group/list").success(function(data){
 		$scope.groups = data;
 	});
 	$scope.showStudentsForGroup=null;
@@ -89,7 +79,7 @@ function ClassListCtrl($scope, $http, $location){
 		
 	}
 }
-ClassListCtrl.$inject= ["$scope", "$http","$location"];
+GroupListCtrl.$inject= ["$scope", "$http","$location"];
 
 function ExaminationNewCtrl($scope,$http, $location){
   $scope.subject="";
@@ -103,7 +93,7 @@ function ExaminationNewCtrl($scope,$http, $location){
   	$scope.subjects = data.subject;
   });
   $http.get("/user/profile").success(function( profile ){
-    $http.get("/class/"+profile.group).success(function(group){
+    $http.get("/group/"+profile.group).success(function(group){
       $scope.students = group.students;
       $scope.groupId = group.id;
     });
@@ -112,11 +102,11 @@ function ExaminationNewCtrl($scope,$http, $location){
     $event.preventDefault();
     $event.stopPropagation();
     var exam = {
-      subject: $scope.subject,
+      subject: $scope.subject.code,
       date: $scope.date,
       maximal: $scope.maximal,
       group:$scope.groupId,
-      notes: $scope.students.map(function(student, index){
+      marks: $scope.students.map(function(student, index){
         return { firstName:student.firstName,
                  lastName:student.lastName,
                  mark:$scope.mark[index]
