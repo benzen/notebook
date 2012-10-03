@@ -6,40 +6,56 @@
 
 var setUpRoutes = function( app ){
   var checkIsUserAuthentified = function(request, response, next){
-    if(!request.loggedIn){
+    if(request.path !== "/login" && !request.loggedIn){
+
+      console.info(
+        "login required"+"\n"+
+        "path "+request.path+"\n"+
+        "user logged"+request.loggedIn+"\n\n"
+      );
+
       response.redirect("/login");
     }else{
       next();
     }
   };
 
-  app.get( "/",  checkIsUserAuthentified, navigationController.index );
-  app.get( "/configure", checkIsUserAuthentified, navigationController.configure );
-  app.get( "/login", navigationController.login );
-
-//  app.get( "/group/new",  checkIsUserAuthentified, groupController.newGroup);
   app.post("/group/create", checkIsUserAuthentified, groupController.createGroup );
   app.get( "/group/list",  checkIsUserAuthentified, groupController.listGroup );
   app.get( "/group/:id", checkIsUserAuthentified, groupController.showGroup );
-//  app.get( "/group/:id/edit",  checkIsUserAuthentified, groupController.editGroup );
   app.put( "/group/:id",  checkIsUserAuthentified, groupController.updateGroup );
 
-  app.get( "/user/profile",checkIsUserAuthentified,user.getProfile);
   app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
+
   app.get( "/controlTables",checkIsUserAuthentified, controlTables.getControlTables)
 
+  app.post("/examination/create", checkIsUserAuthentified, exam.createExamination );
+  
   app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
   app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
-
+  app.get( "/login", checkIsUserAuthentified, navigationController.login );
 
   app.get('/partials/*', function (req, res) {
     var fileName = req.params[0];
     res.render('partials/' + fileName);
   });
-
-  app.get("/controlTables",controlTables.tablesAsJson );
-
-  app.post("/examination/create", checkIsUserAuthentified, exam.createExamination );
+  
+  app.get("/js/*",function(request,response){
+    var fileName = request.params[0];
+    response.sendfile( "public/js/" + fileName );
+  });
+  app.get("/css/*",function(request,response){
+    var fileName = request.params[0];
+    response.sendfile( "public/css/" + fileName );
+  });
+  app.get("/images/*",function(request,response){
+    var fileName = request.params[0];
+    response.sendfile( "public/images/" + fileName );
+  });
+  app.get("/favicon.ico",function(request,response){
+    response.sendfile( "public/favicon.ico" );
+  });
+  app.get("/*", checkIsUserAuthentified, navigationController.index );
 
 }
 exports.setUpRoutes = setUpRoutes;
