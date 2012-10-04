@@ -7,13 +7,6 @@
 var setUpRoutes = function( app ){
   var checkIsUserAuthentified = function(request, response, next){
     if(request.path !== "/login" && !request.loggedIn){
-
-      console.info(
-        "login required"+"\n"+
-        "path "+request.path+"\n"+
-        "user logged"+request.loggedIn+"\n\n"
-      );
-
       response.redirect("/login");
     }else{
       next();
@@ -22,12 +15,13 @@ var setUpRoutes = function( app ){
 
   app.post("/group/create", checkIsUserAuthentified, groupController.createGroup );
   app.get( "/group/list",  checkIsUserAuthentified, groupController.listGroup );
-  app.get( "/group/:id", checkIsUserAuthentified, groupController.showGroup );
+  app.get( "/group/:id", checkIsUserAuthentified, groupController.getGroup );
   app.put( "/group/:id",  checkIsUserAuthentified, groupController.updateGroup );
 
+  app.get( "/user/profile", checkIsUserAuthentified, user.getProfile );
   app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
 
-  app.get( "/controlTables",checkIsUserAuthentified, controlTables.getControlTables)
+  app.get( "/controlTables",checkIsUserAuthentified, controlTables.asJson)
 
   app.post("/examination/create", checkIsUserAuthentified, exam.createExamination );
   

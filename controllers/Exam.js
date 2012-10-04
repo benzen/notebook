@@ -11,5 +11,8 @@ exports.createExamination = function(request, response){
   query.on("row",function(row){
     response.send("/examination/"+row.id);
   });
+  query.on("error",function(){
+  	response.send(500);
+  });
 
 }

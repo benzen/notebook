@@ -18,8 +18,8 @@ var createTable = function(query, tableName){
   query.on("error", ifTableAlreadyExistLogAMessage(tableName));
 }
 
-createTable( "CREATE TABLE class ( id SERIAL PRIMARY KEY, json text);","class" );
+createTable( "CREATE TABLE \"group\" ( id SERIAL PRIMARY KEY, json text);","group" );
 createTable( "CREATE TABLE \"user\" (id SERIAL PRIMARY KEY, auth_type text, auth_id text, name text, profile text);","user" );
-createTable( "CREATE TABLE examination (id SERIAL PRIMARY KEY, \"group\" integer references class(id), json text)", "examination" );
+createTable( "CREATE TABLE examination (id SERIAL PRIMARY KEY, \"group\" integer references group(id), json text)", "examination" );
 
 exports.db = client;

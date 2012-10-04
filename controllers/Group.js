@@ -1,8 +1,5 @@
 var db = require("../modules/Db.js").db,
     util = require("util");
-exports.newGroup = function(request,response){
-  response.render("group/create.jade");
-};
 
 exports.createGroup = function(request, response){
   var groupAsJson = JSON.stringify( request.body );
@@ -10,9 +7,12 @@ exports.createGroup = function(request, response){
   query.on("row", function(row){
     response.send("/group/"+row.id);
   });
+  query.on("error",function(){
+    response.send(500);
+  })
 };
 
-exports.showGroup = function(request, response){
+exports.getGroup = function(request, response){
   var id = request.params.id;
   var query = db.query( "SELECT * FROM \"group\" where id = $1;", [id] );
   query.on("row", function(row){
@@ -21,7 +21,7 @@ exports.showGroup = function(request, response){
     response.json( entityWithId );
   });
   query.on("error", function(){
-    response.redirect("/404");
+    response.send(404);
   });
 };
 /*
@@ -58,6 +58,9 @@ exports.listGroup = function(request, response){
   });
   query.on("row",function(row, result){
     result.addRow(row);
+  });
+  query.on("error",function(){
+    response.send(500);
   });
   query.on("end",function( result ){
     

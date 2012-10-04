@@ -15,7 +15,7 @@ var controlTables = {
     { "code":"ECR1","competence":"Éthique et culture religieuse","subject":"Éthique et culture religieuse","active":"true" }
   ]};
 
-exports.tablesAsJson = function( request, response ){
+exports.asJson = function( request, response ){
   response.json(  controlTables );
 }
 /*
