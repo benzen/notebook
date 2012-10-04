@@ -49,7 +49,6 @@ function GroupNewCtrl($scope,$http, $location) {
 }
 GroupNewCtrl.$inject = ['$scope','$http',"$location"];
 
-
 function GroupListCtrl($scope, $http, $location){
 	$http.get("/group/list").success(function(data){
 		$scope.groups = data;
@@ -118,6 +117,10 @@ function ExaminationNewCtrl($scope,$http, $location){
     });
     
   }
-  
 }
 ExaminationNewCtrl.$inject = [ "$scope","$http","$location" ];
+
+function LogoutCtrl($http){
+  $http.get("/logout")
+}
+LogoutCtrl.$inject = [ "$http" ];

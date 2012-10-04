@@ -8,6 +8,7 @@ angular.module('notebook', ['notebook.filters', 'notebook.services', 'notebook.d
     $routeProvider.when('/group/list', {templateUrl: '/partials/group/list', controller: GroupListCtrl});
     $routeProvider.when('/configure', {templateUrl: '/partials/configure'});
     $routeProvider.when('/login', {templateUrl: '/partials/login'});
+    $routeProvider.when("logout",{LogoutCtrl});
     $routeProvider.when("/examination/new",{templateUrl:"/partials/examination/new",configure:ExaminationNewCtrl});
     $routeProvider.when("/",{templateUrl:"/partials/home"});
     $routeProvider.otherwise({redirectTo: '/'});
