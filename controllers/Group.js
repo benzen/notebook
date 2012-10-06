@@ -28,7 +28,6 @@ exports.getGroup = function(request, response){
 exports.editGroup = function(request, response){
   var id = request.params.id;
   var query = db.query( "SELECT * FROM \"group\" where id = $1;", [ id ] );
-  query.on("row", function( row ){
     var entityWithId = JSON.parse( row.json ) ;
     entityWithId.id = id;
     response.render("group/edit.jade", { groupList: entityWithId } );
@@ -52,10 +51,6 @@ exports.updateGroup = function(request, response){
 */
 exports.listGroup = function(request, response){
   var query = db.query( "SELECT * FROM \"group\";");
-  query.on("error",function(){
-    console.error( "unable to get all groupes" );
-    response.redirect( "/500" );
-  });
   query.on("row",function(row, result){
     result.addRow(row);
   });

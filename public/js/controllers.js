@@ -2,6 +2,11 @@
 
 /* Controllers */
 
+function LogoutCtrl($http){
+  $http.get("/logout")
+}
+LogoutCtrl.$inject = [ "$http" ];
+
 function GroupNewCtrl($scope,$http, $location) {
   $scope.students=[];
   
@@ -120,7 +125,56 @@ function ExaminationNewCtrl($scope,$http, $location){
 }
 ExaminationNewCtrl.$inject = [ "$scope","$http","$location" ];
 
-function LogoutCtrl($http){
-  $http.get("/logout")
+function ExaminationListCtrl($scope, $http){
+  $scope.exams = [];
+  $scope.examsBySubjectCode = {};
+  $scope.students=[];
+
+  $http.get("/user/profile").success(function( profile ){
+    $http.get("/group/"+profile.group).success(function(group){
+      $scope.students = group.students;
+    });
+  });
+  
+  $http.get("/controlTables").success(function( data ){
+    var competenceToSubjectSize = {};
+    $scope.subjects = data.subject;
+    $http.get("/examination/list").success(function( data ){
+      $scope.exams = data;
+      $scope.examsBySubjectCode = createExamBySubject(data);
+    });
+  });
+
+
+  var createExamBySubject = function(exams){
+    var acc = {};
+    exams.forEach(function(exam){
+        if(!acc[exam.exam.subject]){
+          acc[exam.exam.subject]= [];
+        }
+        acc[exam.exam.subject].push(exam);
+      });
+    return acc;
+  };
+  $scope.getStudentInExamMarks=function(firstName,lastName, marks){
+    var result =  marks.filter(function(mark){
+      return mark.firstName === firstName &&
+             mark.lastName === lastName;
+    });
+    return result[0];
+  };
+  $scope.getStudentAverageForSubject = function(firstName, lastName, subject){
+    var cumulative = 0;
+    var nbOfMark = 0;
+    if( $scope.examsBySubjectCode[subject] ){
+      $scope.examsBySubjectCode[subject].forEach(function(exam){
+        var mark = $scope.getStudentInExamMarks(firstName,lastName,exam.exam.marks).mark;
+        cumulative = cumulative + mark;
+        nbOfMark++;
+      });
+    return cumulative/nbOfMark;
+    }
+    return 0;
+  }
 }
-LogoutCtrl.$inject = [ "$http" ];
+ExaminationListCtrl.$inject = ["$scope","$http"]
