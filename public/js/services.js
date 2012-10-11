@@ -5,5 +5,10 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('notebook.services', []).
-  value('version', '0.1');
+angular.module('notebook.services', ['ngResource']).
+  value('version', '0.1').
+  factory('Group', function($resource){
+    return $resource('group/:groupId', {}, {
+      update: {method:"PUT"}
+    });
+  });

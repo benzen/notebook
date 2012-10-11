@@ -2,7 +2,10 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('notebook', [ 'notebook.filters', 'notebook.services', 'notebook.directives' ]).
+angular.module('notebook', 
+    [ 'notebook.filters',
+      'notebook.services',
+      'notebook.directives' ]).
   config(['$routeProvider', '$locationProvider', function( $routeProvider, $locationProvider ) {
     $routeProvider.when( '/group/new', { templateUrl: '/partials/group/new', controller: GroupNewCtrl });
     $routeProvider.when( '/group/list', { templateUrl: '/partials/group/list', controller: GroupListCtrl });

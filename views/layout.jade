@@ -6,19 +6,13 @@ html(ng-app="notebook")
       base(href='/')
       link( href="/css/styles.css", rel="stylesheet", type="text/css") 
       title Notebook
-      script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js")
-      script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js")
+      script(src="http://code.angularjs.org/1.1.0/angular.min.js")
+      script(src="http://code.angularjs.org/1.1.0/angular-resource.min.js")
       script(src='js/notebook.js')
       script(src='js/services.js')
       script(src='js/controllers.js')
       script(src='js/filters.js')
       script(src='js/directives.js')
-//
-      script(src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js")
-      script(src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js")
-      script(src="/models/Student.js")
-      script(src="/models/Class.js")
-      script(src="/models/MarkStatement.js")      
   body
     .header 
       a(href="/") NoteBook

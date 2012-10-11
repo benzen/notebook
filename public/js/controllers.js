@@ -7,12 +7,11 @@ function LogoutCtrl($http){
 }
 LogoutCtrl.$inject = [ "$http" ];
 
-function GroupNewCtrl($scope,$http, $location) {
+function GroupNewCtrl($scope, $location, Group) {
   $scope.students=[];
   
   $scope.addStudent=function($event){
-  	$event.preventDefault();
-  	$event.stopPropagation();
+    $event.stopPropagation();
     $scope.students.push({
   	  firstName: $scope.firstName,
   	  lastName : $scope.lastName,
@@ -22,6 +21,7 @@ function GroupNewCtrl($scope,$http, $location) {
   	  telephones: $scope.telephones,
   	  notes: $scope.notes
     });
+
     $scope.firstName="";
     $scope.lastName="";
     $scope.fatherName="";
@@ -34,30 +34,29 @@ function GroupNewCtrl($scope,$http, $location) {
   	$event.preventDefault();
   	$event.stopPropagation();
   	$scope.students.splice(index,1);
-  }
+  };
   $scope.saveGroup=function($event){
   	$event.preventDefault();
   	$event.stopPropagation();
-  	var group = {
-  		name:$scope.name,
-  		year:$scope.year,
-  		students:$scope.students
-  	};
-  	$http.post('/group/create', group).
-    success(function(data, status, headers, config) {
-      $location.path("/group/list");
-    }).
-    error(function(data, status, headers, config) {
-      $scope.name = 'Error!'
+    var group = new Group({
+      name:$scope.name,
+      year:$scope.year,
+      students:$scope.students
     });
-  }
-}
-GroupNewCtrl.$inject = ['$scope','$http',"$location"];
+  	group.$save( 
+      function(){
+        $location.path("/group/list");
+      },
+      function(){
+        $location.path("error/500");
+      }
+    )
+  };
+};
+GroupNewCtrl.$inject = ['$scope',"$location", "Group"];
 
-function GroupListCtrl($scope, $http, $location){
-	$http.get("/group/list").success(function(data){
-		$scope.groups = data;
-	});
+function GroupListCtrl($scope, $http, $location, Group){
+  $scope.groups = Group.query();
 	$scope.showStudentsForGroup=null;
 
 	$scope.showStudents=function( $event, index ){
@@ -83,9 +82,9 @@ function GroupListCtrl($scope, $http, $location){
 		
 	}
 }
-GroupListCtrl.$inject= ["$scope", "$http","$location"];
+GroupListCtrl.$inject= ["$scope", "$http","$location","Group"];
 
-function ExaminationNewCtrl($scope,$http, $location){
+function ExaminationNewCtrl($scope,$http, $location, Group){
   $scope.subject="";
   $scope.date = new Date;
   $scope.students= [];
@@ -97,10 +96,11 @@ function ExaminationNewCtrl($scope,$http, $location){
   	$scope.subjects = data.subject;
   });
   $http.get("/user/profile").success(function( profile ){
-    $http.get("/group/"+profile.group).success(function(group){
+    var group = Group.get({groupId:profile.group}, function(){
       $scope.students = group.students;
       $scope.groupId = group.id;
-    });
+    })
+
   });
   $scope.saveExam = function($event){
     $event.preventDefault();
@@ -123,7 +123,7 @@ function ExaminationNewCtrl($scope,$http, $location){
     
   }
 }
-ExaminationNewCtrl.$inject = [ "$scope","$http","$location" ];
+ExaminationNewCtrl.$inject = [ "$scope","$http","$location", "Group" ];
 
 function ExaminationListCtrl($scope, $http){
   $scope.exams = [];
@@ -131,7 +131,7 @@ function ExaminationListCtrl($scope, $http){
   $scope.students=[];
 
   $http.get("/user/profile").success(function( profile ){
-    $http.get("/group/"+profile.group).success(function(group){
+    var group = Group.get({groupId:profile.group}, function(){
       $scope.students = group.students;
     });
   });
@@ -164,6 +164,8 @@ function ExaminationListCtrl($scope, $http){
     return result[0];
   };
   $scope.getStudentAverageForSubject = function(firstName, lastName, subject){
+    var average = averageByStudentAndSubject();
+    var avg2 = averageByStudentAndCompetence();
     var cumulative = 0;
     var nbOfMark = 0;
     if( $scope.examsBySubjectCode[subject] ){
@@ -176,5 +178,48 @@ function ExaminationListCtrl($scope, $http){
     }
     return 0;
   }
+  var averageByStudentAndSubject= function(){
+    var average = {}
+    $scope.subjects.forEach(function(subject){
+      if($scope.examsBySubjectCode[subject.code]){
+        $scope.examsBySubjectCode[subject.code].forEach(function(exam){
+          exam.exam.marks.forEach(function(mark){
+            var student = mark.lastName+" "+mark.firstName;
+            if(!average[student]){
+              average[student]= {};
+            }
+            if(!average[student][subject.code]){
+              average[student][subject.code]={nbOfMark:0,cumulative:0};
+            }
+            average[student][subject.code].nbOfMark++;
+            average[student][subject.code].cumulative += mark.mark;
+          });
+
+
+
+        });
+      }
+    });
+    return average;
+  };
+  var averageByStudentAndCompetence = function(){
+    var average ={};
+    angular.forEach(averageByStudentAndSubject(), function(studentName,subjectTomark){
+      angular.forEach(subjectTomark, function(subject, mark){
+        var competence = $scope.subjects.filter(function(currentSubject){
+          return currentSubject.code === subject;
+        })[0];
+        if(!average[studentName]){
+          average[studentName]={};
+        }
+        if(!average[studentName][competence]){
+          average[studentName][competence]={cumulative:0,nbOfMark:0};
+        }
+        average[studentName][competence].cumulative += mark;
+        average[studentName][competence].nbOfMark++;
+      });
+    });
+    return average;
+  };
 }
 ExaminationListCtrl.$inject = ["$scope","$http"]

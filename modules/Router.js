@@ -13,8 +13,8 @@ var setUpRoutes = function( app ){
     }
   };
 
-  app.post("/group/create", checkIsUserAuthentified, groupController.createGroup );
-  app.get( "/group/list",  checkIsUserAuthentified, groupController.listGroup );
+  app.post("/group", checkIsUserAuthentified, groupController.createGroup );
+  app.get( "/group",  checkIsUserAuthentified, groupController.listGroup );
   app.get( "/group/:id", checkIsUserAuthentified, groupController.getGroup );
   app.put( "/group/:id",  checkIsUserAuthentified, groupController.updateGroup );
 
