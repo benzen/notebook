@@ -51,19 +51,16 @@ exports.updateGroup = function(request, response){
 */
 exports.listGroup = function(request, response){
   var query = db.query( "SELECT * FROM \"group\";");
-  query.on("row",function(row, result){
-    result.addRow(row);
+  var rows = [];
+  query.on("row",function(row){
+    rows.push({ id:row.id, group:JSON.parse( row.json ) });
   });
-  query.on("error",function(){
+  query.on("error",function(e){
+    console.log(e);
     response.send(500);
   });
-  query.on("end",function( result ){
-    
-    var entity =[];
-    result.rows.forEach(function(row){
-      entity.push( { id:row.id, group:JSON.parse( row.json ) } );
-    });
-    //response.render("group/list.jade", { groupList:entity} );
-    response.json( entity );
+  query.on("end",function(){
+    response.json( rows );
+
   });
 };

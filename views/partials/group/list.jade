@@ -1,12 +1,12 @@
 center( ng-controller="GroupListCtrl" )
   .group(ng-repeat="group in groups") 
     p
-      a(ng-click="showStudents($event,$index)")
-        #{t("Group")}
-        {{group.group.name}}
-        #{t("Year")}
-        {{group.group.year}}
-        a.button(ng-click="chooseGroup($event,$index)")= t("Choose") 
-        .students(ng-repeat="student in group.group.students", ng-show="isShowStudents($index)")
-          {{student.firstName}}
-          {{student.lastName}}
+      a(ng-click="showStudents($event,$index)") 
+        | #{t("Group")}
+        | {{group.group.name}}
+        | #{t("Year")}
+        | {{" "+group.group.year}}
+      a.button(ng-click="chooseGroup($event,$index)")= t("Choose") 
+      .students(ng-repeat="student in group.group.students", ng-show="isShowStudents($index)")
+        {{student.firstName}}
+        {{student.lastName}}

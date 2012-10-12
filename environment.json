@@ -2,5 +2,5 @@
 	"DB_NAME": "notebookdb",
     "DB_USER": "teacher",
     "DB_USER_PASSWORD": "teacher",
-    "DB_URL": "pgsql://root:kGIkSs71scMS3tUZf1oo@notebook-benzen.dotcloud.com:21232"
+    "DB_URL": "pgsql://teacher:teacher@notebook-benzen.dotcloud.com:21232"
 }

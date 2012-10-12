@@ -78,6 +78,5 @@ i18next.registerAppHelper(app);
 router.setUpRoutes( app );
 
 var port = 8080;
-app.listen(port);
+app.listen( port );
 console.log("I will stay tuned on " + port);
-
