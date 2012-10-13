@@ -11,4 +11,9 @@ angular.module('notebook.services', ['ngResource']).
     return $resource('group/:groupId', {}, {
       update: {method:"PUT"}
     });
+  }).
+  factory("Examination", function($resource){
+  	return $resource("examination/:examinationId", {}, {
+  		update: {method:"PUT"}
+  	});
   });
