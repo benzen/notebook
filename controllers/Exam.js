@@ -19,18 +19,15 @@ exports.createExamination = function(request, response){
 
 exports.listExamination = function( request, response ){
   var query = db.query( "SELECT * from examination" );
+  var rows = [];
   query.on("row",function(row, result){
-    result.addRow(row);
+    rows.push({ id:row.id, group:row.group, exam:JSON.parse( row.json ) });
   });
-  query.on("error",function(){
+  query.on("error",function(e){
+    console.log(e)
     response.send(500);
   });
   query.on("end",function( result ){
-    var entity =[];
-    result.rows.forEach(function(row){
-      entity.push( { id:row.id, group:row.group, exam:JSON.parse( row.json ) } );
-    });
-    //response.render("group/list.jade", { groupList:entity} );
-    response.json( entity );
+    response.json( rows );
   });
 };
