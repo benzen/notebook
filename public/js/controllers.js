@@ -168,80 +168,49 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     if(studentMark[0]){
       return (studentMark[0].mark/exam.exam.maximal)*100;
     }
-    return "ABSENT";
+    return null;
   };
   $scope.averageForSubject = function( student, subjectCode ){
     var sum = 0;
     var nbOfExam  = 0;
-    $scope.examsBySubjectCode[subjectCode].forEach(function(exam){
-      var mark = $scope.markAsPercentage( student, exam );
-      if(mark !=="ABSENT"){
-        nbOfExam++;
-        sum += mark;
-      }
-    });
+    if($scope.examsBySubjectCode[subjectCode]){
+      $scope.examsBySubjectCode[subjectCode].forEach(function(exam){
+        var mark = $scope.markAsPercentage( student, exam );
+        if(mark !==null){
+          nbOfExam++;
+          sum += mark;
+        }
+      });
+    }
+    if(nbOfExam === 0) return  null;
     return sum / nbOfExam;
   };
-/*  
-  $scope.getStudentAverageForSubject = function(firstName, lastName, subject){
-    var average = averageByStudentAndSubject();
-    var avg2 = averageByStudentAndCompetence();
-    var cumulative = 0;
+  $scope.groupAverageForSubject = function(subjectCode){
+    var sum = 0;
     var nbOfMark = 0;
-    if( $scope.examsBySubjectCode[subject] ){
-      $scope.examsBySubjectCode[subject].forEach(function(exam){
-        var mark = $scope.getStudentInExamMarks(firstName,lastName,exam.exam.marks).mark;
-        cumulative = cumulative + mark;
+    $scope.students.forEach(function(student){
+      var studentAverage = $scope.averageForSubject(student, subjectCode);
+      if( studentAverage !== null ){
         nbOfMark++;
-      });
-    return cumulative/nbOfMark;
-    }
-    return 0;
-  }
-  var averageByStudentAndSubject= function(){
-    var average = {}
-    $scope.subjects.forEach(function(subject){
-      if($scope.examsBySubjectCode[subject.code]){
-        $scope.examsBySubjectCode[subject.code].forEach(function(exam){
-          exam.exam.marks.forEach(function(mark){
-            var student = mark.lastName+" "+mark.firstName;
-            if(!average[student]){
-              average[student]= {};
-            }
-            if(!average[student][subject.code]){
-              average[student][subject.code]={nbOfMark:0,cumulative:0};
-            }
-            average[student][subject.code].nbOfMark++;
-            average[student][subject.code].cumulative += mark.mark;
-          });
-
-
-
-        });
+        sum+=studentAverage;
       }
     });
-    return average;
+    if(nbOfMark === 0) return null;
+    return sum/nbOfMark;
   };
-  var averageByStudentAndCompetence = function(){
-    var average ={};
-    angular.forEach(averageByStudentAndSubject(), function(studentName,subjectTomark){
-      angular.forEach(subjectTomark, function(subject, mark){
-        var competence = $scope.subjects.filter(function(currentSubject){
-          return currentSubject.code === subject;
-        })[0];
-        if(!average[studentName]){
-          average[studentName]={};
-        }
-        if(!average[studentName][competence]){
-          average[studentName][competence]={cumulative:0,nbOfMark:0};
-        }
-        average[studentName][competence].cumulative += mark;
-        average[studentName][competence].nbOfMark++;
-      });
+  $scope.averageForExamination=function(exam){
+    if(!exam) return null;
+    var nbOfMark = 0,
+        sum = 0;
+    exam.exam.marks.forEach(function(mark){
+      if(mark.mark){
+        sum+= ((mark.mark)/exam.exam.maximal)*100;
+        nbOfMark++;
+      }
     });
-    return average;
+    if(nbOfMark===0) return null;
+    return sum/nbOfMark;
   };
-*/
 
 }
 ExaminationListCtrl.$inject = ["$scope","$http", "Group", "Examination"]

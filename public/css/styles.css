@@ -68,3 +68,8 @@ table.withColoredBorder, table.withColoredBorder th, table.withColoredBorder td{
 .toolBar a {
   padding: 5px;
 }
+.vertical{
+  -webkit-writing-mode:vertical-lr;
+  writing-mode: tb-rl;
+  
+}

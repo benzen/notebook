@@ -7,4 +7,10 @@ angular.module('notebook.filters', []).
     return function(text) {
       return String(text).replace(/\%VERSION\%/mg, version);
     }
-  }]);
+  }]).
+  filter("markPercentageOrAbs", function(){
+    return function(markOrNull){
+      if(markOrNull ===null) return "ABS"
+        return markOrNull+" %";
+    }
+  });

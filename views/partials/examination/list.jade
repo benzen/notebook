@@ -6,18 +6,21 @@
       tr
         td=t("Student")
         td(ng-repeat="exam in examsBySubjectCode[s.code]" )
-          .rotateNinetyDegree
+          .vertical
             {{exam.exam.date}} ( {{exam.exam.maximal}} )
         td=t("Average")
       tr(ng-repeat="student in students")
         td 
           {{student.lastName+" "+student.firstName}}
         td(ng-repeat="exam in examsBySubjectCode[s.code]")
-          {{markAsPercentage( student, exam )}}
+          {{markAsPercentage( student, exam ) | markPercentageOrAbs}}
         td(ng-repeat="exam in examsBySubjectCode[s.code]")
-          {{averageForSubject(student, exam.exam.subject)}}
-
-
+          {{averageForSubject(student, exam.exam.subject) | markPercentageOrAbs }}
+      tr 
+        td #{t("Examination Average")}
+        td(ng-repeat="exam in examsBySubjectCode[s.code]")
+          {{averageForExamination(exam) | markPercentageOrAbs}}
+        td #{t("Group Average")} :  {{groupAverageForSubject(s.code) | markPercentageOrAbs}}
 
 
 
