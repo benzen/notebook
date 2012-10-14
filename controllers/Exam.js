@@ -11,7 +11,9 @@ exports.createExamination = function(request, response){
   query.on("row",function(row){
     response.send("/examination/"+row.id);
   });
-  query.on("error",function(){
+
+  query.on("error",function(e){
+    console.error(e);
   	response.send(500);
   });
 
@@ -24,7 +26,7 @@ exports.listExamination = function( request, response ){
     rows.push({ id:row.id, group:row.group, exam:JSON.parse( row.json ) });
   });
   query.on("error",function(e){
-    console.log(e)
+    console.error(e);
     response.send(500);
   });
   query.on("end",function( result ){

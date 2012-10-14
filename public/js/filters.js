@@ -10,7 +10,7 @@ angular.module('notebook.filters', []).
   }]).
   filter("markPercentageOrAbs", function(){
     return function(markOrNull){
-      if(markOrNull ===null) return "ABS"
+      if(markOrNull ===null) return "_"
         return markOrNull+" %";
     }
   });

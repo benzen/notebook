@@ -86,6 +86,7 @@ GroupListCtrl.$inject= ["$scope", "$http","$location","Group"];
 
 function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
   $scope.subject="";
+  $scope.name="";
   $scope.date = new Date;
   $scope.students= [];
   $scope.maximal=0;
@@ -109,6 +110,7 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
    var exam = new Examination({
       subject: $scope.subject.code,
       date: $scope.date,
+      name: $scope.name,
       maximal: $scope.maximal,
       group:$scope.groupId,
       marks: $scope.students.map(function(student, index){
@@ -166,7 +168,8 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
              mark.lastName === student.lastName;
     });
     if(studentMark[0]){
-      return (studentMark[0].mark/exam.exam.maximal)*100;
+      var mark = (studentMark[0].mark/exam.exam.maximal)*100;
+      return Math.round(mark);
     }
     return null;
   };
@@ -183,7 +186,7 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
       });
     }
     if(nbOfExam === 0) return  null;
-    return sum / nbOfExam;
+    return Math.round( sum / nbOfExam);
   };
   $scope.groupAverageForSubject = function(subjectCode){
     var sum = 0;
@@ -196,7 +199,7 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
       }
     });
     if(nbOfMark === 0) return null;
-    return sum/nbOfMark;
+    return Math.round( sum/nbOfMark );
   };
   $scope.averageForExamination=function(exam){
     if(!exam) return null;
@@ -209,8 +212,23 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
       }
     });
     if(nbOfMark===0) return null;
-    return sum/nbOfMark;
+    return Math.round( sum/nbOfMark );
   };
+  $scope.competenceGroupAverage=function( competence ){
+    var nbOfAverage = 0;
+    var averageSum = 0;
+    $scope.subjects.filter(function(subject){
+      return subject.competence === competence;
+    }).forEach(function( subject ){
+       var avg = $scope.groupAverageForSubject( subject.code );
+       if(avg){
+         nbOfAverage++;
+         averageSum+=avg;
+       }
+    });
+    if(nbOfAverage===0) return null;
+    return Math.round( averageSum/nbOfAverage );
+  }
 
 }
 ExaminationListCtrl.$inject = ["$scope","$http", "Group", "Examination"]
