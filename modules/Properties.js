@@ -4,7 +4,8 @@ var fs = require("fs");
 var prodFilePath = "/home/dotcloud/environment.json";
 var localePath = "environment.json";
 
-var filePath = fs.existsSync( prodFilePath ) ? prodFilePath : localePath;
+//var filePath = fs.existsSync( prodFilePath ) ? prodFilePath : localePath;
+var filePath = localePath;
 
 var propertiesFile = fs.readFileSync( filePath, 'utf-8' );
 
