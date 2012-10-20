@@ -1,7 +1,4 @@
 extends layout
 
 block content
-  div(ng-view)
-    ul
-      li
-        a(href="subject/new")= t( "Create a subject" )
+  div(ng-view, ng-cloak)

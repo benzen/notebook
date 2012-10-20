@@ -7,7 +7,7 @@
     "pg":"0.8.4",
     "cookies":"0.3.2",
     "i18next":"1.5.11",
-    "everyauth":"0.3.0",
+    "everyauth":"0.3.1",
     "restler":"0.2.5",
     "openid":"0.3.2",
     "zlib":"1.0.5"

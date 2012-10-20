@@ -3,7 +3,8 @@ var db = require("./Db.js").db;
 var controlTables = {
   "subject":[
     { "code":"F1","competence":"Lire des textes variés","subject":"Lecture","active":"true" },
-    { "code":"F2","competence":"Écrire des textes variés","subject":"Écriture","active":"true" },
+    { "code":"F2","competence":"Écrire des textes variés","subject":"Écriture","active":"true", "criterion": [
+      "Idées","Organisation","Syntaxe et ponctuation","Vocabulaire","Orthographe" ] },
     { "code":"F3","competence":"Écrire des textes variés","subject":"Dictée","active":"true" },
     { "code":"F4","competence":"Communiquer oralement","subject":"Communication orale","active":"true" },
     { "code":"M1","competence":"Exécuter des situations-problèmes mathématiques","subject":"Mathématiques","active":"true" },
@@ -18,34 +19,3 @@ var controlTables = {
 exports.asJson = function( request, response ){
   response.json(  controlTables );
 }
-/*
-var insertValues = function(tableName, values){
-  var query = db.query( "select * from " + tableName );
-  query.on("end",function(result){
-    if(result.rowCount === 0 ){
-      console.info("Table " + tableName + " is empty");
-      values.forEach(function(row){
-        db.query( "insert into " + tableName + " (json) values ( $1 )", [JSON.stringify(row)] );
-      });
-      console.info("Table " + tableName + " is filled")
-    }
-  });  
-};
-
-var getControlTable = function(tableName, error, success){
-  var query = db.query("select * from " + tableName);
-  query.on("row",function(row, result){
-    result.addRow(row);
-  });
-  query.on("end",function(result){
-    if(result.rowCount === 0) error();
-    success(result);
-  });  
-};
-exports.getControlTables = function(request, response){
-
-  getControlTable("subject",null, function(){
-
-  });
-}
-*/

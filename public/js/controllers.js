@@ -103,6 +103,15 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
     })
 
   });
+
+  $scope.changeSubject=function(){
+    if($scope.subject.criterion){
+      $scope.students.forEach(function(s, index){
+        $scope.mark[index]={};
+      });
+    }
+  };
+  
   $scope.saveExam = function($event){
     $event.preventDefault();
     $event.stopPropagation();
@@ -146,11 +155,34 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     var exams = Examination.query(function(){
       $scope.exams = exams;
       $scope.examsBySubjectCode = createExamBySubject(exams);
+      $scope.examAndExamNameWithCriterion= createExamAndExamNameWithCriterion();
     });
 
   });
 
-
+  
+  var createExamAndExamNameWithCriterion =function(){
+    var result = {};
+    $scope.subjects.forEach(function(subject){
+      var criterions = subject.criterion;
+      var exams = $scope.examsBySubjectCode[subject.code];
+      var list = [];
+      if(exams){
+        exams.forEach(function(exam){
+          if(criterions){
+            criterions.forEach(function(criterion){
+            var name = exam.exam.name +" | "+criterion;
+            list.push({name:name, exam:exam});
+          });  
+          }else{ 
+            list.push({name:exam.exam.name, exam:exam});
+          }
+        });
+      }
+      result[subject.code]=list;
+    });
+    return result;
+  };
   var createExamBySubject = function(exams){
     var acc = {};
     exams.forEach(function(exam){

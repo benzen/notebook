@@ -1,7 +1,7 @@
 .exam(ng-controller="ExaminationNewCtrl")
   center
     =t("Subject")
-    select(ng-model="subject", ng-options="s.subject group by s.competence for s in subjects")
+    select(ng-model="subject", ng-change="changeSubject()", ng-options="s.subject group by s.competence for s in subjects")
     br
     =t("Name")
     input(type="text", ng-model="name")
@@ -11,11 +11,18 @@
     =t("Maximal")
     input(type="number", ng-model="maximal")
   table
+    tr
+      td #{t("Student")}
+      td(ng-show="subject.criterion", ng-repeat="criterion in subject.criterion"  )
+        {{criterion}}
     tr(ng-repeat="student in students |orderBy:lastName |orderBy:firstName")
       td
         {{student.lastName}} {{student.firstName}}  
-      td
+      td(ng-hide="subject.criterion")
         input(type="number", ng-model="mark[$index]" )
+      td(ng-show="subject.criterion", ng-repeat="criterion in subject.criterion"  )
+        input(type="number", ng-model="mark[$parent.$index][criterion]" )
+      
   center
     a.button(ng-click="saveExam($event)")= t("Save")
 

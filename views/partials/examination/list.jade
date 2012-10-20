@@ -6,9 +6,9 @@
       table.withColoredBorder
         tr
           td=t("Student")
-          td(ng-repeat="exam in examsBySubjectCode[s.code]" )
+          td(ng-repeat="exam in examAndExamNameWithCriterion[ s.code ]")
             .vertical
-              {{exam.exam.name}} ( {{exam.exam.maximal}} )
+              {{exam.name}} ( {{exam.exam.exam.maximal}} )
           td
             .vertical #{t("Average")}
         tr(ng-repeat="student in students")
@@ -24,3 +24,5 @@
             {{averageForExamination(exam) | markPercentageOrAbs}}
           td #{t("Subject &#216;")}  
           td {{groupAverageForSubject(s.code) | markPercentageOrAbs}}
+
+          //td(ng-repeat="enwec in examNameWithCriterion( examsBySubjectCode[s.code] )")
