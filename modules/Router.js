@@ -6,7 +6,10 @@
 
 var setUpRoutes = function( app ){
   var checkIsUserAuthentified = function(request, response, next){
-    if(request.path == "/login.html" || request.loggedIn){
+    if( request.path == "/login.html" ||
+        request.path.substring(0,7) === "/images" ||
+        request.path.substring(0,4) === "/css" ||
+        request.loggedIn ){
       next();
      }else{
       response.redirect("/login.html");
@@ -30,8 +33,7 @@ var setUpRoutes = function( app ){
   app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
   app.get( "/login", checkIsUserAuthentified, navigationController.login );
 
-  app.get("*.html", checkIsUserAuthentified );
-  app.get("/api/*", checkIsUserAuthentified );
+  app.get("/*", checkIsUserAuthentified );
 
 }
 exports.setUpRoutes = setUpRoutes;

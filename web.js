@@ -66,7 +66,7 @@ app.configure(function(){
   app.use(express.methodOverride());
 
   app.use(express.static( __dirname + "/public" ));
-//  app.use(express.logger());
+  app.use(express.logger());
 });
 
 
