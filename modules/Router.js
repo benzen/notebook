@@ -6,10 +6,10 @@
 
 var setUpRoutes = function( app ){
   var checkIsUserAuthentified = function(request, response, next){
-    if(request.path !== "/login" && !request.loggedIn){
-      response.redirect("/login");
-     }else{
+    if(request.path == "/login.html" || request.loggedIn){
       next();
+     }else{
+      response.redirect("/login.html");
     }
   };
 
@@ -30,23 +30,8 @@ var setUpRoutes = function( app ){
   app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
   app.get( "/login", checkIsUserAuthentified, navigationController.login );
 
-
-  // app.get("/js/*",function(request,response){
-  //   var fileName = request.params[0];
-  //   response.sendfile( "public/js/" + fileName );
-  // });
-  // app.get("/css/*",function(request,response){
-  //   var fileName = request.params[0];
-  //   response.sendfile( "public/css/" + fileName );
-  // });
-  // app.get("/images/*",function(request,response){
-  //   var fileName = request.params[0];
-  //   response.sendfile( "public/images/" + fileName );
-  // });
-  // app.get("/favicon.ico",function(request,response){
-  //   response.sendfile( "public/favicon.ico" );
-  // });
-//  app.get("/*", checkIsUserAuthentified, navigationController.index );
+  app.get("*.html", checkIsUserAuthentified );
+  app.get("/api/*", checkIsUserAuthentified );
 
 }
 exports.setUpRoutes = setUpRoutes;

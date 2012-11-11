@@ -5,9 +5,10 @@ exports.index = function(request, response) {
 exports.configure = function(request,response){
   response.render("partials/configure.jade");
 };
-exports.login = function(request,response){
-  response.send("login.html");
-};
+
+// exports.login = function(request,response){
+//   response.send("login.html");
+// };
 exports["500"] = function(request,response){
   response.render("error/500.jade");
 };
