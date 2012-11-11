@@ -2,14 +2,12 @@
   "name": "node-example",
   "version": "0.0.1",
   "dependencies": {
-    "express": "3.0.0rc4",
-    "jade":"0.27.6",
-    "pg":"0.8.4",
+    "express": "3.0.1",
+    "pg":"0.8.7",
     "cookies":"0.3.2",
-    "i18next":"1.5.11",
     "everyauth":"0.3.1",
-    "restler":"0.2.5",
-    "openid":"0.3.2",
+    "restler":"2.0.1",
+    "openid":"0.4.2",
     "zlib":"1.0.5"
  }
 }

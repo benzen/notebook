@@ -144,6 +144,7 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
   $scope.students=[];
 
   $http.get("/user/profile").success(function( profile ){
+    //TODO what if there is nothing into the profile??
     var group = Group.get({groupId:profile.group}, function(){
       $scope.students = group.students;
     });
@@ -155,13 +156,13 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     var exams = Examination.query(function(){
       $scope.exams = exams;
       $scope.examsBySubjectCode = createExamBySubject(exams);
-      $scope.examAndExamNameWithCriterion= createExamAndExamNameWithCriterion();
+      $scope.examWithCriterion= createExamWithCriterion();
     });
 
   });
 
   
-  var createExamAndExamNameWithCriterion =function(){
+  var createExamWithCriterion =function(){
     var result = {};
     $scope.subjects.forEach(function(subject){
       var criterions = subject.criterion;
@@ -170,12 +171,12 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
       if(exams){
         exams.forEach(function(exam){
           if(criterions){
-            criterions.forEach(function(criterion){
-            var name = exam.exam.name +" | "+criterion;
-            list.push({name:name, exam:exam});
-          });  
+            criterions.forEach( function( criterion ){
+              var name = exam.exam.name +" | "+criterion;
+              list.push({ name:name, exam:exam, criterion:criterion });
+            });  
           }else{ 
-            list.push({name:exam.exam.name, exam:exam});
+            list.push({ name:exam.exam.name, exam:exam });
           }
         });
       }
@@ -194,16 +195,19 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     return acc;
   };
 
-  $scope.markAsPercentage = function(student, exam){
+  $scope.markAsPercentage = function(student, exam, criterion){
     var studentMark =  exam.exam.marks.filter(function(mark){
       return mark.firstName === student.firstName &&
              mark.lastName === student.lastName;
     });
-    if(studentMark[0]){
-      var mark = (studentMark[0].mark/exam.exam.maximal)*100;
-      return Math.round(mark);
+    if( !studentMark[0]) return null;
+    if( criterion ){
+      var mark = studentMark[0];
+      return Math.round( ( mark / exam.exam.maximal ) * 100 );
     }
-    return null;
+    var mark = studentMark[0].mark;
+    return Math.round( ( mark / exam.exam.maximal ) * 100 );
+
   };
   $scope.averageForSubject = function( student, subjectCode ){
     var sum = 0;

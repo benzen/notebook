@@ -2,19 +2,19 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('notebook', 
+angular.module('notebook',
     [ 'notebook.filters',
       'notebook.services',
       'notebook.directives' ]).
   config(['$routeProvider', '$locationProvider', function( $routeProvider, $locationProvider ) {
-    $routeProvider.when( '/group/new', { templateUrl: '/partials/group/new', controller: GroupNewCtrl });
-    $routeProvider.when( '/group/list', { templateUrl: '/partials/group/list', controller: GroupListCtrl });
-    $routeProvider.when( '/configure', { templateUrl: '/partials/configure' });
-    $routeProvider.when( '/login', { templateUrl: '/partials/login' });
-    $routeProvider.when( "logout",{ controller: LogoutCtrl });
-    $routeProvider.when( "/examination/new",{ templateUrl:"/partials/examination/new",controller:ExaminationNewCtrl });
-    $routeProvider.when( "/examination/list",{ templateUrl:"/partials/examination/list",controller:ExaminationListCtrl });
-    $routeProvider.when( "/",{templateUrl:"/partials/home"});
+    $routeProvider.when( '/group/new', { templateUrl: '/partials/group/new.html', controller: GroupNewCtrl });
+    $routeProvider.when( '/group/list', { templateUrl: '/partials/group/list.html', controller: GroupListCtrl });
+    $routeProvider.when( '/configure', { templateUrl: '/partials/configure.html' });
+    $routeProvider.when( '/login', { templateUrl: '/partials/login.html' });
+    $routeProvider.when( "/logout",{ controller: LogoutCtrl });
+    $routeProvider.when( "/examination/new",{ templateUrl:"/partials/examination/new.html",controller:ExaminationNewCtrl });
+    $routeProvider.when( "/examination/list",{ templateUrl:"/partials/examination/list.html",controller:ExaminationListCtrl });
+    $routeProvider.when( "/",{templateUrl:"/partials/home.html"});
     $routeProvider.otherwise( { redirectTo: '/' } );
-    $locationProvider.html5Mode(true);
+
   }]);

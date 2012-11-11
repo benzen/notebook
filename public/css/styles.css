@@ -1,75 +1,18 @@
-body {
-  background-color:  #293333;
-  color:grey;
-}
-.header {
-  color: white;
-  font-size: 25px;
-  font-weight: bold;
-  text-align: center;
-}
-.toolBar {
-  text-align: right;
-}
-a {
- color:white;
- text-decoration:none;
-}
-a:hover {
-  opacity: 0.8;
-}
-.groupDef {
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.button {
-  text-align:center;
-  color: grey;
-  border-radius: 10px;
-  background-color: white;
-  color: grey;
-  padding:5px;
-}
-.sectionTitle {
-  color:white;
-  font-size:20px;
-  text-decoration:underline;
-}
-
-table {
-  margin: 0 auto;
-}
-table.withColoredBorder, table.withColoredBorder th, table.withColoredBorder td{
-  border-width: 1px;
-  border-style:solid;
-  border-color: white;
-  border-collapse: collapse;
-  padding:10px;
-  margin: 0 auto;
-}
-.loginMethod {
+.login-method {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   width: 150px;
   padding: 30px;
 }
-.twitterLoginButton {
+.twitter-login-button {
   background-image:url("/images/twitter-bird-dark-bgs.png");
   width: 150px;
   height: 150px;
-  border: 2px solid;
-  border-radius: 200px
+
+  border-radius: 200px;
+  background-color:#d7cefc;
 }
-.twitterLoginButton:hover{
+.twitter-login-button:hover{
  background-image:url("/images/twitter-bird-light-bgs.png")
-}
-.toolBar a {
-  padding: 5px;
-}
-.vertical{
-  -webkit-writing-mode:vertical-lr;
-  writing-mode: tb-rl;
-  
 }

@@ -1,0 +1,44 @@
+<div ng-repeat="s in subjects">
+  {{s.competence}} : {{s.subject}}
+  <p ng-hide="examsBySubjectCode[s.code]")>Pas d'Exam</p>
+  <div ng-show="examsBySubjectCode[s.code]">
+    Moyenne de compétance {{competenceGroupAverage(s.competence)}}
+  </div>
+  <table>
+    <tr>
+      <td> Étudiant </td>
+      <td ng-repeat="exam in examWithCriterion[ s.code ]">
+        <div class="vertical">
+          {{exam.name}} ( {{exam.exam.exam.maximal}} )
+        </div>
+      </td>
+      <td>
+        <div class="vertical">
+          Moyenne
+        </div>
+      </td>
+
+    </tr>
+    <tr ng-repeat="student in students">
+      <td >
+        {{ student.lastName + " " + student.firstName }}
+      <td ng-repeat="exam in examWithCriterion[ s.code ]">
+        {{markAsPercentage( student, exam.exam, exam ) | markPercentageOrAbs}}
+      </td>
+      <td>
+        {{averageForSubject(student, s.code) | markPercentageOrAbs }}
+      </td>
+      </td>
+    </tr>
+    <tr>
+      <td> Examination &#216; </td>
+      <td ng-repeat="exam in examWithCriterion[ s.code ]">
+        {{averageForExamination(exam.exam) | markPercentageOrAbs}}
+      </td>
+      <td> Subject &#216; </td>
+      <td>{{groupAverageForSubject(s.code) | markPercentageOrAbs}}</td>
+
+    </tr>
+  </table>
+
+</div>

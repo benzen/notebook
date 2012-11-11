@@ -1,11 +1,8 @@
 var express = require( 'express' ),
-    i18next = require("i18next"),
     everyauth = require('everyauth'),
     Promise = everyauth.Promise,
     router= require("./modules/Router.js"),
     user = require("./controllers/User.js");
-
-
 
 everyauth.twitter
   .consumerKey("tjcaHSMkGUItYqEvyyRAA")
@@ -16,11 +13,11 @@ everyauth.twitter
     return promise;
   })
   .redirectPath("/");
-  
+
 everyauth.everymodule.findUserById(function( userId, callback ){
     user.findUserById(userId, callback);
 });
-i18next.init();
+
 
 function preEveryauthMiddlewareHack() {
     return function (req, res, next) {
@@ -54,26 +51,24 @@ function postEveryauthMiddlewareHack() {
     next();
   };
 };
+
 var app = express();
 app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({secret:"9a0b0e32bf347ccc169bd5bef94e9184"}));
-  
+
   app.use(preEveryauthMiddlewareHack());
   app.use(everyauth.middleware(app));
   app.use(postEveryauthMiddlewareHack());
-  
+
   app.use(app.router);
   app.use(express.methodOverride());
-  app.set('view engine', 'jade');
-  app.set('view options', { layout: false });
-  app.use(express.static( __dirname+"/public" ));
-  app.use(express.logger());
-  app.use(i18next.handle);
+
+  app.use(express.static( __dirname + "/public" ));
+//  app.use(express.logger());
 });
 
-i18next.registerAppHelper(app);
 
 router.setUpRoutes( app );
 

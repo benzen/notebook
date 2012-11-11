@@ -1,0 +1,38 @@
+
+<html ng-app="notebook">
+  <head>
+    <title>Notebook</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
+    <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular-resource.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/notebook.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/filters.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <ul class="nav nav-pills pull-right">
+          <li>
+            <a href="#/profile">Name</a>
+          </li>
+          <li>
+            <a href="#/configure">Configure</a>
+          </li>
+          <li>
+            <a href="#/logout">Logout</a>
+          </li>
+        </ul>
+
+
+        <div ng-view ng-cloak class="span10">
+        </div>
+      </div>
+
+    </div>
+
+</body>
