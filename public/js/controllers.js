@@ -9,9 +9,8 @@ LogoutCtrl.$inject = [ "$http" ];
 
 function GroupNewCtrl($scope, $location, Group) {
   $scope.students=[];
-  
-  $scope.addStudent=function($event){
-    $event.stopPropagation();
+
+  $scope.addStudent=function(){
     $scope.students.push({
   	  firstName: $scope.firstName,
   	  lastName : $scope.lastName,
@@ -28,22 +27,18 @@ function GroupNewCtrl($scope, $location, Group) {
     $scope.motherName="";
     $scope.birthday="";
     $scope.telephones="";
-    $scope.notes=""; 
+    $scope.notes="";
   };
-  $scope.removeStudent=function($event, index){
-  	$event.preventDefault();
-  	$event.stopPropagation();
+  $scope.removeStudent=function( index ){
   	$scope.students.splice(index,1);
   };
-  $scope.saveGroup=function($event){
-  	$event.preventDefault();
-  	$event.stopPropagation();
+  $scope.saveGroup=function(){
     var group = new Group({
       name:$scope.name,
       year:$scope.year,
       students:$scope.students
     });
-  	group.$save( 
+  	group.$save(
       function(){
         $location.path("/group/list");
       },
@@ -65,12 +60,12 @@ function GroupListCtrl($scope, $http, $location, Group){
 		if($scope.showStudentsForGroup === index){
 			$scope.showStudentsForGroup = null;
 		}else{
-			$scope.showStudentsForGroup = index;	
+			$scope.showStudentsForGroup = index;
 		}
-		
+
 	};
 	$scope.isShowStudents=function(index){
-		return index === $scope.showStudentsForGroup;	
+		return index === $scope.showStudentsForGroup;
 	};
 	$scope.chooseGroup=function($event,index){
 		$http.get("/user/profile").success(function(profile){
@@ -79,7 +74,7 @@ function GroupListCtrl($scope, $http, $location, Group){
         $location.path("/");
 			});
 		})
-		
+
 	}
 }
 GroupListCtrl.$inject= ["$scope", "$http","$location","Group"];
@@ -111,7 +106,7 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
       });
     }
   };
-  
+
   $scope.saveExam = function($event){
     $event.preventDefault();
     $event.stopPropagation();
@@ -161,7 +156,7 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
 
   });
 
-  
+
   var createExamWithCriterion =function(){
     var result = {};
     $scope.subjects.forEach(function(subject){
@@ -174,8 +169,8 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
             criterions.forEach( function( criterion ){
               var name = exam.exam.name +" | "+criterion;
               list.push({ name:name, exam:exam, criterion:criterion });
-            });  
-          }else{ 
+            });
+          }else{
             list.push({ name:exam.exam.name, exam:exam });
           }
         });

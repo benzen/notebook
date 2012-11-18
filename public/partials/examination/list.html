@@ -1,44 +1,55 @@
-<div ng-repeat="s in subjects">
-  {{s.competence}} : {{s.subject}}
+ <select ng-model="selectedSubject" ng-options="s.subject for s in subjects"></select>
+ <div ng-repeat="s in subjects" ng-hide="s.subject != selectedSubject.subject">
+
+  <h3>{{s.competence}} : {{s.subject}}</h3>
   <p ng-hide="examsBySubjectCode[s.code]")>Pas d'Exam</p>
   <div ng-show="examsBySubjectCode[s.code]">
     Moyenne de compétance {{competenceGroupAverage(s.competence)}}
-  </div>
-  <table>
-    <tr>
-      <td> Étudiant </td>
-      <td ng-repeat="exam in examWithCriterion[ s.code ]">
-        <div class="vertical">
-          {{exam.name}} ( {{exam.exam.exam.maximal}} )
-        </div>
-      </td>
-      <td>
-        <div class="vertical">
-          Moyenne
-        </div>
-      </td>
+    <table class="table table-hover ">
 
+      <tr>
+        <th></th>
+        <th ng-repeat="exam in examWithCriterion[ s.code ]">
+          <div class="rotated-content-helper">
+            <div class="rotated-table-header no-wrap-table-header">
+              {{exam.name}} ( {{exam.exam.exam.maximal}} )
+            </div>
+          </div>
+
+        </th>
+        <th >
+          <div class="rotated-content-helper">
+            <div class="rotated-table-header">
+              Moyenne
+            </div>
+         </div>
+        </th>
     </tr>
+
     <tr ng-repeat="student in students">
-      <td >
+      <th>
         {{ student.lastName + " " + student.firstName }}
+      </th>
+
       <td ng-repeat="exam in examWithCriterion[ s.code ]">
         {{markAsPercentage( student, exam.exam, exam ) | markPercentageOrAbs}}
       </td>
+
       <td>
         {{averageForSubject(student, s.code) | markPercentageOrAbs }}
       </td>
       </td>
     </tr>
     <tr>
-      <td> Examination &#216; </td>
+      <th> Moyenne </th>
       <td ng-repeat="exam in examWithCriterion[ s.code ]">
         {{averageForExamination(exam.exam) | markPercentageOrAbs}}
       </td>
-      <td> Subject &#216; </td>
       <td>{{groupAverageForSubject(s.code) | markPercentageOrAbs}}</td>
 
     </tr>
   </table>
+
+  </div>
 
 </div>

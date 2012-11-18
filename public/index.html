@@ -3,9 +3,10 @@
   <head>
     <title>Notebook</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
     <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular-resource.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
     <script type="text/javascript" src="js/notebook.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
@@ -14,8 +15,8 @@
 
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="row-fluid">
+    <div class="container">
+      <div class="row">
         <ul class="nav nav-pills pull-right">
           <li>
             <a href="#/configure">Configure</a>
@@ -25,6 +26,6 @@
           </li>
         </ul>
       </div>
-      <div ng-view  class="row-fluid"/>
+      <div ng-view  class="row"/>
     </div>
 </body>

@@ -16,3 +16,27 @@
 .twitter-login-button:hover{
  background-image:url("/images/twitter-bird-light-bgs.png")
 }
+input {
+  box-sizing: inherit;
+}
+.rotated-content-helper{
+  width: 5em;
+  height:150px;
+}
+.rotated-table-header{
+  position: absolute;
+  -moz-transform: rotate(-20deg) translate(-2em,8em);  /* FF3.5+ */
+  -moz=transform-origin: top left;
+  -o-transform: rotate(-20deg) translate(-2em,8em);  /* Opera 10.5 */
+  -o-transform-origin: top left;
+  -webkit-transform: rotate(-20deg)  translate(-2em,8em);  /* Saf3.1+, Chrome */
+  -webkit-transform-origin: top left;
+  -ms-transform: rotate(-20deg)  translate(-2em,8em);  /* Saf3.1+, Chrome */
+  -ms-transform-origin: top left;
+  transform: rotate(-20deg)  translate(-2em,8em);
+  transform-origin: top left;
+
+}
+.no-wrap-table-header{
+  white-space: nowrap;
+}
