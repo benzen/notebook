@@ -4,7 +4,11 @@
          Groupe {{group.group.name}} Année {{" "+group.group.year}}
       </a>
       <a ng-click="chooseGroup($event,$index)"
-         class="btn btn-primary">Choisir</a>
+         class="btn">Choisir</a>
+      <a ng-href="#/group/{{group.id}}"
+          class=btn>
+          Détails
+      </a>
     </div>
     <div ng-show="isShowStudents($index)" class="row-fluid offset3">
         <div  ng-repeat="student in group.group.students">

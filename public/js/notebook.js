@@ -9,6 +9,7 @@ angular.module('notebook',
   config(['$routeProvider', '$locationProvider', function( $routeProvider, $locationProvider ) {
     $routeProvider.when( '/group/new', { templateUrl: '/partials/group/new.html', controller: GroupNewCtrl });
     $routeProvider.when( '/group/list', { templateUrl: '/partials/group/list.html', controller: GroupListCtrl });
+    $routeProvider.when( '/group/:id', { templateUrl: '/partials/group/show.html', controller: GroupDetailsCtrl });
     $routeProvider.when( '/configure', { templateUrl: '/partials/configure.html' });
     $routeProvider.when( '/login', { templateUrl: '/partials/login.html' });
     $routeProvider.when( "/logout",{ controller: LogoutCtrl });

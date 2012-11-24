@@ -1,0 +1,30 @@
+<h3>
+  Groupe : {{group.name}} Année Year {{group.year}}
+  <a ng-href="#/group/{{group.id}}/edit"
+     class="btn">
+  Éditer
+  </a>
+</h3>
+
+
+
+<table>
+  <tr>
+    <td>Prénom</td>
+    <td>Nom</td>
+    <td>Anniversaire</td>
+    <td>Nom du père</td>
+    <td>Nom de la mère</td>
+    <td>Téléphone</td>
+    <td>Notes</td>
+  </tr>
+  <tr ng-repeat="student in group.students">
+    <td>{{student.firstName}}</td>
+    <td>{{student.lastName}}</td>
+    <td>{{student.birthday}}</td>
+    <td>{{student.fatherName}}</td>
+    <td>{{student.motherName}}</td>
+    <td>{{student.telephoneNumber}}</td>
+    <td>{{student.notes}}</td>
+  </tr>
+</table>
