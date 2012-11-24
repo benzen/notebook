@@ -196,10 +196,7 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
              mark.lastName === student.lastName;
     });
     if( !studentMark[0]) return null;
-    if( criterion ){
-      var mark = studentMark[0];
-      return Math.round( ( mark / exam.exam.maximal ) * 100 );
-    }
+
     var mark = studentMark[0].mark;
     return Math.round( ( mark / exam.exam.maximal ) * 100 );
 
