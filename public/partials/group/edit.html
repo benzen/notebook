@@ -1,0 +1,47 @@
+<form class="horizontal-form">
+  <fieldset>
+    <div class=control-group>
+      <div class=control-label>Groupe</div>
+      <div class=controls>
+        <input type=text value={{group.name}}>
+      </div>
+    </div>
+    <div class=control-group>
+      <div class=control-label>Year</div>
+      <div class=controls>
+        <input type="number" value="{{group.year}}">
+      </div>
+    </div>
+  </fieldset>
+</form>
+<button ng-click="addStudent()" class=btn>Ajouter un élèves</button>
+<table>
+  <tr>
+    <th>Prénom</th>
+    <th>Nom</th>
+    <th>Anniversaire</th>
+    <th>Nom du père</th>
+    <th>Nom de la mère</th>
+    <th>Telephone</th>
+    <th>Notes</th>
+  </tr>
+  <tr ng-repeat="student in group.students">
+    <td> <input type="text" value="{{student.firstName}}">
+    </td>
+    <td> <input type=text value="{{student.lastName}}">
+    </td>
+    <td> <input type=date value="{{student.birtday}}">
+    </td>
+    <td> <input type=text value="{{student.fatherName}}">
+    </td>
+    <td> <input type=text value="{{student.motherName}}">
+    </td>
+    <td> <input type=text value="{{student.ltelephone}}">
+    </td>
+    <td> <input type=text value="{{student.notes}}">
+    </td>
+  </tr>
+  <tr
+
+</table>
+<button class="btn btn-primary" ng-click="saveGroup()">Sauvegarder</button>

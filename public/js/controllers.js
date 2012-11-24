@@ -57,6 +57,15 @@ function GroupDetailsCtrl( $scope, Group, $routeParams ){
 };
 GroupDetailsCtrl.$inject = ['$scope',"Group","$routeParams" ];
 
+GroupNewCtrl.$inject = ['$scope',"$location", "Group"];
+
+function GroupEditCtrl( $scope, Group, $routeParams ){
+  var group = Group.get({groupId:$routeParams.id}, function(){
+      $scope.group = group;
+    })
+};
+GroupEditCtrl.$inject = ['$scope',"Group","$routeParams" ];
+
 function GroupListCtrl($scope, $http, $location, Group){
   $scope.groups = Group.query();
 	$scope.showStudentsForGroup=null;
