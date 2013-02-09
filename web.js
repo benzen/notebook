@@ -2,7 +2,7 @@ var express = require( 'express' ),
     everyauth = require('everyauth'),
     Promise = everyauth.Promise,
     router= require("./modules/Router.js"),
-    user = require("./controllers/User.js");
+    user = require("./models/User.js");
 
 everyauth.twitter
   .consumerKey("tjcaHSMkGUItYqEvyyRAA")
