@@ -1,19 +1,19 @@
 var mongoose = require("mongoose");
 
 
-var user = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
   auth_type:String,
   auth_id: String,
   name:String,
   profile:String
 });
 
-exports.schema = user;
+var User = mongoose.model('user', UserSchema);
+exports.User = User;
 
 
 exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
-  var users = mongoose.model('users', user);
-  var query = users.find({
+  var query = User.find({
     'auth_type': "twitter",
     "auth_id": twitterData.id_str
   });
@@ -31,18 +31,41 @@ exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
 };
 var createUserByTwitterData = function(promise, twitterData){
   console.log("need to create a new user");
-  var user = mongoose.model('users', userSchema);
-  user.screen_name = twitterData;
-  user.auth_type="twitter";
-  user.auth_id=twitterData.id_str;
-  user.save(function(err){
+  var newUser = new User({
+    screen_name: twitterData,
+    auth_type: "twitter",
+    auth_id: twitterData.id_str
+  })
+
+  newUser.save(function(err){
     if(err){
       console.log(err);
     }
-    promise.fulfill(user);
+    promise.fulfill(newUser);
   });
   return
 };
+
+exports.updateProfile = function(request, response){
+  var profile = request.body;
+  var id = request.session.auth.twitter.user.id;
+  var query = db.query("UPDATE \"user\" set profile=$1 where auth_id=$2", [ JSON.stringify(profile), id ]);
+
+};
+exports.getProfile = function( request, response ){
+  var id = request.session.auth.twitter.user.id;
+  var query = db.query("select profile from \"user\" where auth_id=$1",[ id ] );
+  query.on( "row", function( row ){
+    response.json(JSON.parse(row.profile));
+  });
+  query.on("error",function(){
+    response.status(500);
+  });
+  query.on("end",function(){
+    response.status(404);
+  });
+};
+
 // exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
 //   var query = db.query("SELECT name from \"user\" where auth_type = $1 and auth_id = $2", ['twitter', twitterData.id_str]);
 //   //user exist case

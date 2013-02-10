@@ -1,4 +1,4 @@
-var db = require("../modules/Db.js").db;
+var ExamSchema = require("../models/Examination");
 //Create exam
 //Update exam
 //Delete Exam

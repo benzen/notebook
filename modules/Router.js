@@ -1,6 +1,5 @@
  var groupController = require( "../controllers/Group.js" ),
      navigationController = require( "../controllers/Navigation.js" ),
-     user = require("../controllers/User.js"),
      controlTables = require("./ControlTables.js"),
      exam = require("../controllers/Exam.js");
 
@@ -21,8 +20,8 @@ var setUpRoutes = function( app ){
   app.get( "/group/:id", checkIsUserAuthentified, groupController.getGroup );
   app.put( "/group/:id",  checkIsUserAuthentified, groupController.updateGroup );
 
-  app.get( "/user/profile", checkIsUserAuthentified, user.getProfile );
-  app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
+  // app.get( "/user/profile", checkIsUserAuthentified, user.getProfile );
+  // app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
 
   app.get( "/controlTables",checkIsUserAuthentified, controlTables.asJson)
 
