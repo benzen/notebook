@@ -5,9 +5,9 @@ var StudentSchema = new mongoose.Schema({
   lastName:String,
   fatherName: String,
   motherName: String,
-  birtday: Date,
+  birthday: Date,
   notes:String,
-  telephone:[String]
+  telephone:String
 });
 
 exports.schema = StudentSchema

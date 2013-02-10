@@ -15,7 +15,7 @@ function StudentNewCtrl($scope,$location, Student){
       fatherName: $scope.fatherName,
       motherName: $scope.motherName,
       birthday: $scope.birthday,
-      telephones: $scope.telephones,
+      telephone: $scope.telephone,
       notes: $scope.notes
     });
     student.$save(
