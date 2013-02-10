@@ -12,6 +12,11 @@ angular.module('notebook.services', ['ngResource']).
       update: {method:"PUT"}
     });
   }).
+  factory('Student', function($resource){
+    return $resource('student/:studentId', {}, {
+      update: {method:"PUT"}
+    });
+  }).
   factory("Examination", function($resource){
   	return $resource("examination/:examinationId", {}, {
   		update: {method:"PUT"}

@@ -1,4 +1,5 @@
  var groupController = require( "../controllers/Group.js" ),
+     studentController = require( "../controllers/Student.js" ),
      navigationController = require( "../controllers/Navigation.js" ),
      controlTables = require("./ControlTables.js"),
      exam = require("../controllers/Exam.js");
@@ -14,6 +15,12 @@ var setUpRoutes = function( app ){
       response.redirect("/login.html");
     }
   };
+
+
+  app.post("/student", checkIsUserAuthentified, studentController.createStudent );
+  app.get( "/student",  checkIsUserAuthentified, studentController.listStudents );
+  app.get( "/student/:id", checkIsUserAuthentified, studentController.getStudent );
+  app.put( "/student/:id",  checkIsUserAuthentified, studentController.updateStudent );
 
   app.post("/group", checkIsUserAuthentified, groupController.createGroup );
   app.get( "/group",  checkIsUserAuthentified, groupController.listGroup );

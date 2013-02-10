@@ -7,6 +7,42 @@ function LogoutCtrl($http){
 }
 LogoutCtrl.$inject = [ "$http" ];
 
+function StudentNewCtrl($scope,$location, Student){
+  $scope.saveStudent=function(){
+    var student = new Student({
+      firstName: $scope.firstName,
+      lastName : $scope.lastName,
+      fatherName: $scope.fatherName,
+      motherName: $scope.motherName,
+      birthday: $scope.birthday,
+      telephones: $scope.telephones,
+      notes: $scope.notes
+    });
+    student.$save(
+      function(){
+        $location.path("/student/list");
+      },
+      function(){
+        $location.path("error/500");
+      }
+    );
+  };
+};
+StudentNewCtrl.$inject = ["$scope","$location","Student"];
+
+function StudentListCtrl($scope, Student){
+  $scope.students = Student.query();
+};
+StudentListCtrl.$inject = ["$scope","Student"];
+
+function StudentEditCtrl($scope){};
+StudentEditCtrl.$inject = ["$scope"];
+
+function StudentDetailsCtrl($scope){};
+StudentDetailsCtrl.$inject = ["$scope"];
+
+
+
 function GroupNewCtrl($scope, $location, Group) {
   $scope.students=[];
 

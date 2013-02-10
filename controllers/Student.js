@@ -1,12 +1,8 @@
-var Student = require("../models/Student");
-
-//create student
-//list students
-//remove student
-//update student
+var Student = require("../models/Student").model;
 
 exports.createStudent = function(request,response){
-  var newSudent = new Student( request.body );
+  var newStudent = new Student( request.body );
+
   newStudent.save(function(err){
     if(err){
       console.log(err);

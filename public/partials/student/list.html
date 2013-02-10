@@ -1,0 +1,35 @@
+<h3> Élèves </h3>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Prénom</th>
+    <th>Nom</th>
+    <th>Anniversaire</th>
+    <th>Nom du père</th>
+    <th>Nom de la mère</th>
+    <th>Téléphone</th>
+    <th>Notes</th>
+  </tr>
+  <tr ng-repeat="student in students">
+    <td>
+      <a ng-href="#/student/{{student._id}}/edit" class="btn">
+        Éditer
+       </a>
+    </td>
+    <td>
+      <a ng-href="#/student/{{student._id}}/delete" class="btn">
+        Supprimer
+       </a>
+    </td>
+    <td>{{student.firstName}}</td>
+    <td>{{student.lastName}}</td>
+    <td>{{student.birthday}}</td>
+    <td>{{student.fatherName}}</td>
+    <td>{{student.motherName}}</td>
+    <td>{{student.telephoneNumber}}</td>
+    <td>{{student.notes}}</td>
+
+  </tr>
+</table>

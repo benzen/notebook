@@ -1,0 +1,50 @@
+<form ng-submit="saveStudent()" class="form-horizontal">
+  <legend>Nouvel élève</legend>
+
+  <div class="control-group">
+    <label class="control-label">Nom:</label>
+    <div class="controls">
+      <input type="text" ng-model="lastName">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Prénom:</label>
+    <div class="controls">
+      <input type="text" ng-model="firstName">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Nom du père:</label>
+    <div class="controls">
+      <input type="text" ng-model="fatherName">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Nom de la mère:</label>
+    <div class="controls">
+      <input type="text" ng-model="motherName">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Date de naissance:</label>
+    <div class="controls">
+      <input type="date" ng-model="birtday">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label"> Téléphone: </label>
+    <div class="controls">
+      <input type="text" ng-model="telephones">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Notes:</label>
+    <div class="controls">
+      <textarea ng-model="notes"></textarea>
+    </div>
+  </div>
+
+  <input type="submit" value="Sauvegarder">
+</form>
