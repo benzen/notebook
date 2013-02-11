@@ -1,5 +1,5 @@
 var Student = require("../models/Student").model;
-
+//todo add show
 exports.createStudent = function(request,response){
   var newStudent = new Student( request.body );
 
