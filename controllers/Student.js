@@ -13,12 +13,21 @@ exports.createStudent = function(request,response){
 };
 
 exports.listStudents = function(request,response){
-  Student.find(function(err, students){
+  var callback = function(err,students){
     if(err){
       console.log(err);
     }
-    response.send( students );
-  });
+    response.send(students);
+  }
+
+  if(request.query.query){
+    Student.find({lastName:request.query.query},callback);
+  }else{
+    Student.find(callback);
+  }
+
+
+
 };
 
 exports.updateStudent = function(request,response){

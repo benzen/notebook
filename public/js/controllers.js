@@ -43,27 +43,16 @@ StudentDetailsCtrl.$inject = ["$scope"];
 
 
 
-function GroupNewCtrl($scope, $location, Group) {
+function GroupNewCtrl($scope, $location,Student, Group ) {
+  $scope.searchStudentByName=function(){
+    var findedStudents = Student.findByName({query:$scope.studentName},function(){
+      $scope.findedStudents = findedStudents;
+    });
+  };
   $scope.students=[];
 
   $scope.addStudent=function(){
-    $scope.students.push({
-  	  firstName: $scope.firstName,
-  	  lastName : $scope.lastName,
-  	  fatherName: $scope.fatherName,
-  	  motherName: $scope.motherName,
-  	  birthday: $scope.birthday,
-  	  telephones: $scope.telephones,
-  	  notes: $scope.notes
-    });
-
-    $scope.firstName="";
-    $scope.lastName="";
-    $scope.fatherName="";
-    $scope.motherName="";
-    $scope.birthday="";
-    $scope.telephones="";
-    $scope.notes="";
+    $scope.students.push();
   };
   $scope.removeStudent=function( index ){
   	$scope.students.splice(index,1);
@@ -84,7 +73,7 @@ function GroupNewCtrl($scope, $location, Group) {
     )
   };
 };
-GroupNewCtrl.$inject = ['$scope',"$location", "Group"];
+GroupNewCtrl.$inject = [ '$scope',"$location", "Student","Group" ];
 
 function GroupDetailsCtrl( $scope, Group, $routeParams ){
   var group = Group.get({groupId:$routeParams.id}, function(){
@@ -93,7 +82,6 @@ function GroupDetailsCtrl( $scope, Group, $routeParams ){
 };
 GroupDetailsCtrl.$inject = ['$scope',"Group","$routeParams" ];
 
-GroupNewCtrl.$inject = ['$scope',"$location", "Group"];
 
 function GroupEditCtrl( $scope, Group, $routeParams ){
   var group = Group.get({groupId:$routeParams.id}, function(){

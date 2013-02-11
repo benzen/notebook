@@ -14,7 +14,8 @@ angular.module('notebook.services', ['ngResource']).
   }).
   factory('Student', function($resource){
     return $resource('student/:studentId', {}, {
-      update: {method:"PUT"}
+      update: {method:"PUT"},
+      findByName:{method:"GET",isArray:true}
     });
   }).
   factory("Examination", function($resource){
