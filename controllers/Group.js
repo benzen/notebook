@@ -1,28 +1,24 @@
-var db = require("../modules/Db.js").db,
-    util = require("util");
+var Group = require("../models/Group").model;
 
 exports.createGroup = function(request, response){
-  var groupAsJson = JSON.stringify( request.body );
-  var query = db.query("INSERT INTO \"group\" ( json ) values( $1 ) RETURNING id;", [ groupAsJson ]);
-  query.on("row", function(row){
-    response.send("/group/"+row.id);
+  var newGroup = new Group(request.body);
+  newGroup.save(function(err){
+    if(err){
+      console.log(err);
+      response.send(500);
+    }
+    response.send("/group/"+newGroup._id);
   });
-  query.on("error",function(){
-    response.send(500);
-  })
 };
 
 exports.getGroup = function(request, response){
-  var id = request.params.id;
-  var query = db.query( "SELECT * FROM \"group\" where id = $1;", [id] );
-  query.on("row", function(row){
-    var entityWithId = JSON.parse( row.json ) ;
-    entityWithId.id = id;
+  Group.findById(request.params.id, function(err, group){
+    if(err){
+      console.log(err);
+    }
     response.json( entityWithId );
   });
-  query.on("error", function(){
     response.send(404);
-  });
 };
 /*
 exports.editGroup = function(request, response){
@@ -50,17 +46,10 @@ exports.updateGroup = function(request, response){
 };
 */
 exports.listGroup = function(request, response){
-  var query = db.query( "SELECT * FROM \"group\";");
-  var rows = [];
-  query.on("row",function(row){
-    rows.push({ id:row.id, group:JSON.parse( row.json ) });
-  });
-  query.on("error",function(e){
-    console.log(e);
-    response.send(500);
-  });
-  query.on("end",function(){
-    response.json( rows );
-
+  Group.find(function(err, groups){
+    if(err){
+      console.log(err);
+    }
+    response.json(groups);
   });
 };

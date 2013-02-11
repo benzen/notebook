@@ -44,15 +44,19 @@ StudentDetailsCtrl.$inject = ["$scope"];
 
 
 function GroupNewCtrl($scope, $location,Student, Group ) {
+  $scope.students=[];
+  $scope.findedStudents=[];
   $scope.searchStudentByName=function(){
     var findedStudents = Student.findByName({query:$scope.studentName},function(){
       $scope.findedStudents = findedStudents;
     });
   };
-  $scope.students=[];
 
-  $scope.addStudent=function(){
-    $scope.students.push();
+
+  $scope.addStudentToGroup=function(student){
+    $scope.students.push(student);
+    $scope.findedStudents=[];
+    $scope.studentName="";
   };
   $scope.removeStudent=function( index ){
   	$scope.students.splice(index,1);

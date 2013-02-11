@@ -17,17 +17,13 @@ exports.listStudents = function(request,response){
     if(err){
       console.log(err);
     }
-    response.send(students);
+    response.json(students);
   }
-
   if(request.query.query){
     Student.find({lastName:request.query.query},callback);
   }else{
     Student.find(callback);
   }
-
-
-
 };
 
 exports.updateStudent = function(request,response){
@@ -35,7 +31,7 @@ exports.updateStudent = function(request,response){
     if(err){
       console.log(err);
     }
-    response.send( students );
+    response.json( students );
   });
 };
 
