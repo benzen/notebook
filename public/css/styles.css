@@ -11,7 +11,7 @@
   height: 150px;
 
   border-radius: 200px;
-  background-color:#d7cefc;
+  background-color:rgb(173, 173, 173);
 }
 .twitter-login-button:hover{
  background-image:url("/images/twitter-bird-light-bgs.png")
