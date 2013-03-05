@@ -1,19 +1,18 @@
   <div ng-repeat="group in groups">
     <div class="row-fluid">
-      <a ng-click="showStudents($event,$index)" class="span3 offset3">
-         Groupe {{group.group.name}} Année {{" "+group.group.year}}
+      <a ng-click="showStudents($event,$index)" class="span4">
+         Groupe {{group.name}} Année {{group.year}}
       </a>
-      <a ng-click="chooseGroup($event,$index)"
-         class="btn">Choisir</a>
-      <a ng-href="#/group/{{group.id}}"
-          class=btn>
-          Détails
+      <button ng-click="chooseGroup($event,$index)" class="btn">
+        Choisir
+      </button>
+      <a ng-href="#/group/{{group._id}}" class="btn">
+        Détails
       </a>
     </div>
-    <div ng-show="isShowStudents($index)" class="row-fluid offset3">
-        <div  ng-repeat="student in group.group.students">
+    <div ng-show="isShowStudents($index)" class="row-fluid">
+        <div  ng-repeat="student in group.students">
           {{student.firstName}} {{student.lastName}}
         </div>
     </div>
-
   </div>

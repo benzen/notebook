@@ -15,20 +15,21 @@ exports.createGroup = function(request, response){
   });
 };
 
-exports.getGroup = function(request, response){
+exports.getGroup = function( request, response){
   Group.findById(request.params.id, function(err, group){
     if(err){
       console.log(err);
+      response.send(500);
     }
-    response.json( entityWithId );
+    response.json( group );
   });
-    response.send(404);
 };
 
 exports.listGroup = function(request, response){
   Group.find(function(err, groups){
     if(err){
       console.log(err);
+      response.send(500);
     }
     response.json(groups);
   });
