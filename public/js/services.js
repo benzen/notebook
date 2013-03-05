@@ -19,7 +19,7 @@ angular.module('notebook.services', ['ngResource']).
     });
   }).
   factory("Examination", function($resource){
-  	return $resource("examination/:examinationId", {}, {
-  		update: {method:"PUT"}
-  	});
+    return $resource("examination/:examinationId", {}, {
+      update: {method:"PUT"}
+    });
   });

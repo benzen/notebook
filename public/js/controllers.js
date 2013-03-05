@@ -30,10 +30,17 @@ function StudentNewCtrl($scope,$location, Student){
 };
 StudentNewCtrl.$inject = ["$scope","$location","Student"];
 
-function StudentListCtrl($scope, Student){
+function StudentListCtrl($scope, Student, $location){
   $scope.students = Student.query();
+  $scope.deleteStudent=function( studentId ){
+    Student.$delete({studentId:studentId});
+    $location.path("/student/list");
+  }
+  $scope.editStudent=function( studentId ){
+    $location.path("/student/"+studentId);
+  };
 };
-StudentListCtrl.$inject = ["$scope","Student"];
+StudentListCtrl.$inject = ["$scope","Student","$location"];
 
 function StudentEditCtrl($scope){};
 StudentEditCtrl.$inject = ["$scope"];
@@ -59,7 +66,7 @@ function GroupNewCtrl($scope, $location,Student, Group ) {
     $scope.studentName="";
   };
   $scope.removeStudent=function( index ){
-  	$scope.students.splice(index,1);
+    $scope.students.splice(index,1);
   };
   $scope.saveGroup=function(){
     var group = new Group({
@@ -67,7 +74,7 @@ function GroupNewCtrl($scope, $location,Student, Group ) {
       year:$scope.year,
       students:$scope.students
     });
-  	group.$save(
+    group.$save(
       function(){
         $location.path("/group/list");
       },
@@ -96,30 +103,30 @@ GroupEditCtrl.$inject = ['$scope',"Group","$routeParams" ];
 
 function GroupListCtrl($scope, $http, $location, Group){
   $scope.groups = Group.query();
-	$scope.showStudentsForGroup=null;
+  $scope.showStudentsForGroup=null;
 
-	$scope.showStudents=function( $event, index ){
-		$event.preventDefault();
-		$event.stopPropagation();
-		if($scope.showStudentsForGroup === index){
-			$scope.showStudentsForGroup = null;
-		}else{
-			$scope.showStudentsForGroup = index;
-		}
+  $scope.showStudents=function( $event, index ){
+    $event.preventDefault();
+    $event.stopPropagation();
+    if($scope.showStudentsForGroup === index){
+      $scope.showStudentsForGroup = null;
+    }else{
+      $scope.showStudentsForGroup = index;
+    }
 
-	};
-	$scope.isShowStudents=function(index){
-		return index === $scope.showStudentsForGroup;
-	};
-	$scope.chooseGroup=function($event,index){
-		$http.get("/user/profile").success(function(profile){
-			profile.group = $scope.groups[index].id;
-			$http.put("/user/profile",profile).success(function(){
+  };
+  $scope.isShowStudents=function(index){
+    return index === $scope.showStudentsForGroup;
+  };
+  $scope.chooseGroup=function($event,index){
+    $http.get("/user/profile").success(function(profile){
+      profile.group = $scope.groups[index].id;
+      $http.put("/user/profile",profile).success(function(){
         $location.path("/");
-			});
-		})
+      });
+    })
 
-	}
+  }
 }
 GroupListCtrl.$inject= ["$scope", "$http","$location","Group"];
 
@@ -133,7 +140,7 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
   $scope.groupId=0;
 
   $http.get("/controlTables").success(function( data ){
-  	$scope.subjects = data.subject;
+    $scope.subjects = data.subject;
   });
   $http.get("/user/profile").success(function( profile ){
     var group = Group.get({groupId:profile.group}, function(){

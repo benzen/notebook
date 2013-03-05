@@ -21,6 +21,7 @@ var setUpRoutes = function( app ){
   app.get( "/student",  checkIsUserAuthentified, studentController.listStudents );
   app.get( "/student/:id", checkIsUserAuthentified, studentController.getStudent );
   app.put( "/student/:id",  checkIsUserAuthentified, studentController.updateStudent );
+  app.delete("/student/:id",checkIsUserAuthentified, studentController.deleteStudent );
 
   app.post("/group", checkIsUserAuthentified, groupController.createGroup );
   app.get( "/group",  checkIsUserAuthentified, groupController.listGroup );

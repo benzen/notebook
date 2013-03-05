@@ -37,5 +37,5 @@ exports.updateStudent = function(request,response){
 
 exports.deleteStudent = function(request,response){
   Student.delete({_id:request.params.id}).exec();
-  response.send("");
+  response.send(200);
 };
