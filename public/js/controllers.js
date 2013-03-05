@@ -30,17 +30,17 @@ function StudentNewCtrl($scope,$location, Student){
 };
 StudentNewCtrl.$inject = ["$scope","$location","Student"];
 
-function StudentListCtrl($scope, Student, $location){
+function StudentListCtrl($scope, Student, $location, $route){
   $scope.students = Student.query();
   $scope.deleteStudent=function( studentId ){
-    Student.$delete({studentId:studentId});
-    $location.path("/student/list");
+    Student.delete({studentId:studentId});
+     $route.reload()
   }
   $scope.editStudent=function( studentId ){
     $location.path("/student/"+studentId);
   };
 };
-StudentListCtrl.$inject = ["$scope","Student","$location"];
+StudentListCtrl.$inject = ["$scope","Student","$location","$route"];
 
 function StudentEditCtrl($scope){};
 StudentEditCtrl.$inject = ["$scope"];

@@ -36,6 +36,12 @@ exports.updateStudent = function(request,response){
 };
 
 exports.deleteStudent = function(request,response){
-  Student.delete({_id:request.params.id}).exec();
+  Student.remove({_id:request.params.id},function(err){
+    if(err){
+      console.log("failed to delete student"+err);
+      return;
+    }
+    response.send(200);
+  });
   response.send(200);
 };

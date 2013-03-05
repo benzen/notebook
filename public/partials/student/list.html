@@ -14,14 +14,14 @@
   </tr>
   <tr ng-repeat="student in students">
     <td>
-      <a ng-href="editStudent({{student._id}})" class="btn">
+      <button ng-click="editStudent(student._id)" class="btn">
         Éditer
-       </a>
+      </button>
     </td>
     <td>
-      <a ng-click="deleteStudent({{student._id}})" class="btn">
+      <button ng-click="deleteStudent(student._id)" class="btn">
         Supprimer
-       </a>
+      </button>
     </td>
     <td>{{student.firstName}}</td>
     <td>{{student.lastName}}</td>
