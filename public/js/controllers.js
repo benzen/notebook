@@ -42,12 +42,31 @@ function StudentListCtrl($scope, Student, $location, $route){
 };
 StudentListCtrl.$inject = ["$scope","Student","$location","$route"];
 
-function StudentEditCtrl($scope){};
-StudentEditCtrl.$inject = ["$scope"];
-
-function StudentDetailsCtrl($scope){};
-StudentDetailsCtrl.$inject = ["$scope"];
-
+function StudentEditCtrl($scope, Student, $routeParams, $location){
+  var student = Student.get({studentId:$routeParams.id}, function(){
+    $scope.firstName = student.firstName;
+    $scope.lastName = student.lastName;
+    $scope.fatherName = student.fatherName;
+    $scope.motherName = student.motherName;
+    $scope.birthday = student.birthday;
+    $scope.telephone = student.telephone;
+    $scope.notes = student.notes;
+  });
+  $scope.saveStudent=function(){
+    var student = new Student({
+      firstName: $scope.firstName,
+      lastName : $scope.lastName,
+      fatherName: $scope.fatherName,
+      motherName: $scope.motherName,
+      birthday: $scope.birthday,
+      telephone: $scope.telephone,
+      notes: $scope.notes
+    });
+    student.$update({studentId:$routeParams.id});
+    $location.path("/student/list");
+  };
+};
+StudentEditCtrl.$inject = ["$scope", "Student","$routeParams", "$location"];
 
 
 function GroupNewCtrl($scope, $location,Student, Group ) {

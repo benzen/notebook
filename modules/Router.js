@@ -38,7 +38,7 @@ var setUpRoutes = function( app ){
 
   app.get( "/500", checkIsUserAuthentified, navigationController[ "500" ] );
   app.get( "/404", checkIsUserAuthentified, navigationController[ "404" ] );
-  app.get( "/login", checkIsUserAuthentified, navigationController.login );
+  //app.get( "/login", checkIsUserAuthentified, navigationController.login );
 
   app.get("/*", checkIsUserAuthentified );
 

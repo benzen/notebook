@@ -31,7 +31,7 @@ exports.updateStudent = function(request,response){
     if(err){
       console.log(err);
     }
-    response.json( students );
+    response.json( student );
   });
 };
 
@@ -45,3 +45,12 @@ exports.deleteStudent = function(request,response){
   });
   response.send(200);
 };
+
+exports.getStudent = function(request, response){
+  Student.findById(request.params.id,function(err, student){
+    if(err){
+      console.log(err);
+    }
+    response.json(student)
+  });
+}
