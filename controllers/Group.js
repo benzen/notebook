@@ -38,3 +38,13 @@ exports.listGroup = function(request, response){
 exports.updateGroup = function(request, response){
   
 };
+
+exports.deleteGroup =function(request,response){
+  Group.remove({_id:request.params.id},function(err){
+    if(err){
+      console.log("failed to delete group\n"+err);
+      return;
+    }
+    response.send(200);
+  });
+};

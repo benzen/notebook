@@ -43,7 +43,6 @@ exports.deleteStudent = function(request,response){
     }
     response.send(200);
   });
-  response.send(200);
 };
 
 exports.getStudent = function(request, response){

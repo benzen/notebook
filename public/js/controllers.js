@@ -120,7 +120,7 @@ function GroupEditCtrl( $scope, Group, $routeParams ){
 };
 GroupEditCtrl.$inject = ['$scope',"Group","$routeParams" ];
 
-function GroupListCtrl($scope, $http, $location, Group){
+function GroupListCtrl($scope, $http, $location, Group, $route){
   $scope.groups = Group.query();
   $scope.showStudentsForGroup=null;
 
@@ -132,22 +132,25 @@ function GroupListCtrl($scope, $http, $location, Group){
     }else{
       $scope.showStudentsForGroup = index;
     }
-
   };
   $scope.isShowStudents=function(index){
     return index === $scope.showStudentsForGroup;
   };
-  $scope.chooseGroup=function($event,index){
+  $scope.chooseGroup=function(index){
     $http.get("/user/profile").success(function(profile){
       profile.group = $scope.groups[index].id;
       $http.put("/user/profile",profile).success(function(){
         $location.path("/");
       });
     })
-
   }
+  $scope.deleteGroup=function(index){
+    var groupId = $scope.groups[index]._id;
+    Group.delete({groupId:groupId});
+    $route.reload();
+  };
 }
-GroupListCtrl.$inject= ["$scope", "$http","$location","Group"];
+GroupListCtrl.$inject= ["$scope", "$http","$location","Group", "$route"];
 
 function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
   $scope.subject="";
