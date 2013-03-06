@@ -10,8 +10,7 @@ angular.module('notebook',
 
     $routeProvider.when( '/student/new', { templateUrl: '/partials/student/new.html', controller: StudentNewCtrl });
     $routeProvider.when( '/student/list', { templateUrl: '/partials/student/list.html', controller: StudentListCtrl });
-    $routeProvider.when( '/student/:id/edit', { templateUrl: '/partials/student/edit.html', controller: StudentEditCtrl });
-    $routeProvider.when( '/student/:id', { templateUrl: '/partials/student/show.html', controller: StudentDetailsCtrl });
+    $routeProvider.when( '/student/:id', { templateUrl: '/partials/student/edit.html', controller: StudentEditCtrl });
 
     $routeProvider.when( '/group/new', { templateUrl: '/partials/group/new.html', controller: GroupNewCtrl });
     $routeProvider.when( '/group/list', { templateUrl: '/partials/group/list.html', controller: GroupListCtrl });

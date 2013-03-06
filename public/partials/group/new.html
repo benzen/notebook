@@ -1,56 +1,60 @@
-<form ng-submit="saveGroup()">
-  Groupe:
-  <input type="text" ng-model="name"/>
-  Année:
-  <input type="number" ng-model="year"/>
+<form ng-submit="saveGroup()" class⁼"form-line">
+  <input type="text" ng-model="name" placeholder="Nom"/>
+  <input type="number" ng-model="year" placeholder="Année"/>
   <input type="submit" value="Créer" class="btn btn-primary">
 </form>
 
-
-<form class="form-search" ng-submit="searchStudentByName()">
-  <input type="text" ng-model="studentName" class="input-medium search-query">
-  <button type="submit" class="btn">Search</button>
-</form>
-
-
-<div ng-show="findedStudents">
-  <legend>Ajouter un élèves</legend>
-  <table>
-    <tr>
-      <th>Prénom</th>
-      <th>Nom</th>
-      <th>Date de naissance</th>
-    </tr>
-    <tr ng-repeat="student in findedStudents">
-      <td>{{student.firstName}}</td>
-      <td>{{student.lastName}}</td>
-      <td>{{student.birtday}}</td>
-      <td>
-        <button ng-click="addStudentToGroup(student)" class="btn"> Selectionner </button>
-      </td>
-    </tr>
-  </table>
-
-</div>
+<div class="row">
+  
+  <div class="span6 ">
+    <form class="form-search" ng-submit="searchStudentByName()">
+      <input type="text" ng-model="studentName" class="input-medium search-query">
+      <button type="submit" class="btn">Search</button>
+    </form>
 
 
-<div >
-  <legend>Élèves du groupe</legend>
-  <table>
-    <tr>
-      <th>Prénom</th>
-      <th>Nom</th>
-      <th>Date de naissance</th>
-    </tr>
-    <tr ng-repeat="student in students">
-      <td>{{student.firstName}}</td>
-      <td>{{student.lastName}}</td>
-      <td>{{student.birtday}}</td>
-      <td>
-        <button class="btn" ng-click="removeStudent($index)"> Enlever </button>
-      </td>
-    </tr>
-  </table>
+    <div ng-show="findedStudents">
+      <legend>Ajouter un élèves</legend>
+      <table class="table">
+        <thead>
+          <tr>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Date de naissance</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="student in findedStudents">
+          <td>{{student.firstName}}</td>
+          <td>{{student.lastName}}</td>
+          <td>{{student.birtday}}</td>
+          <td>
+            <button ng-click="addStudentToGroup(student)" class="btn"> Selectionner </button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+<div class="span6">
+    <legend>Élèves du groupe</legend>
+    <table class="table table-stiped">
+      <thead>
+        <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Date de naissance</th>
+      </tr>
+      </thead>
+      <tr ng-repeat="student in students">
+        <td>{{student.firstName}}</td>
+        <td>{{student.lastName}}</td>
+        <td>{{student.birtday}}</td>
+        <td>
+          <button class="btn" ng-click="removeStudent($index)"> Enlever </button>
+        </td>
+      </tr>
+    </table>
+  </div>
 
 </div>
 

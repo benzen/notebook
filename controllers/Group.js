@@ -34,3 +34,7 @@ exports.listGroup = function(request, response){
     response.json(groups);
   });
 };
+
+exports.updateGroup = function(request, response){
+  
+};
