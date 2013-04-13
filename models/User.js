@@ -17,20 +17,22 @@ exports.User = User;
 
 
 exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
-  var query = User.find({
+  var query = User.findOne({
     'auth_type': "twitter",
     "auth_id": twitterData.id_str
   });
 
   query.exec(function(err, result) {
     // handle error/results
-    if(result){
-
+    if(!result){
       createUserByTwitterData(promise, twitterData)
     }
     promise.fulfill(result);
   });
-
+};
+exports.findUserById = function(id,callback){
+  var query = User.findOne({"_id":id});
+  query.exec(callback);
 };
 var createUserByTwitterData = function(promise, twitterData){
 
