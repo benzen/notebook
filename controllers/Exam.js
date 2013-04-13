@@ -17,18 +17,11 @@ exports.createExamination = function(request, response) {
 };
 
 exports.listExamination = function( request, response) {
-/*
-  var query = db.query( "SELECT * from examination" );
-  var rows = [];
-  query.on("row",function(row, result){
-    rows.push({ id:row.id, group:row.group, exam:JSON.parse( row.json ) });
+  var query = Exam.find()
+  query.exec(function(err,list){
+    if(err){
+      console.log(err);
+    }
+    response.json(list);
   });
-  query.on("error",function(e){
-    console.error(e);
-    response.send(500);
-  });
-  query.on("end",function( result ){
-    response.json( rows );
-  });
-*/
 };

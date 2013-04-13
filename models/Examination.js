@@ -9,6 +9,7 @@ var ExaminationSchema = new mongoose.Schema({
   date: Date,
   maximal: Number,
   name: String,
+  subject: String,
   marks:[ {
     student: { 
       type:mongoose.Schema.ObjectId, 

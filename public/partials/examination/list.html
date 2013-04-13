@@ -13,10 +13,10 @@
 
       <tr>
         <th></th>
-        <th ng-repeat="exam in examWithCriterion[ s.code ]">
+        <th ng-repeat="nameAndExam in examWithCriterion[ s.code ]">
           <div class="rotated-content-helper">
             <div class="rotated-table-header no-wrap-table-header">
-              {{exam.name}} ( {{exam.exam.exam.maximal}} )
+              {{nameAndExam.name}} ( {{nameAndExam.exam.maximal}} )
             </div>
           </div>
 
@@ -35,8 +35,8 @@
         {{ student.lastName + " " + student.firstName }}
       </th>
 
-      <td ng-repeat="exam in examWithCriterion[ s.code ]">
-        {{markAsPercentage( student, exam.exam, exam.criterion ) | markPercentageOrAbs}}
+      <td ng-repeat="nameAndExam in examWithCriterion[ s.code ]">
+        {{markAsPercentage( student, nameAndExam.exam, nameAndExam.exam.criterion ) | markPercentageOrAbs}}
       </td>
 
       <td>
@@ -46,8 +46,8 @@
     </tr>
     <tr>
       <th> Moyenne </th>
-      <td ng-repeat="exam in examWithCriterion[ s.code ]">
-        {{averageForExamination(exam.exam) | markPercentageOrAbs}}
+      <td ng-repeat="nameAndExam in examWithCriterion[ s.code ]">
+        {{averageForExamination(nameAndExam.exam) | markPercentageOrAbs}}
       </td>
       <td>{{groupAverageForSubject(s.code) | markPercentageOrAbs}}</td>
 
