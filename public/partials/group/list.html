@@ -5,16 +5,14 @@
   <div ng-repeat="group in groups |orderBy:year">
     <div class="row-fluid">
       <a ng-click="showStudents($event,$index)" class="span4">
-         {{group.year}}--{{group.name}} 
+         {{group.year}} {{group.name}} 
       </a>
     </div>
     <div ng-show="isShowStudents($index)" class="row-fluid">
         <div  ng-repeat="student in group.students">
           {{student.firstName}} {{student.lastName}}
         </div>
-        <button ng-click="chooseGroup($index)" class="btn btn-primary">
-          Choisir
-        </button>
+        
         <button ng-click="editGroup($index)" class="btn btn">
           Éditer
         </button>

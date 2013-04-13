@@ -52,6 +52,11 @@ var controlTables = {
       "competence":"Éthique et culture religieuse",
       "subject":"Éthique et culture religieuse",
       "active":"true" }
+  ],
+  "steps":[
+    {code:1, description:"Étape 1"},
+    {code:2, description:"Étape 2"},
+    {code:3, description:"Étape 3"}
   ]};
 
 exports.asJson = function( request, response ){

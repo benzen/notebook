@@ -17,6 +17,8 @@ angular.module('notebook',
     $routeProvider.when( '/group/:id/edit', { templateUrl: '/partials/group/edit.html', controller: GroupEditCtrl });
     $routeProvider.when( '/group/:id', { templateUrl: '/partials/group/show.html', controller: GroupDetailsCtrl });
 
+    $routeProvider.when( '/profile/update', { templateUrl: '/partials/profile/update.html', controller: ProfileCtrl });
+
     $routeProvider.when( '/configure', { templateUrl: '/partials/configure.html' });
     $routeProvider.when( '/login', { templateUrl: '/partials/login.html' });
     $routeProvider.when( "/logout",{ controller: LogoutCtrl });

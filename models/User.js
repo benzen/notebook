@@ -8,7 +8,8 @@ var UserSchema = new mongoose.Schema({
   auth_id: String,
   name:String,
   profile:{
-    current_group:{type: Schema.Types.ObjectId,ref:"group"}
+    current_group:{type: Schema.Types.ObjectId,ref:"group"},
+    current_step:Number
   }
 });
 
@@ -41,14 +42,15 @@ var createUserByTwitterData = function(promise, twitterData){
     auth_type: "twitter",
     auth_id: twitterData.id_str,
     profile:{
-      current_group:null
+      current_group:null,
+      current_step:1
     }
   });
 
   newUser.save(function(err){
     if(err){
       console.log(err);
-    }
+      }
     promise.fulfill(newUser);
   });
   return
@@ -57,11 +59,13 @@ var createUserByTwitterData = function(promise, twitterData){
 exports.updateUser = function(request, response){
   var user = request.body;
   var id = request.session.auth.twitter.user.id;  
+  delete request.body._id;
   var query = {
     'auth_type': "twitter",
     "auth_id": id
   };
-  User.findOneAndUpdate(query, {profile:user.profile},function(err, user){
+
+  User.findOneAndUpdate(query, user,function(err, user){
     if(err){
       console.log(err);
     }
@@ -84,23 +88,3 @@ exports.getUser = function( request, response ){
   });
 
 };
-
-// exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
-//   var query = db.query("SELECT name from \"user\" where auth_type = $1 and auth_id = $2", ['twitter', twitterData.id_str]);
-//   //user exist case
-//   query.on("row", function( row ){
-//     var user = {id: row.id, type:'twitter', app_id :twitterData.id_str, name:row.name, profile:row.profile};
-//     promise.fulfill(user);
-//   });
-//   //user doesn't exist yet case
-//   query.on('end',function(result){
-//     if(result.rowCount === 0 ){
-//       var query = db.query("INSERT into \"user\" (auth_type, auth_id, name,profile) VALUES ( $1,$2,$3,$4) RETURNING id",
-//                           ["twitter", twitterData.id_str, twitterData.screen_name,"{}"]);
-//       query.on( "row", function( row ){
-//         var user = { id: row.id, auth_type: "twitter", auth_id: twitterData.id_str, name: twitterData.screen_name, profile:row.profile };
-//         promise.fulfill(user);
-//       });
-//     }
-//   });
-// };

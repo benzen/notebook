@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>Groupe <small>Actuel: {{user.profile.current_group.name}} {{user.profile.current_group.year}}</small></h1>
+</div>
+
+  <div ng-repeat="group in groups |orderBy:year" class="row">
+    <div class="span2">
+      {{group.year}} {{group.name}} 
+    </div>
+    <div class="span4">
+      <div  ng-repeat="student in group.students">
+            {{student.firstName}} {{student.lastName}}
+      </div>
+    </div>
+    <div ng-hide="group._id == user.profile.current_group._id">
+      <button ng-click="chooseGroup($index)" class="btn">
+        Choisir
+      </button>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1>Étape</h1>
+  </div>
+  <select ng-model="user.profile.current_step"
+          ng-options="step.code as step.description for step in steps">
+  </select>
+
+<div class="pull-right">
+  <button class="btn btn-primary" ng-click="saveProfile()">
+    Sauvegarder
+  </button>
+  <a href="#/" class="btn">
+    Annuler
+  </a>
+</div>
