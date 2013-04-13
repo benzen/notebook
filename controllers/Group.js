@@ -36,6 +36,12 @@ exports.listGroup = function(request, response){
 };
 
 exports.updateGroup = function(request, response){
+  Group.findByIdAndUpdate(request.params.id,request.body, function(err, group){
+    if(err){
+      console.log(err);
+    }
+    response.json( group );
+  });
   
 };
 

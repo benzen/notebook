@@ -72,6 +72,7 @@ StudentEditCtrl.$inject = ["$scope", "Student","$routeParams", "$location"];
 function GroupNewCtrl($scope, $location,Student, Group ) {
   $scope.students=[];
   $scope.findedStudents=[];
+  
   $scope.searchStudentByName=function(){
     var findedStudents = Student.findByName({query:$scope.studentName},function(){
       $scope.findedStudents = findedStudents;
@@ -113,12 +114,34 @@ function GroupDetailsCtrl( $scope, Group, $routeParams ){
 GroupDetailsCtrl.$inject = ['$scope',"Group","$routeParams" ];
 
 
-function GroupEditCtrl( $scope, Group, $routeParams ){
+function GroupEditCtrl( $scope, Group, $routeParams, $location, Student ){
   var group = Group.get({groupId:$routeParams.id}, function(){
       $scope.group = group;
-    })
+  });
+  $scope.findedStudents=[];
+  
+  $scope.searchStudentByName=function(){
+    var findedStudents = Student.findByName({query:$scope.studentName},function(){
+      $scope.findedStudents = findedStudents;
+    });
+  };
+  $scope.addStudentToGroup=function(student){
+    $scope.group.students.push(student);
+    $scope.findedStudents=[];
+    $scope.studentName="";
+  };
+  $scope.removeStudent=function( index ){
+    $scope.group.students.splice(index,1);
+  };
+  $scope.saveGroup=function(){
+    group._id = undefined;
+    group._v = undefined;
+    group.$update({groupId:$routeParams.id});
+    $location.path("/group/list");
+
+  };
 };
-GroupEditCtrl.$inject = ['$scope',"Group","$routeParams" ];
+GroupEditCtrl.$inject = ['$scope',"Group","$routeParams", "$location", "Student" ];
 
 function GroupListCtrl($scope, $http, $location, Group, $route){
   $scope.groups = Group.query();
@@ -149,6 +172,10 @@ function GroupListCtrl($scope, $http, $location, Group, $route){
     Group.delete({groupId:groupId});
     $route.reload();
   };
+  $scope.editGroup=function(index){
+    var groupId = $scope.groups[index]._id;
+    $location.path("/group/"+groupId+"/edit");
+  }
 }
 GroupListCtrl.$inject= ["$scope", "$http","$location","Group", "$route"];
 

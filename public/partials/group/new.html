@@ -2,10 +2,10 @@
   <h1>Nouveau groupe</h1>
 </div>
 
-<form ng-submit="saveGroup()">
-    <input type="text" ng-model="name" placeholder="Nom"/><br>
+<form class="form-inline" ng-submit="saveGroup()">
+    <input type="text" ng-model="name" placeholder="Nom"/>
     <input type="number" ng-model="year" placeholder="Année"/>
-    <button type="submit" class="btn pull-right">Sauvegarder</button>
+    <button type="submit" class="btn btn-primary pull-right">Sauvegarder</button>
 </form>
 
 
@@ -33,7 +33,7 @@
         <tr ng-repeat="student in findedStudents">
           <td>{{student.firstName}}</td>
           <td>{{student.lastName}}</td>
-          <td>{{student.birtday}}</td>
+          <td>{{student.birthday |date: "yyyy-MM-dd"}}</td>
           <td>
             <button ng-click="addStudentToGroup(student)" class="btn"> Selectionner </button>
           </td>
@@ -42,7 +42,7 @@
 
     </div>
   </div>
-<div class="span6">
+  <div class="span6">
     <legend>Élèves du groupe</legend>
     <table class="table table-stiped">
       <thead>
@@ -55,7 +55,7 @@
       <tr ng-repeat="student in students">
         <td>{{student.firstName}}</td>
         <td>{{student.lastName}}</td>
-        <td>{{student.birtday}}</td>
+        <td>{{student.birthday | date:"yyyy-MM-dd"}}</td>
         <td>
           <button class="btn" ng-click="removeStudent($index)"> Enlever </button>
         </td>
