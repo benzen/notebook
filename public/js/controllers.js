@@ -137,9 +137,9 @@ function GroupListCtrl($scope, $http, $location, Group, $route){
     return index === $scope.showStudentsForGroup;
   };
   $scope.chooseGroup=function(index){
-    $http.get("/user/profile").success(function(profile){
-      profile.group = $scope.groups[index].id;
-      $http.put("/user/profile",profile).success(function(){
+    $http.get("/user").success(function(user){
+      user.profile.current_group = $scope.groups[index]._id;
+      $http.put("/user",user).success(function(){
         $location.path("/");
       });
     })
@@ -164,7 +164,8 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
   $http.get("/controlTables").success(function( data ){
     $scope.subjects = data.subject;
   });
-  $http.get("/user/profile").success(function( profile ){
+  $http.get("/user").success(function( user ){
+    console.log(user);
     var group = Group.get({groupId:profile.group}, function(){
       $scope.students = group.students;
       $scope.groupId = group.id;

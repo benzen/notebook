@@ -1,0 +1,6 @@
+db:
+ host: localhost
+ port: 27017
+ username: teacher
+ password: teacher
+ db_name: note_book_db

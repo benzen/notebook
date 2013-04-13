@@ -1,4 +1,8 @@
-<h3> Élèves </h3>
+<div class="page-header">
+  <h1> Liste des élèves </h1>
+</div>
+
+
 
 <table class="table table-striped">
   <thead>
@@ -17,7 +21,7 @@
   <tr ng-repeat="student in students">
     <td>{{student.firstName}}</td>
     <td>{{student.lastName}}</td>
-    <td>{{student.birthday}}</td>
+    <td>{{student.birthday |date: "yyyy-MM-dd"}}</td>
     <td>{{student.fatherName}}</td>
     <td>{{student.motherName}}</td>
     <td>{{student.telephone}}</td>

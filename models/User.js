@@ -1,11 +1,15 @@
-var mongoose = require("mongoose");
-
+var mongoose = require("mongoose"),
+    Schema = require("mongoose").Schema,
+    Group = require("./Group").schema,
+    util= require("util");
 
 var UserSchema = new mongoose.Schema({
   auth_type:String,
   auth_id: String,
   name:String,
-  profile:String
+  profile:{
+    current_group:{type: Schema.Types.ObjectId,ref:"Group"}
+  }
 });
 
 var User = mongoose.model('user', UserSchema);
@@ -19,9 +23,8 @@ exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
   });
 
   query.exec(function(err, result) {
-
     // handle error/results
-    if(err){
+    if(result){
 
       createUserByTwitterData(promise, twitterData)
     }
@@ -30,12 +33,15 @@ exports.findOrCreateUserByTwitterData  = function(promise, twitterData){
 
 };
 var createUserByTwitterData = function(promise, twitterData){
-  console.log("need to create a new user");
+
   var newUser = new User({
-    screen_name: twitterData,
+    screen_name: twitterData.screen_name,
     auth_type: "twitter",
-    auth_id: twitterData.id_str
-  })
+    auth_id: twitterData.id_str,
+    profile:{
+      current_group:null
+    }
+  });
 
   newUser.save(function(err){
     if(err){
@@ -46,24 +52,35 @@ var createUserByTwitterData = function(promise, twitterData){
   return
 };
 
-exports.updateProfile = function(request, response){
-  var profile = request.body;
-  var id = request.session.auth.twitter.user.id;
-  var query = db.query("UPDATE \"user\" set profile=$1 where auth_id=$2", [ JSON.stringify(profile), id ]);
-
+exports.updateUser = function(request, response){
+  var user = request.body;
+  var id = request.session.auth.twitter.user.id;  
+  var query = {
+    'auth_type': "twitter",
+    "auth_id": id
+  };
+  User.findOneAndUpdate(query, {profile:user.profile},function(err, user){
+    if(err){
+      console.log(err);
+    }
+    response.send(200);
+  });
 };
-exports.getProfile = function( request, response ){
+exports.getUser = function( request, response ){
   var id = request.session.auth.twitter.user.id;
-  var query = db.query("select profile from \"user\" where auth_id=$1",[ id ] );
-  query.on( "row", function( row ){
-    response.json(JSON.parse(row.profile));
+
+  var query = User.findOne({
+    'auth_type': "twitter",
+    "auth_id": id
   });
-  query.on("error",function(){
-    response.status(500);
+
+  query.exec(function(err, user) {
+    if(err){
+      console.log(err);
+    }
+    response.json(user);
   });
-  query.on("end",function(){
-    response.status(404);
-  });
+
 };
 
 // exports.findOrCreateUserByTwitterData  = function(promise, twitterData){

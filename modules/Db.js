@@ -1,7 +1,15 @@
 var mongoose = require("mongoose");
-var properties = require("./Properties");
+require("js-yaml");
 
-mongoose.connect(properties.map["TEACHERDB_DATA_MONGODB_URL"]);
+
+var p = require("../properties.yml").db;
+var db_url = "mongodb://"+
+             p.username+":"+
+             p.password+"@"+
+             p.host+":"+
+             p.port+"/"+
+             p.db_name;
+mongoose.connect(db_url);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

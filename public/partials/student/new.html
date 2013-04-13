@@ -1,16 +1,20 @@
-<form ng-submit="saveStudent()" class="form-horizontal">
-  <legend>Nouvel élève</legend>
+<div class="page-header">
+  <h1>Nouvel élève</h1>
+</div>
 
-  <div class="control-group">
-    <label class="control-label">Nom:</label>
-    <div class="controls">
-      <input type="text" ng-model="lastName">
-    </div>
-  </div>
+<form ng-submit="saveStudent()" class="form-horizontal">
+  
+
   <div class="control-group">
     <label class="control-label">Prénom:</label>
     <div class="controls">
       <input type="text" ng-model="firstName">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Nom:</label>
+    <div class="controls">
+      <input type="text" ng-model="lastName">
     </div>
   </div>
 

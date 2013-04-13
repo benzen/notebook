@@ -2,30 +2,46 @@
 <html ng-app="notebook">
   <head>
     <title>Notebook</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular.min.js"></script>
-    <script type="text/javascript" src="http://code.angularjs.org/1.1.0/angular-resource.min.js"></script>
-    <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="//code.angularjs.org/1.1.0/angular.js"></script>
+    <script type="text/javascript" src="//code.angularjs.org/1.1.0/angular-resource.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script> 
+    
     <script type="text/javascript" src="js/notebook.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/filters.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
+    
 
   </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <ul class="nav nav-pills pull-right">
+  <body class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <ul class="nav nav-list well">
+          <li class="nav-header">Élèves</li>
+          <li><a href="#/student/new">Ajouter</a></li>
+          <li><a href="#/student/list">Lister</a></li>
+          
+          <li class="nav-header">Groupe</li>
+          <li><a href="#/group/new">Ajouter</a></li>
+          <li><a href="#/group/list">Lister</a></li>
+          
+          <li class="nav-header">Exam</li>
+          <li><a href="#/examination/new">Ajouter</a></li>
+          <li><a href="#/examination/list">Lister</a></li>
+
+          <li class="nav-header">Autre</li>
           <li>
-            <a href="#/configure">Configure</a>
-          </li>
-          <li>
-            <a href="/logout">Logout</a>
+            <a href="#/logout">Logout</a>
           </li>
         </ul>
       </div>
-      <div ng-view  class="row"/>
+      
+      <div ng-view  class="span10"/>
     </div>
+    
 </body>

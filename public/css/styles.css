@@ -40,3 +40,7 @@ input {
 .no-wrap-table-header{
   white-space: nowrap;
 }
+.nav-list{
+  height:100%;
+  position:fixed;
+}

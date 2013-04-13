@@ -2,7 +2,8 @@
      studentController = require( "../controllers/Student.js" ),
      navigationController = require( "../controllers/Navigation.js" ),
      controlTables = require("./ControlTables.js"),
-     exam = require("../controllers/Exam.js");
+     exam = require("../controllers/Exam.js"),
+     user = require("../models/User.js");
 
 var setUpRoutes = function( app ){
   var checkIsUserAuthentified = function(request, response, next){
@@ -29,8 +30,8 @@ var setUpRoutes = function( app ){
   app.put( "/group/:id",  checkIsUserAuthentified, groupController.updateGroup );
   app.delete("/group/:id",checkIsUserAuthentified, groupController.deleteGroup );
 
-  // app.get( "/user/profile", checkIsUserAuthentified, user.getProfile );
-  // app.put( "/user/profile", checkIsUserAuthentified, user.updateProfile );
+  app.get( "/user", checkIsUserAuthentified, user.getUser );
+  app.put( "/user", checkIsUserAuthentified, user.updateUser );
 
   app.get( "/controlTables",checkIsUserAuthentified, controlTables.asJson)
 
