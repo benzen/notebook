@@ -1,25 +1,23 @@
-var ExamSchema = require("../models/Examination");
+
+var Exam  = require("../models/Examination").model;
+
 //Create exam
 //Update exam
 //Delete Exam
 //list exam
-exports.createExamination = function(request, response){
-  var exam = request.body;
-  groupId = exam.group;
-  exam.group = undefined;
-  var query = db.query( "INSERT INTO examination ( \"group\", json ) values ($1, $2) RETURNING id", [ groupId, JSON.stringify(exam) ] );
-  query.on("row",function(row){
-    response.send("/examination/"+row.id);
+exports.createExamination = function(request, response) {
+  var newExam = new Exam(request.body);
+  newExam.save(function(err){
+    if(err){
+      console.log(err);
+      response.send(500);
+    }
+    response.send("/exam/"+newExam._id);
   });
-
-  query.on("error",function(e){
-    console.error(e);
-  	response.send(500);
-  });
-
 };
 
-exports.listExamination = function( request, response ){
+exports.listExamination = function( request, response) {
+/*
   var query = db.query( "SELECT * from examination" );
   var rows = [];
   query.on("row",function(row, result){
@@ -32,4 +30,5 @@ exports.listExamination = function( request, response ){
   query.on("end",function( result ){
     response.json( rows );
   });
+*/
 };

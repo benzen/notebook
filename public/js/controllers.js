@@ -165,17 +165,12 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
     $scope.subjects = data.subject;
   });
   $http.get("/user").success(function( user ){
-    console.log(user);
-    var group = Group.get({groupId:profile.group}, function(){
-      $scope.students = group.students;
-      $scope.groupId = group.id;
-    })
-
+    $scope.group = user.profile.current_group
   });
 
   $scope.changeSubject=function(){
     if($scope.subject.criterion){
-      $scope.students.forEach(function(s, index){
+      $scope.groupe.students.forEach(function(s, index){
         $scope.mark[index]={};
       });
     }
@@ -190,10 +185,9 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
       date: $scope.date,
       name: $scope.name,
       maximal: $scope.maximal,
-      group:$scope.groupId,
-      marks: $scope.students.map(function(student, index){
-        return { firstName:student.firstName,
-                 lastName:student.lastName,
+      group:$scope.group._id,
+      marks: $scope.group.students.map(function(student, index){
+        return { student: student._id,
                  mark:$scope.mark[index]
                }
       })

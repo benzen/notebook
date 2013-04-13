@@ -2,54 +2,43 @@
   <h1>Nouvel exam</h1>
 </div>
 
-<div class=row>
-  <form class="form-horizontal span6">
-    <fieldset>
-
-      <div class="control-group">
-        <div class="control-label">Sujet</div>
-        <div class="controls">
-          <select ng-model="subject"
-                  ng-change="changeSubject()"
-                  ng-options="s.subject group by s.competence for s in subjects">
-          </select>
-        </div>
-      </div>
-
-      <div class=control-group>
-        <div class=control-label>Nom</div>
-        <div class=controls>
-          <input type="text" ng-model="name">
-        </div>
-      </div>
-
-      <div class=control-group>
-        <div class=control-label>Date</div>
-        <div class=controls>
-          <input type=date ng-model=date>
-        </div>
-      </div>
-
-      <div class=control-group>
-        <div class=control-label>Maximal</div>
-        <div class=controls>
-          <input type=number ng-model=maximal>
-        </div>
-      </div>
-    </fieldset>
+<div class="row">
+  <form class="form-inline ">
+    <!--Sujet-->
+    Sujet: 
+    <select ng-model="subject"
+            ng-change="changeSubject()"
+            ng-options="s.subject group by s.competence for s in subjects"
+            class="input">
+    </select>
+    <!--Nom-->
+    Nom: 
+    <input type="text" ng-model="name">
+    <!--Date-->
+    Date: 
+    <input type="date" ng-model="date" class="input-small">
+    <!--Maximal-->
+    Note maximal:
+    <input type="number" ng-model="maximal" class="input-small">
   </form>
+</div>
+<div class="row">
   <table class=span6>
     <tr>
       <td>Élèves</td>
       <td ng-show=subject.criterion ng-repeat="criterion in subject.criterion">{{criterion}}</td>
     </tr>
-    <tr ng-repeat="student in students |orderBy:lastName |orderBy:firstName">
+    <tr ng-repeat="student in group.students |orderBy:lastName |orderBy:firstName">
       <td>{{student.lastName}} {{student.firstName}}</td>
       <td ng-hide=subject.criterion>
-        <input type=number ng-model=mark[$index]>
+        <input type="number" 
+               ng-model="mark[$index]"
+               class="input-small">
       </td>
       <td ng-show="subject.criterion" ng-repeat="criterion in subject.criterion">
-        <input type="number" ng-model="mark[$parent.$index][criterion]" >
+        <input type="number" 
+               ng-model="mark[$parent.$index][criterion]"
+               class="input-small" >
       </td>
 
 

@@ -8,7 +8,7 @@ var UserSchema = new mongoose.Schema({
   auth_id: String,
   name:String,
   profile:{
-    current_group:{type: Schema.Types.ObjectId,ref:"Group"}
+    current_group:{type: Schema.Types.ObjectId,ref:"group"}
   }
 });
 
@@ -74,7 +74,7 @@ exports.getUser = function( request, response ){
   var query = User.findOne({
     'auth_type': "twitter",
     "auth_id": id
-  });
+  }).populate("profile.current_group");
 
   query.exec(function(err, user) {
     if(err){

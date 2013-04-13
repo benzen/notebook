@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var Group = require("./Group").schema;
-var Mark = require("./Mark").schema;
 
 var ExaminationSchema = new mongoose.Schema({
   group: {
@@ -8,7 +7,14 @@ var ExaminationSchema = new mongoose.Schema({
     ref: "group"
   },
   date: Date,
-  marks:[ Mark ]
+  maximal: Number,
+  name: String,
+  marks:[ {
+    student: { 
+      type:mongoose.Schema.ObjectId, 
+      ref:"student"},
+    mark:Number
+  } ]
 });
 
 //TODO add method to compute averages notes
