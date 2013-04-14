@@ -2,18 +2,20 @@
   <h1>Liste des Exam</h1>
 </div>
 
- <select ng-model="selectedSubject" ng-options="s.subject for s in subjects"></select>
+Sujet: <select ng-model="selectedSubject" ng-options="s.subject for s in subjects"></select>
+Étape: <select ng-model="selectedStep" ng-options="step.code as step.description for step in steps"></select>
+
  <div ng-repeat="s in subjects" ng-hide="s.subject != selectedSubject.subject">
 
   <h3>{{s.competence}} : {{s.subject}}</h3>
   <p ng-hide="examsBySubjectCode[s.code]")>Pas d'Exam</p>
   <div ng-show="examsBySubjectCode[s.code]">
-    Moyenne de compétance {{competenceGroupAverage(s.competence)}}
+    Moyenne de compétance {{competenceGroupAverageForStep(s.competence, selectedStep)}}
     <table class="table table-hover">
 
       <tr>
         <th></th>
-        <th ng-repeat="nameAndExam in examWithCriterion[ s.code ]">
+        <th ng-repeat="nameAndExam in examWithCriterion[ s.code ] | filter: filterExamByStep">
           <div class="rotated-content-helper">
             <div class="rotated-table-header no-wrap-table-header">
               {{nameAndExam.name}} ( {{nameAndExam.exam.maximal}} )
@@ -35,21 +37,22 @@
         {{ student.lastName + " " + student.firstName }}
       </th>
 
-      <td ng-repeat="nameAndExam in examWithCriterion[ s.code ]">
+      <td ng-repeat="nameAndExam in examWithCriterion[ s.code ] | filter: filterExamByStep">
+      <!--<td ng-repeat="nameAndExam in $filter('examByStep')(examWithCriterion[ s.code ], selectedStep)">-->
         {{markAsPercentage( student, nameAndExam.exam, nameAndExam.exam.criterion ) | markPercentageOrAbs}}
       </td>
 
       <td>
-        {{averageForSubject(student, s.code) | markPercentageOrAbs }}
+        {{averageForSubjectAndStep(student, s.code,selectedStep) | markPercentageOrAbs }}
       </td>
       </td>
     </tr>
     <tr>
       <th> Moyenne </th>
-      <td ng-repeat="nameAndExam in examWithCriterion[ s.code ]">
+      <td ng-repeat="nameAndExam in examWithCriterion[ s.code ] | filter: filterExamByStep">
         {{averageForExamination(nameAndExam.exam) | markPercentageOrAbs}}
       </td>
-      <td>{{groupAverageForSubject(s.code) | markPercentageOrAbs}}</td>
+      <td>{{groupAverageForSubjectAndStep(s.code, selectedStep) | markPercentageOrAbs}}</td>
 
     </tr>
   </table>

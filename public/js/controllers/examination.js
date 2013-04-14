@@ -13,9 +13,11 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
 
   $http.get("/controlTables").success(function( data ){
     $scope.subjects = data.subject;
+    $scope.steps = data.steps;
   });
   $http.get("/user").success(function( user ){
-    $scope.group = user.profile.current_group
+    $scope.group = user.profile.current_group;
+    $scope.step = user.profile.current_step;
   });
 
   $scope.changeSubject=function(){
@@ -36,6 +38,7 @@ function ExaminationNewCtrl( $scope,$http, $location, Group, Examination ){
       name: $scope.name,
       maximal: $scope.maximal,
       group:$scope.group._id,
+      step: $scope.step,
       marks: $scope.group.students.map(function(student, index){
         return { student: student._id,
                  mark:$scope.mark[index]
@@ -59,18 +62,19 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
   $http.get("/user").success(function( user ){
     //TODO what if there is nothing into the profile??
     $scope.students = user.profile.current_group.students;
+    $scope.selectedStep = user.profile.current_step;
   });
 
   $http.get("/controlTables").success(function( data ){
     var competenceToSubjectSize = {};
     $scope.subjects = data.subject;
+    $scope.steps = data.steps;
     var exams = Examination.query(function(){
       $scope.exams = exams;
       $scope.examsBySubjectCode = createExamBySubject(exams);
       $scope.examWithCriterion= createExamWithCriterion();
     });
   });
-
 
   var createExamWithCriterion =function(){
     var result = {};
@@ -115,11 +119,13 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     return Math.round( ( mark / exam.maximal ) * 100 );
 
   };
-  $scope.averageForSubject = function( student, subjectCode ){
+  $scope.averageForSubjectAndStep = function( student, subjectCode, stepCode ){
     var sum = 0;
     var nbOfExam  = 0;
     if($scope.examsBySubjectCode[subjectCode]){
-      $scope.examsBySubjectCode[subjectCode].forEach(function(exam){
+      $scope.examsBySubjectCode[subjectCode].filter(function(exam){
+        return exam.step === stepCode;
+      }).forEach(function(exam){
         var mark = $scope.markAsPercentage( student, exam );
         if(mark !==null){
           nbOfExam++;
@@ -130,11 +136,11 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     if(nbOfExam === 0) return  null;
     return Math.round( sum / nbOfExam);
   };
-  $scope.groupAverageForSubject = function(subjectCode){
+  $scope.groupAverageForSubjectAndStep = function(subjectCode, stepCode){
     var sum = 0;
     var nbOfMark = 0;
     $scope.students.forEach(function(student){
-      var studentAverage = $scope.averageForSubject(student, subjectCode);
+      var studentAverage = $scope.averageForSubjectAndStep(student, subjectCode, stepCode);
       if( studentAverage !== null ){
         nbOfMark++;
         sum+=studentAverage;
@@ -156,13 +162,13 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     if(nbOfMark===0) return null;
     return Math.round( sum/nbOfMark );
   };
-  $scope.competenceGroupAverage=function( competence ){
+  $scope.competenceGroupAverageForStep = function( competence,stepCode ){
     var nbOfAverage = 0;
     var averageSum = 0;
     $scope.subjects.filter(function(subject){
       return subject.competence === competence;
     }).forEach(function( subject ){
-       var avg = $scope.groupAverageForSubject( subject.code );
+       var avg = $scope.groupAverageForSubjectAndStep( subject.code,stepCode );
        if(avg){
          nbOfAverage++;
          averageSum+=avg;
@@ -171,6 +177,9 @@ function ExaminationListCtrl($scope, $http, Group, Examination){
     if(nbOfAverage===0) return null;
     return Math.round( averageSum/nbOfAverage );
   }
+  $scope.filterExamByStep=function(nameAndExam){
+    return nameAndExam.exam.step === $scope.selectedStep;
+  };
 
 }
 ExaminationListCtrl.$inject = ["$scope","$http", "Group", "Examination"]

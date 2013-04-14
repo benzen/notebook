@@ -59,7 +59,8 @@ var createUserByTwitterData = function(promise, twitterData){
 exports.updateUser = function(request, response){
   var user = request.body;
   var id = request.session.auth.twitter.user.id;  
-  delete request.body._id;
+  user.profile.current_group = user.profile.current_group._id;
+  delete user._id;
   var query = {
     'auth_type': "twitter",
     "auth_id": id
@@ -84,7 +85,7 @@ exports.getUser = function( request, response ){
     if(err){
       console.log(err);
     }
-    response.json(user);
+    response.json(user.toObject());
   });
 
 };

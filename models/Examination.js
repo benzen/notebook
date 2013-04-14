@@ -7,6 +7,7 @@ var ExaminationSchema = new mongoose.Schema({
     ref: "group"
   },
   date: Date,
+  step: Number,
   maximal: Number,
   name: String,
   subject: String,

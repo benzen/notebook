@@ -8,22 +8,32 @@
     Sujet: 
     <select ng-model="subject"
             ng-change="changeSubject()"
-            ng-options="s.subject group by s.competence for s in subjects"
-            class="input">
+            ng-options="s.subject group by s.competence for s in subjects">
     </select>
     <!--Nom-->
     Nom: 
-    <input type="text" ng-model="name">
+    <input type="text" 
+           ng-model="name" 
+           class="input-medium">
+    Étape:
+    <select ng-model="step" 
+            ng-options="step.code as step.description for step in steps" 
+            class="input-small">
+    </select>
     <!--Date-->
     Date: 
-    <input type="date" ng-model="date" class="input-small">
+    <input type="date" 
+           ng-model="date" 
+           class="input-small">
     <!--Maximal-->
     Note maximal:
-    <input type="number" ng-model="maximal" class="input-small">
+    <input type="number" 
+           ng-model="maximal" 
+           class="input-mini">
   </form>
 </div>
 <div class="row">
-  <table class=span6>
+  <table class="span6">
     <tr>
       <td>Élèves</td>
       <td ng-show=subject.criterion ng-repeat="criterion in subject.criterion">{{criterion}}</td>
